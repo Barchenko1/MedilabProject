@@ -22,7 +22,18 @@ class EmployeeEdit extends React.Component{
                     onDismiss={() => history.push('/employees')}
                 >
                     <EmployeeForm
-                        initialValues={_.pick(this.props.employee, 'firstName', 'lastName', 'age', 'dependents')}
+                        initialValues={_.pick(
+                            this.props.employee,
+                            'firstName',
+                            'lastName',
+                            'age',
+                            'birthdate',
+                            'gender',
+                            'email',
+                            'dateOfHire',
+                            'hoursWorked',
+                            'salary',
+                            'dependents')}
                         onSubmit={this.onSubmit}
                         submitButton='Edit'
                         cancelButton='Cancel'
