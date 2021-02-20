@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {getEmployees, deleteEmployee} from "../../actions/employeeActions";
 import {Link} from "react-router-dom";
-import CustomButton from "../buttons/ContinueButton";
+import CustomButton from "../../customComponents/buttons/CustomButton";
 import './EmployeeList.css'
 
 class EmployeeList extends React.Component {
