@@ -18,12 +18,9 @@ class EmployeeCreate extends React.Component {
     //     )
     // }
 
-
-
     onSubmit = formProps => {
-        const newEmployee = Object.assign(formProps, {uniqueId: _.uniqueId('field_')})
-        console.log(newEmployee)
-        this.props.createEmployee(newEmployee);
+        console.log(formProps)
+        this.props.createEmployee(formProps);
     }
 
     render() {

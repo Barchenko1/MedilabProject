@@ -1,28 +1,15 @@
 import React from 'react'
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {Link} from "react-router-dom";
 import {LOGIN_PAGE} from "../../utils/consts";
-import RadioButton from "../../customComponents/radioButtons/CustomRadioButton";
+import CustomRadioButton from "../../customComponents/radioButtons/CustomRadioButton";
+import CustomInput from "../../customComponents/inputs/CustomInput";
 
 
 class RegistrationForm extends React.Component {
+
     renderError(meta) {
 
-    }
-
-    renderInput = (formProps) => {
-        const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error' : ''}`
-        return(
-            <div className={className}>
-                <label>{formProps.label}</label>
-                <input
-                    type={formProps.type}
-                    onChange={formProps.input.onChange}
-                    value={formProps.input.value} autoComplete="off"
-                />
-                {this.renderError(formProps.meta)}
-            </div>
-        )
     }
 
     renderGenderSelectionRadioButtons() {
@@ -30,8 +17,8 @@ class RegistrationForm extends React.Component {
             <div>
                 <label>Gender</label>
                 <div>
-                    <RadioButton name="gender" caption="Male" radioButtonValue="male"/>
-                    <RadioButton name="gender" caption="Female" radioButtonValue="female"/>
+                    <CustomRadioButton name="gender" caption="Male" radioButtonValue="male" renderError={this.renderError}/>
+                    <CustomRadioButton name="gender" caption="Female" radioButtonValue="female" renderError={this.renderError}/>
                 </div>
             </div>
         )
@@ -45,51 +32,46 @@ class RegistrationForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-                <Field
+                <CustomInput
                     type="text"
                     name="fistName"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="First name"/>
-                <Field
+                <CustomInput
                     type="text"
                     name="lastName"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Last name"/>
-                <Field
+                <CustomInput
                     type="date"
                     name="birthDate"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Date of Birth"/>
-                {/*<Field*/}
-                {/*    type="radio"*/}
-                {/*    name="gender"*/}
-                {/*    component={this.renderRadioButton}*/}
-                {/*    label="Gender"/>*/}
                 {this.renderGenderSelectionRadioButtons()}
-                <Field
+                <CustomInput
                     type="text"
                     name="phone"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Phone number"/>
-                <Field
+                <CustomInput
                     type="text"
                     name="login"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Login"/>
-                <Field
+                <CustomInput
                     type="text"
                     name="email"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Email"/>
-                <Field
+                <CustomInput
                     type="password"
                     name="password"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Password"/>
-                <Field
+                <CustomInput
                     type="password"
                     name="confirmPassword"
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Confirm Password"/>
                 <button className="ui button primary">
                     Register

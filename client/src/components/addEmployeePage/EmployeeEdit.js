@@ -13,7 +13,18 @@ class EmployeeEdit extends React.Component{
     }
 
     render() {
-        console.log(_.pick(this.props.employee, 'firstName', 'lastName', 'age', 'dependents'))
+        console.log(_.pick(
+            this.props.employee,
+            'firstName',
+            'lastName',
+            'age',
+            'birthdate',
+            'gender',
+            'email',
+            'dateOfHire',
+            'hoursWorked',
+            'salary',
+            'dependents'))
         return(
             <div>
                 EmployeeEdit

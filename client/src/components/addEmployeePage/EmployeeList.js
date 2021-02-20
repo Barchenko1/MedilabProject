@@ -4,6 +4,7 @@ import {getEmployees, deleteEmployee} from "../../actions/employeeActions";
 import {Link} from "react-router-dom";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import './EmployeeList.css'
+import {COMPANY_PROFILE_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
 
 class EmployeeList extends React.Component {
 
@@ -56,8 +57,8 @@ class EmployeeList extends React.Component {
                     {this.renderEmployees()}
                 </div>
                 <div className="buttonContainer">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to="company-profile"/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to="plan-selection"/>
+                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={COMPANY_PROFILE_PAGE}/>
+                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>
                 </div>
             </div>
         )

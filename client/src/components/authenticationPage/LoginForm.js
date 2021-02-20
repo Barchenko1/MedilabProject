@@ -2,6 +2,7 @@ import React from 'react'
 import {Field, reduxForm} from "redux-form";
 import {REGISTRATION_PAGE} from "../../utils/consts";
 import {Link} from "react-router-dom";
+import CustomInput from "../../customComponents/inputs/CustomInput";
 
 class LoginForm extends React.Component {
 
@@ -9,34 +10,23 @@ class LoginForm extends React.Component {
 
     }
 
-    renderInput = (formProps) => {
-        const className = `field ${formProps.meta.error && formProps.meta.touched ? 'error' : ''}`
-        return(
-            <div className={className}>
-                <label>{formProps.label}</label>
-                <input
-                    onChange={formProps.input.onChange}
-                    value={formProps.input.value} autoComplete="off"
-                />
-                {this.renderError(formProps.meta)}
-            </div>
-        )
-    }
-
     onSubmit = (formProps) => {
+        console.log(formProps)
         this.props.onSubmit(formProps);
     }
 
     render() {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
-                <Field
+                <CustomInput
                     name="usernameOrEmail"
-                    component={this.renderInput}
-                    label="Enter Login or Email"/>
-                <Field
+                    type="text"
+                    renderError={this.renderError}
+                    label="Enter User Name or Email"/>
+                <CustomInput
                     name="password"
-                    component={this.renderInput}
+                    type="text"
+                    renderError={this.renderError}
                     label="Enter Password"/>
                 <button className="ui button primary">
                     Login

@@ -2,6 +2,8 @@ import React from 'react';
 import { Field, FieldArray, reduxForm } from "redux-form";
 import './EmployeeForm.css'
 import {Link} from "react-router-dom";
+import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
+import CustomInput from "../../customComponents/inputs/CustomInput";
 
 class EmployeeForm extends React.Component {
 
@@ -25,34 +27,6 @@ class EmployeeForm extends React.Component {
         }
     }
 
-    renderDropDown = (formProps) => {
-        return(
-            <div>
-                <label>{formProps.label}</label>
-                <select {...formProps.input}>
-                    <option value=""/>
-                    {formProps.data.map(data =>
-                        <option value={data} key={data}>{data}</option>)}
-                </select>
-                {this.renderError(formProps.meta)}
-            </div>
-        )
-    }
-
-    renderInput = (formProps) => {
-        return(
-            <div>
-                <label>{formProps.label}</label>
-                <input
-                    type={formProps.type}
-                    onChange={formProps.input.onChange}
-                    value={formProps.input.value}
-                />
-                {this.renderError(formProps.meta)}
-            </div>
-        )
-    }
-
     renderDependentSection = ({ fields, meta: { touched, error, submitFailed } }) => {
         return(
             <ul>
@@ -70,41 +44,41 @@ class EmployeeForm extends React.Component {
                             onClick={() => fields.remove(index)}
                         >Remove this dependent</button>
                         <h4>Dependent #{index + 1}</h4>
-                        <Field
+                        <CustomInput
                             name={`${dependent}.firstName`}
                             type="text"
-                            component={this.renderInput}
+                            renderError={this.renderError}
                             label="First Name"
                         />
-                        <Field
+                        <CustomInput
                             name={`${dependent}.lastName`}
                             type="text"
-                            component={this.renderInput}
+                            renderError={this.renderError}
                             label="Last Name"
                         />
-                        <Field
+                        <CustomInput
                             name={`${dependent}.birthdate`}
                             type='date'
-                            component={this.renderInput}
+                            renderError={this.renderError}
                             label="Birth date"
                         />
-                        <Field
+                        <CustomInput
                             name={`${dependent}.age`}
                             type="number"
-                            component={this.renderInput}
+                            renderError={this.renderError}
                             label="Age"
                         />
-                        <Field
+                        <CustomDropDown
                             name={`${dependent}.gender`}
-                            component={this.renderDropDown}
                             data={this.genders}
                             label="Gender"
+                            renderError={this.renderError}
                         />
-                        <Field
+                        <CustomDropDown
                             name={`${dependent}.relationship`}
-                            component={this.renderDropDown}
                             data={this.relationships}
                             label="Relationship"
+                            renderError={this.renderError}
                         />
                     </li>
                 ))}
@@ -119,54 +93,59 @@ class EmployeeForm extends React.Component {
     render() {
         return(
             <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <Field
+                <CustomInput
                     name='firstName'
                     type='text'
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="First Name"
                 />
-                <Field name='lastName'
-                       type='text'
-                       component={this.renderInput}
-                       label="Last Name"
+                <CustomInput
+                    name='lastName'
+                    type='text'
+                    renderError={this.renderError}
+                    label="Last Name"
                 />
-                <Field
+                <CustomInput
                     name='birthdate'
                     type='date'
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Birth date"
                 />
-                <Field name='age'
-                       type='number'
-                       component={this.renderInput}
-                       label="Age"
+                <CustomInput
+                    name='age'
+                    type='number'
+                    renderError={this.renderError}
+                    label="Age"
                 />
-                <Field
-                    name='gender'
-                    component={this.renderDropDown}
+                <CustomDropDown
+                    name="gender"
                     data={this.genders}
                     label="Gender"
+                    renderError={this.renderError}
                 />
-                <Field name='email'
-                       type='email'
-                       component={this.renderInput}
-                       label="Email"
+                <CustomInput
+                    name='email'
+                    type='email'
+                    renderError={this.renderError}
+                    label="Email"
                 />
-                <Field
+                <CustomInput
                     name='dateOfHire'
                     type='date'
-                    component={this.renderInput}
+                    renderError={this.renderError}
                     label="Date of hire"
                 />
-                <Field name='hoursWorked'
-                       type='number'
-                       component={this.renderInput}
-                       label="Hours worked"
+                <CustomInput
+                    name='hoursWorked'
+                    type='number'
+                    renderError={this.renderError}
+                    label="Hours worked"
                 />
-                <Field name='salary'
-                       type='number'
-                       component={this.renderInput}
-                       label="Salary"
+                <CustomInput
+                    name='salary'
+                    type='number'
+                    renderError={this.renderError}
+                    label="Salary"
                 />
                 <FieldArray
                     name='dependents'

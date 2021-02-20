@@ -1,14 +1,16 @@
 import React from 'react';
+
 import {Field} from 'redux-form';
 
-const renderRadioButton = (props) => {
-    const {radioButtonValue, caption, ...field} = props;
+const renderCheckBox = (props) => {
+    const {checkBoxValue, caption, ...field} = props;
+    console.log(props)
     return (
         <div>
             <label>
                 <input {...field.input}
-                       type="radio"
-                       value={radioButtonValue}
+                       type="checkbox"
+                       checked={props.input.value}
                        onChange={props.input.onChange}
                 />
                 <span>{caption}</span>
@@ -18,10 +20,10 @@ const renderRadioButton = (props) => {
     );
 };
 
-const CustomRadioButton = (props) => {
+const CustomCheckBox = (props) => {
     return (
-        <Field {...props} component={renderRadioButton}/>
+        <Field {...props} component={renderCheckBox}/>
     );
 };
 
-export default CustomRadioButton;
+export default CustomCheckBox;
