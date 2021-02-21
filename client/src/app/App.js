@@ -6,8 +6,8 @@ import EmployeeList from "../components/addEmployeePage/EmployeeList";
 import EmployeeEdit from "../components/addEmployeePage/EmployeeEdit";
 import PlanSelectionList from "../components/planSelectionPage/PlanSelectionList";
 import {
-  ADD_EMPLOYEES_PAGE,
-  COMPANY_PROFILE_PAGE, CREATE_EMPLOYEE, EDIT_EMPLOYEE, EMPLOYEE_PROFILE_PAGE,
+  ADD_EMPLOYEES_PAGE, ADD_INDIVIDUAL_EMPLOYEE_PAGE,
+  COMPANY_PROFILE_PAGE, CREATE_EMPLOYEE, EDIT_EMPLOYEE,
   HOME_PAGE,
   LOGIN_PAGE,
   PLAN_SELECTION_PAGE,
@@ -18,7 +18,7 @@ import RegistrationPage from "../components/authenticationPage/RegistrationPage"
 import CompanyProfilePage from "../components/companyProfilePage/CompanyProfilePage";
 import HomePage from "../components/homePage/HomePage";
 import Footer from "../components/Footer";
-import EmployeeProfilePage from "../components/employeeProfilePage/EmployeeProfilePage";
+import AddIndividualEmployeePage from "../components/addIndividualEmployeePage/AddIndividualEmployeePage";
 
 const App = () => {
   return (
@@ -39,7 +39,7 @@ const App = () => {
 
               <Route path={PLAN_SELECTION_PAGE} exact component={PlanSelectionList} />
 
-              <Route path={EMPLOYEE_PROFILE_PAGE} exact component={EmployeeProfilePage} />
+              <Route path={ADD_INDIVIDUAL_EMPLOYEE_PAGE} exact component={AddIndividualEmployeePage} />
             </Switch>
             <Footer />
           </div>

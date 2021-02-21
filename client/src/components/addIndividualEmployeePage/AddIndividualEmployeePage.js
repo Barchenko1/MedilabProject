@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import EmployeeForm from "../forms/EmployeeForm";
 
-class EmployeeProfilePage extends React.Component {
+class AddIndividualEmployeePage extends React.Component {
 
     onSubmit = (formProps) => {
 
@@ -22,4 +22,4 @@ class EmployeeProfilePage extends React.Component {
     }
 }
 
-export default connect(null, {})(EmployeeProfilePage);
+export default connect(null, {})(AddIndividualEmployeePage);
