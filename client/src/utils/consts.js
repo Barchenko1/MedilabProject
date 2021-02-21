@@ -11,5 +11,7 @@ export const EDIT_EMPLOYEE = '/employee/edit/:id';
 
 export const PLAN_SELECTION_PAGE = '/plan-selection';
 
+export const EMPLOYEE_PROFILE_PAGE = '/employee-profile';
+
 export const ACCESS_TOKEN = 'accessToken';
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, FieldArray, reduxForm } from "redux-form";
-import './EmployeeForm.css'
+import '../addEmployeePage/EmployeeForm.css'
 import {Link} from "react-router-dom";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomInput from "../../customComponents/inputs/CustomInput";
@@ -153,7 +153,7 @@ class EmployeeForm extends React.Component {
                 />
                 <div className="modal-container">
                     <button>{this.props.submitButton}</button>
-                    <Link to='/employees'>{this.props.cancelButton}</Link>
+                    <Link to={this.props.to}>{this.props.cancelButton}</Link>
                 </div>
             </form>
         )

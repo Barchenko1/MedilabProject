@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CompanyProfileForm from "./CompanyProfileForm";
+import CompanyProfileForm from "../forms/CompanyProfileForm";
 import CustomButton from "../../customComponents/buttons/CustomButton";
-import {ADD_EMPLOYEES_PAGE, COMPANY_PROFILE_PAGE, HOME_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
+import {ADD_EMPLOYEES_PAGE, HOME_PAGE} from "../../utils/consts";
 
 class CompanyProfilePage extends React.Component {
 

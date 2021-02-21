@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from "../modals/Modal";
 import history from "../../utils/history";
-import EmployeeForm from "./EmployeeForm";
+import EmployeeForm from "../forms/EmployeeForm";
 import {connect} from 'react-redux';
 import {editEmployee, getEmployee} from "../../actions/employeeActions";
 import _ from 'lodash';
 
-class EmployeeEdit extends React.Component{
+class EmployeeEdit extends React.Component {
 
     onSubmit = (formProps) => {
         this.props.editEmployee(this.props.match.params.id, formProps);
@@ -24,7 +24,7 @@ class EmployeeEdit extends React.Component{
             'dateOfHire',
             'hoursWorked',
             'salary',
-            'dependents'))
+            'dependents'));
         return(
             <div>
                 EmployeeEdit
@@ -46,6 +46,7 @@ class EmployeeEdit extends React.Component{
                             'salary',
                             'dependents')}
                         onSubmit={this.onSubmit}
+                        to="/employees"
                         submitButton='Edit'
                         cancelButton='Cancel'
                     />

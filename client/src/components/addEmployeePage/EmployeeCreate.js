@@ -2,21 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createEmployee } from "../../actions/employeeActions";
 import Modal from "../modals/Modal";
-import EmployeeForm from "./EmployeeForm";
+import EmployeeForm from "../forms/EmployeeForm";
 import history from "../../utils/history";
 import _ from "lodash";
 
 class EmployeeCreate extends React.Component {
-
-
-    // renderActions = () => {
-    //     return(
-    //         <React.Fragment>
-    //             <button onClick={() => this.onSubmit()}>Create</button>
-    //             <Link to='/employees'>Cancel</Link>
-    //         </React.Fragment>
-    //     )
-    // }
 
     onSubmit = formProps => {
         console.log(formProps)
@@ -32,6 +22,7 @@ class EmployeeCreate extends React.Component {
                 >
                     <EmployeeForm
                         onSubmit={this.onSubmit}
+                        to="/employees"
                         submitButton='Create'
                         cancelButton='Cancel'
                     />

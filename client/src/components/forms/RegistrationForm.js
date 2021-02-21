@@ -15,10 +15,10 @@ class RegistrationForm extends React.Component {
     renderGenderSelectionRadioButtons() {
         return(
             <div>
-                <label>Gender</label>
+                <label>Role</label>
                 <div>
-                    <CustomRadioButton name="gender" caption="Male" radioButtonValue="male" renderError={this.renderError}/>
-                    <CustomRadioButton name="gender" caption="Female" radioButtonValue="female" renderError={this.renderError}/>
+                    <CustomRadioButton name="role" caption="Customer" radioButtonValue="customer" renderError={this.renderError}/>
+                    <CustomRadioButton name="role" caption="Individual" radioButtonValue="individual" renderError={this.renderError}/>
                 </div>
             </div>
         )
@@ -34,35 +34,19 @@ class RegistrationForm extends React.Component {
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
                 <CustomInput
                     type="text"
-                    name="fistName"
+                    name="username"
                     renderError={this.renderError}
-                    label="First name"/>
-                <CustomInput
-                    type="text"
-                    name="lastName"
-                    renderError={this.renderError}
-                    label="Last name"/>
-                <CustomInput
-                    type="date"
-                    name="birthDate"
-                    renderError={this.renderError}
-                    label="Date of Birth"/>
-                {this.renderGenderSelectionRadioButtons()}
-                <CustomInput
-                    type="text"
-                    name="phone"
-                    renderError={this.renderError}
-                    label="Phone number"/>
-                <CustomInput
-                    type="text"
-                    name="login"
-                    renderError={this.renderError}
-                    label="Login"/>
+                    label="User Name"/>
                 <CustomInput
                     type="text"
                     name="email"
                     renderError={this.renderError}
                     label="Email"/>
+                <CustomInput
+                    type="text"
+                    name="phone"
+                    renderError={this.renderError}
+                    label="Phone number"/>
                 <CustomInput
                     type="password"
                     name="password"
@@ -73,6 +57,7 @@ class RegistrationForm extends React.Component {
                     name="confirmPassword"
                     renderError={this.renderError}
                     label="Confirm Password"/>
+                {this.renderGenderSelectionRadioButtons()}
                 <button className="ui button primary">
                     Register
                 </button>
