@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CompanyProfileForm from "./CompanyProfileForm";
+import CustomButton from "../../customComponents/buttons/CustomButton";
+import {ADD_EMPLOYEES_PAGE, COMPANY_PROFILE_PAGE, HOME_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
 
 class CompanyProfilePage extends React.Component {
 
@@ -24,6 +26,10 @@ class CompanyProfilePage extends React.Component {
                     }
 
                 />
+                <div className="buttonContainer">
+                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={HOME_PAGE}/>
+                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={ADD_EMPLOYEES_PAGE}/>
+                </div>
             </div>
         );
     }
