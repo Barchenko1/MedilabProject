@@ -6,11 +6,16 @@ import EmployeeList from "../components/addEmployeePage/EmployeeList";
 import EmployeeEdit from "../components/addEmployeePage/EmployeeEdit";
 import PlanSelectionList from "../components/planSelectionPage/PlanSelectionList";
 import {
-  ADD_EMPLOYEES_PAGE, ADD_INDIVIDUAL_EMPLOYEE_PAGE,
-  COMPANY_PROFILE_PAGE, CREATE_EMPLOYEE, EDIT_EMPLOYEE,
+  ADD_EMPLOYEES_PAGE,
+  ADD_INDIVIDUAL_EMPLOYEE_PAGE,
+  COMPANY_PROFILE_PAGE,
+  CREATE_EMPLOYEE,
+  EDIT_EMPLOYEE,
   HOME_PAGE,
   LOGIN_PAGE,
   PLAN_SELECTION_PAGE,
+  QUOTE_OVERVIEW,
+  QUOTE_SUMMARY,
   REGISTRATION_PAGE
 } from "../utils/consts";
 import LoginPage from "../components/authenticationPage/LoginPage";
@@ -19,6 +24,8 @@ import CompanyProfilePage from "../components/companyProfilePage/CompanyProfileP
 import HomePage from "../components/homePage/HomePage";
 import Footer from "../components/Footer";
 import AddIndividualEmployeePage from "../components/addIndividualEmployeePage/AddIndividualEmployeePage";
+import QuoteSummaryPage from "../components/quoteSummary/QuoteSummaryPage";
+import QuoteOverviewPage from "../components/quoteOverview/QuoteOverviewPage";
 
 const App = () => {
   return (
@@ -38,6 +45,10 @@ const App = () => {
               <Route path={ADD_EMPLOYEES_PAGE} exact component={EmployeeList} />
 
               <Route path={PLAN_SELECTION_PAGE} exact component={PlanSelectionList} />
+
+              <Route path={QUOTE_SUMMARY} exact component={QuoteSummaryPage} />
+
+              <Route path={QUOTE_OVERVIEW} exact component={QuoteOverviewPage} />
 
               <Route path={ADD_INDIVIDUAL_EMPLOYEE_PAGE} exact component={AddIndividualEmployeePage} />
             </Switch>

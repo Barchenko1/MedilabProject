@@ -73,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    {getEmployees,deleteEmployee})
+    {getEmployees, deleteEmployee})
 (EmployeeList);

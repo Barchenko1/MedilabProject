@@ -11,6 +11,10 @@ export const EDIT_EMPLOYEE = '/employee/edit/:id';
 
 export const PLAN_SELECTION_PAGE = '/plan-selection';
 
+export const QUOTE_SUMMARY = "/quote-summary";
+
+export const QUOTE_OVERVIEW = "/quote-overview";
+
 export const INDIVIDUAL_EMPLOYEE_PROFILE_PAGE = '/individual-profile';
 export const ADD_INDIVIDUAL_EMPLOYEE_PAGE = '/add-individual';
 
