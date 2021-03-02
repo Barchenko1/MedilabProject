@@ -7,21 +7,41 @@ import CustomButton from "../../customComponents/buttons/CustomButton";
 
 class PlanSelectionList extends React.Component {
 
+    state = {productLine: 'medical'};
+
     componentDidMount() {
         this.props.fetchPlans("medical");
     }
 
     onClickProductLine(productLine) {
         this.props.fetchPlans(productLine);
+        this.setState({productLine: productLine});
     }
 
     renderPlanListBar() {
+        console.log(this.props.plans)
         return(
             <div className="left floated content">
-                <Link onClick={() => this.props.fetchPlans("medical")} to={PLAN_SELECTION_PAGE}>Medical</Link><br/>
-                <Link onClick={() => this.props.fetchPlans("dental")} to={PLAN_SELECTION_PAGE}>Dental</Link><br/>
-                <Link onClick={() => this.props.fetchPlans("vision")} to={PLAN_SELECTION_PAGE}>Vision</Link><br/>
-                <Link onClick={() => this.props.fetchPlans("life")} to={PLAN_SELECTION_PAGE}>Life</Link><br />
+                <Link
+                    onClick={() => this.onClickProductLine('medical')}
+                    to={PLAN_SELECTION_PAGE}>Medical</Link>
+                    {this.state.productLine === 'medical' ? this.props.plans.length : null}
+                <br/>
+                <Link
+                    onClick={() => this.onClickProductLine("dental")}
+                    to={PLAN_SELECTION_PAGE}>Dental</Link>
+                    {this.state.productLine === 'dental' ? this.props.plans.length : null}
+                    <br/>
+                <Link
+                    onClick={() => this.onClickProductLine("vision")}
+                    to={PLAN_SELECTION_PAGE}>Vision</Link> {this.state.visionProductLength}
+                    {this.state.productLine === 'vision' ? this.props.plans.length : null}
+                    <br/>
+                <Link
+                    onClick={() => this.onClickProductLine("life")}
+                    to={PLAN_SELECTION_PAGE}>Life</Link> {this.state.lifeProductLength}
+                    {this.state.productLine === 'life' ? this.props.plans.length : null}
+                    <br/>
             </div>
         )
     }

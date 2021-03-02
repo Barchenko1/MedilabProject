@@ -219,6 +219,8 @@
         "deductible": 5600,
         "planClass": "dental"
       }
-    ]
+    ],
+    "vision": [],
+    "life": []
   }
 }
