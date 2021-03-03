@@ -1,5 +1,5 @@
 import {
-    FETCH_MEDICAL_PLANS, FETCH_SELECTED_PLANS
+    FETCH_MEDICAL_PLANS, FETCH_SELECTED_PLANS, FILTER_BY_METAL_TYPE
 } from "../utils/types";
 
 const INIT_STATE = {
@@ -13,6 +13,10 @@ export default (state = INIT_STATE, action) => {
     }
     if (action.type === FETCH_SELECTED_PLANS) {
         return {...state, allPlans: action.payload}
+    }
+
+    if (action.type === FILTER_BY_METAL_TYPE) {
+        return {...state, plans: action.payload}
     }
 
     return state;

@@ -13,3 +13,5 @@ export const ADD_PLAN = 'ADD_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
 export const FETCH_SELECTED_PLANS = "FETCH_SELECTED_PLANS";
 
+export const FILTER_BY_METAL_TYPE = "FILTER_BY_METAL_TYPE";
+

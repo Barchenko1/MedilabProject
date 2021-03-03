@@ -35,3 +35,11 @@ export const deletePlan = (id) => async (dispatch, getState) => {
         payload: id
     });
 }
+
+export const filterMetalTypes = (plans) => async dispatch  => {
+    console.log(plans);
+    dispatch({
+        type: FETCH_MEDICAL_PLANS,
+        payload: plans
+    })
+}
