@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {fetchPlans} from "../../../actions/planActions";
 
 class PlanSelectionFilters extends React.Component {
 
@@ -17,24 +19,37 @@ class PlanSelectionFilters extends React.Component {
         if (localStorage.getItem('planTypes') !== null) {
             this.setState({planTypes: JSON.parse(localStorage.getItem('planTypes'))})
         }
+        if (localStorage.getItem('metalTiers') !== null && localStorage.getItem('planTypes') !== null && localStorage.getItem('plans')) {
+            const filters = {metalTiers: JSON.parse(localStorage.getItem('metalTiers')), planTypes: JSON.parse(localStorage.getItem('planTypes'))};
+            this.props.universalFilter(JSON.parse(localStorage.getItem('plans')), filters)
+        }
     }
 
     constructor(props) {
         super(props);
         this.state = {
             metalTiers: [
-                {id: 1, name: "Platinum", value: "platinum", isChecked: false},
-                {id: 2, name: "Gold", value: "gold", isChecked: false},
-                {id: 3, name: "Silver", value: "silver", isChecked: false},
-                {id: 4, name: "Bronze", value: "bronze", isChecked: false}
+                {id: 1, key: 'metalTier', name: "Platinum", value: "platinum", isChecked: false},
+                {id: 2, key: 'metalTier', name: "Gold", value: "gold", isChecked: false},
+                {id: 3, key: 'metalTier', name: "Silver", value: "silver", isChecked: false},
+                {id: 4, key: 'metalTier', name: "Bronze", value: "bronze", isChecked: false}
             ],
             planTypes: [
-                {id: 1, name: "EPO", value: "EPO", isChecked: false},
-                {id: 2, name: "PPO", value: "PPO", isChecked: false},
-                {id: 3, name: "HSA", value: "HSA", isChecked: false},
-                {id: 4, name: "HMO", value: "HMO", isChecked: false}
-            ]
+                {id: 1, key: 'planType', name: "EPO", value: "EPO", isChecked: false},
+                {id: 2, key: 'planType', name: "PPO", value: "PPO", isChecked: false},
+                {id: 3, key: 'planType', name: "HSA", value: "HSA", isChecked: false},
+                {id: 4, key: 'planType', name: "HMO", value: "HMO", isChecked: false}
+            ],
+            sendToFilter: []
         }
+    }
+
+    handleFilters = (event) => {
+        // const filters = [...this.handleCheckMetalTierElement(event), ...this.handleCheckPlanTypeElement(event)];
+        const filters = {metalTiers: this.handleCheckMetalTierElement(event), planTypes: this.handleCheckPlanTypeElement(event)};
+        console.log(this.props.plans)
+        console.log(filters);
+        this.props.universalFilter(this.props.plans, filters)
     }
 
     handleCheckMetalTierElement = (event) => {
@@ -45,7 +60,7 @@ class PlanSelectionFilters extends React.Component {
         })
         this.setState({metalTiers: metalTiers});
         localStorage.setItem('metalTiers', JSON.stringify(metalTiers));
-        this.props.onChange()
+        return metalTiers;
     }
 
     handleCheckPlanTypeElement = (event) => {
@@ -56,6 +71,7 @@ class PlanSelectionFilters extends React.Component {
         })
         this.setState({planTypes: planTypes});
         localStorage.setItem('planTypes', JSON.stringify(planTypes));
+        return planTypes;
     }
 
     renderMetalTierFilters() {
@@ -65,7 +81,7 @@ class PlanSelectionFilters extends React.Component {
                     this.state.metalTiers.map((metalTier, index) => {
                         return (
                             <div key={index}>
-                                <input onChange={this.handleCheckMetalTierElement} type="checkbox" checked={metalTier.isChecked} value={metalTier.value} /> {metalTier.name}
+                                <input onChange={this.handleFilters} type="checkbox" checked={metalTier.isChecked} value={metalTier.value} /> {metalTier.name}
                             </div>
                         )
                     })
@@ -81,7 +97,7 @@ class PlanSelectionFilters extends React.Component {
                     this.state.planTypes.map((planType, index) => {
                         return (
                             <div key={index}>
-                                <input onChange={this.handleCheckPlanTypeElement} type="checkbox" checked={planType.isChecked} value={planType.value} /> {planType.name}
+                                <input onChange={this.handleFilters} type="checkbox" checked={planType.isChecked} value={planType.value} /> {planType.name}
                             </div>
                         )
                     })

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addPlan, fetchPlans, filterMetalTypes} from "../../actions/planActions";
+import {addPlan, fetchPlans, universalFilter} from "../../actions/planActions";
 import {Link} from "react-router-dom";
 import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
 import CustomButton from "../../customComponents/buttons/CustomButton";
@@ -8,15 +8,21 @@ import PlanSelectionFilters from "./filters/PlanSelectionFilters";
 
 class PlanSelectionList extends React.Component {
 
-    state = {productLine: 'medical'};
+    state = {productLine: 'medical', filters: null};
 
     componentDidMount() {
-        if (localStorage.getItem('productLine') !== null) {
-            this.props.fetchPlans(localStorage.getItem('productLine'));
-        } else {
-            this.props.fetchPlans("medical");
-            localStorage.setItem('productLine', 'medical');
-        }
+        // this.props.fetchPlans(this.props.currentProductLine);
+
+        // if (localStorage.getItem('productLine') !== null) {
+        //     this.props.fetchPlans(localStorage.getItem('productLine'));
+        // } else {
+        //     this.props.fetchPlans("medical");
+        //     localStorage.setItem('productLine', 'medical');
+        // }
+
+        // if (localStorage.getItem('filteredPlans') !== null) {
+        //     this.props.filteredPlans = JSON.parse(localStorage.getItem('filteredPlans'));
+        // }
     }
 
     onClickProductLine(productLine) {
@@ -48,63 +54,13 @@ class PlanSelectionList extends React.Component {
                     to={PLAN_SELECTION_PAGE}>Life</Link>
                     {localStorage.getItem('productLine') === 'life' ? this.props.plans.length : null}
                     <br/>
-                {/*<MetalTierFilterForm*/}
-                {/*    initialValues={{...this.initMetalTierFilters()}}*/}
-                {/*/>*/}
-                {/*<PlanTypeFilter*/}
-                {/*    initialValues={{...this.initPlanTypeFilters()}}*/}
-                {/*/>*/}
-                <PlanSelectionFilters onChange={this.filterPlans}/>
+                <PlanSelectionFilters
+                    sPlans={this.props.plans}
+                    universalFilter={this.props.universalFilter}
+                />
             </div>
         )
     }
-
-    filterPlans = () => {
-        const plans = this.props.plans;
-        const metalTiers = JSON.parse(localStorage.getItem("metalTiers"));
-        const isCheckedMetalTiers = metalTiers.filter(metalTier => metalTier.isChecked === true);
-        // const filteredPlans = isCheckedMetalTiers.map(metalTier => {
-        //     return plans.filter(plan => {
-        //        return  plan.metalTier === metalTier.value
-        //     })
-        // });
-        const filteredPlans = isCheckedMetalTiers.map(metalTier => {
-            return plans.filter(plan => {
-                return plan.metalTier === metalTier.value;
-            })
-        });
-        console.log(filteredPlans[0])
-        if (filteredPlans[0] !== undefined) {
-            this.props.filterMetalTypes(filteredPlans[0]);
-        }
-    }
-
-    // initMetalTierFilters() {
-    //     let metalTierFilters = {
-    //         platinum: false,
-    //         gold: false,
-    //         silver: false,
-    //         bronze: false
-    //     };
-    //     if (localStorage.getItem('metalTier') !== null) {
-    //         metalTierFilters = {...JSON.parse(localStorage.getItem('metalTier'))}
-    //     }
-    //     return metalTierFilters;
-    // }
-    //
-    // initPlanTypeFilters() {
-    //     let planTypeFilters = {
-    //         EPO: false,
-    //         PPO: false,
-    //         HSA: false,
-    //         HMO: false
-    //     };
-    //     if (localStorage.getItem('planType') !== null) {
-    //         planTypeFilters = {...JSON.parse(localStorage.getItem('planType'))}
-    //     }
-    //     console.log(planTypeFilters)
-    //     return planTypeFilters;
-    // }
 
     renderActions(plan) {
         return(
@@ -117,8 +73,7 @@ class PlanSelectionList extends React.Component {
     }
 
     renderPlanDetails() {
-        console.log(this.props)
-        return this.props.plans.map((plan, index) => {
+        return this.props.filteredPlans.map((plan, index) => {
             return(
                 <div className="item" key={index}>
                     {this.renderActions(plan)}
@@ -148,10 +103,14 @@ class PlanSelectionList extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+
+
+const mapStateToProps = (state) => {
     return {
-        plans: state.planReducer.plans
+        plans: state.planReducer.plans,
+        currentProductLine: state.planReducer.currentProductLine,
+        filteredPlans: state.planReducer.filteredPlans
     }
 }
 
-export default connect(mapStateToProps, {fetchPlans, addPlan, filterMetalTypes})(PlanSelectionList);
+export default connect(mapStateToProps, {fetchPlans, addPlan, universalFilter})(PlanSelectionList);
