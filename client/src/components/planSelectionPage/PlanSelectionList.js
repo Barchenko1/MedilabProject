@@ -1,33 +1,37 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addPlan, fetchPlans, universalFilter} from "../../actions/planActions";
+import {addPlan, fetchPlans, plansFilter} from "../../actions/planActions";
 import {Link} from "react-router-dom";
 import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import PlanSelectionFilters from "./filters/PlanSelectionFilters";
 
+const metalTiers = [
+    {id: 1, key: 'metalTier', name: "Platinum", value: "platinum", isChecked: false},
+    {id: 2, key: 'metalTier', name: "Gold", value: "gold", isChecked: false},
+    {id: 3, key: 'metalTier', name: "Silver", value: "silver", isChecked: false},
+    {id: 4, key: 'metalTier', name: "Bronze", value: "bronze", isChecked: false}
+];
+    const planTypes = [
+    {id: 1, key: 'planType', name: "EPO", value: "EPO", isChecked: false},
+    {id: 2, key: 'planType', name: "PPO", value: "PPO", isChecked: false},
+    {id: 3, key: 'planType', name: "HSA", value: "HSA", isChecked: false},
+    {id: 4, key: 'planType', name: "HMO", value: "HMO", isChecked: false}
+];
+
 class PlanSelectionList extends React.Component {
 
-    state = {productLine: 'medical', filters: null};
-
     componentDidMount() {
-        // this.props.fetchPlans(this.props.currentProductLine);
-
-        // if (localStorage.getItem('productLine') !== null) {
-        //     this.props.fetchPlans(localStorage.getItem('productLine'));
-        // } else {
-        //     this.props.fetchPlans("medical");
-        //     localStorage.setItem('productLine', 'medical');
-        // }
-
-        // if (localStorage.getItem('filteredPlans') !== null) {
-        //     this.props.filteredPlans = JSON.parse(localStorage.getItem('filteredPlans'));
-        // }
+        if (localStorage.getItem('productLine') !== null) {
+            this.props.fetchPlans(localStorage.getItem('productLine'));
+        } else {
+            this.props.fetchPlans(this.props.currentProductLine);
+            localStorage.setItem('productLine', this.props.currentProductLine);
+        }
     }
 
     onClickProductLine(productLine) {
         this.props.fetchPlans(productLine);
-        this.setState({productLine: productLine});
         localStorage.setItem('productLine', productLine);
     }
 
@@ -37,26 +41,27 @@ class PlanSelectionList extends React.Component {
                 <Link
                     onClick={() => this.onClickProductLine('medical')}
                     to={PLAN_SELECTION_PAGE}>Medical</Link>
-                    {localStorage.getItem('productLine') === 'medical' ? this.props.plans.length : null}
+                    {this.props.currentProductLine === 'medical' ? this.props.filteredPlans.length : null}
                 <br/>
                 <Link
                     onClick={() => this.onClickProductLine("dental")}
                     to={PLAN_SELECTION_PAGE}>Dental</Link>
-                    {localStorage.getItem('productLine') === 'dental' ? this.props.plans.length : null}
+                    {this.props.currentProductLine === 'dental' ? this.props.filteredPlans.length : null}
                     <br/>
                 <Link
                     onClick={() => this.onClickProductLine("vision")}
                     to={PLAN_SELECTION_PAGE}>Vision</Link>
-                    {localStorage.getItem('productLine') === 'vision' ? this.props.plans.length : null}
+                    {this.props.currentProductLine === 'vision' ? this.props.filteredPlans.length : null}
                     <br/>
                 <Link
                     onClick={() => this.onClickProductLine("life")}
                     to={PLAN_SELECTION_PAGE}>Life</Link>
-                    {localStorage.getItem('productLine') === 'life' ? this.props.plans.length : null}
+                    {this.props.currentProductLine === 'life' ? this.props.filteredPlans.length : null}
                     <br/>
                 <PlanSelectionFilters
-                    sPlans={this.props.plans}
-                    universalFilter={this.props.universalFilter}
+                    plans={this.props.plans}
+                    fetchPlans={this.props.fetchPlans}
+                    plansFilter={this.props.plansFilter}
                 />
             </div>
         )
@@ -113,4 +118,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchPlans, addPlan, universalFilter})(PlanSelectionList);
+export default connect(mapStateToProps, {fetchPlans, addPlan, plansFilter})(PlanSelectionList);

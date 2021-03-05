@@ -11,6 +11,7 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
     if (action.type === FETCH_PLANS) {
+        console.log(action.payload)
         return {...state, plans: action.payload.plans, filteredPlans: action.payload.plans, currentProductLine: action.payload.productLine}
     }
     if (action.type === FETCH_SELECTED_PLANS) {

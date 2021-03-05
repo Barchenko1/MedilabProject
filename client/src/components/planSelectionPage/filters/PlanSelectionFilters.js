@@ -21,7 +21,7 @@ class PlanSelectionFilters extends React.Component {
         }
         if (localStorage.getItem('metalTiers') !== null && localStorage.getItem('planTypes') !== null && localStorage.getItem('plans')) {
             const filters = {metalTiers: JSON.parse(localStorage.getItem('metalTiers')), planTypes: JSON.parse(localStorage.getItem('planTypes'))};
-            this.props.universalFilter(JSON.parse(localStorage.getItem('plans')), filters)
+            this.props.plansFilter(JSON.parse(localStorage.getItem('plans')), filters)
         }
     }
 
@@ -39,17 +39,14 @@ class PlanSelectionFilters extends React.Component {
                 {id: 2, key: 'planType', name: "PPO", value: "PPO", isChecked: false},
                 {id: 3, key: 'planType', name: "HSA", value: "HSA", isChecked: false},
                 {id: 4, key: 'planType', name: "HMO", value: "HMO", isChecked: false}
-            ],
-            sendToFilter: []
+            ]
         }
     }
 
     handleFilters = (event) => {
         // const filters = [...this.handleCheckMetalTierElement(event), ...this.handleCheckPlanTypeElement(event)];
         const filters = {metalTiers: this.handleCheckMetalTierElement(event), planTypes: this.handleCheckPlanTypeElement(event)};
-        console.log(this.props.plans)
-        console.log(filters);
-        this.props.universalFilter(this.props.plans, filters)
+        this.props.plansFilter(this.props.plans, filters)
     }
 
     handleCheckMetalTierElement = (event) => {

@@ -1,6 +1,7 @@
 import apis from "../utils/apis";
 import {ADD_PLAN, DELETE_PLAN, FETCH_PLANS, FETCH_SELECTED_PLANS, FILTER_PLANS_BY_METAL_TYPES} from "../utils/types";
 import history from "../utils/history";
+import {filterChain} from "../utils/util";
 
 export const fetchPlans = (productLine) => async dispatch  => {
     const response = await apis.get('/plans');
@@ -13,6 +14,7 @@ export const fetchPlans = (productLine) => async dispatch  => {
         }
     })
     localStorage.setItem('plans', JSON.stringify(response.data[productLine]));
+    localStorage.setItem('filteredPlans', JSON.stringify(response.data[productLine]));
 }
 
 export const fetchSelectedPlans = () => async dispatch  => {
@@ -41,22 +43,10 @@ export const deletePlan = (id) => async (dispatch, getState) => {
     });
 }
 
-export const universalFilter = (plans, filter) => async dispatch  => {
+export const plansFilter = (plans, filter) => async dispatch  => {
     console.log(plans);
     console.log(filter);
-    let filterChain = plans;
-    if (filter.metalTiers.filter(f => f.isChecked === true).length !== 0) {
-        filterChain = filter.metalTiers.map(f => {
-            return plans.filter(plan => plan[f.key] === f.value && f.isChecked === true);
-        }).flat();
-    }
-    if (filter.planTypes.filter(f => f.isChecked === true).length !== 0) {
-        filterChain = filter.planTypes.map(f => {
-            return filterChain.filter(plan => plan[f.key] === f.value && f.isChecked === true);
-        }).flat();
-    }
-
-    const  filteredPlans = [...filterChain]
+    const filteredPlans = filterChain(plans, filter);
     console.log(filteredPlans);
 
     dispatch({
@@ -66,5 +56,5 @@ export const universalFilter = (plans, filter) => async dispatch  => {
             filteredPlans
         }
     });
-    // localStorage.setItem('filteredPlans', JSON.stringify(filteredPlans));
+    localStorage.setItem('filteredPlans', JSON.stringify(filteredPlans));
 }
