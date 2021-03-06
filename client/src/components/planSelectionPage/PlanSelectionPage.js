@@ -125,8 +125,6 @@ class PlanSelectionPage extends React.Component {
         )
     }
 
-    render
-
     renderSortByTotalMonthCost = () => {
         const sortItem = localStorage.getItem('sortItem') !== null ? JSON.parse(localStorage.getItem('sortItem')) : this.props.sortItem;
         return(
