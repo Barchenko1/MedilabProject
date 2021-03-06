@@ -4,7 +4,6 @@ import history from "../utils/history";
 import EmployeeCreate from "../components/addEmployeePage/EmployeeCreate";
 import EmployeeList from "../components/addEmployeePage/EmployeeList";
 import EmployeeEdit from "../components/addEmployeePage/EmployeeEdit";
-import PlanSelectionList from "../components/planSelectionPage/PlanSelectionList";
 import {
   ADD_EMPLOYEES_PAGE,
   ADD_INDIVIDUAL_EMPLOYEE_PAGE,
@@ -26,6 +25,7 @@ import Footer from "../components/Footer";
 import AddIndividualEmployeePage from "../components/addIndividualEmployeePage/AddIndividualEmployeePage";
 import QuoteSummaryPage from "../components/quoteSummary/QuoteSummaryPage";
 import QuoteOverviewPage from "../components/quoteOverview/QuoteOverviewPage";
+import PlanSelectionPage from "../components/planSelectionPage/PlanSelectionPage";
 
 const App = () => {
   return (
@@ -44,7 +44,7 @@ const App = () => {
               <Route path={EDIT_EMPLOYEE} exact component={EmployeeEdit} />
               <Route path={ADD_EMPLOYEES_PAGE} exact component={EmployeeList} />
 
-              <Route path={PLAN_SELECTION_PAGE} exact component={PlanSelectionList} />
+              <Route path={PLAN_SELECTION_PAGE} exact component={PlanSelectionPage} />
 
               <Route path={QUOTE_SUMMARY} exact component={QuoteSummaryPage} />
 

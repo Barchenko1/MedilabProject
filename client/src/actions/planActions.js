@@ -12,7 +12,8 @@ export const fetchPlans = (productLine) => async dispatch  => {
             plans: response.data[productLine],
             productLine: productLine
         }
-    })
+    });
+    localStorage.setItem('productLine', productLine);
     localStorage.setItem('plans', JSON.stringify(response.data[productLine]));
     localStorage.setItem('filteredPlans', JSON.stringify(response.data[productLine]));
 }
