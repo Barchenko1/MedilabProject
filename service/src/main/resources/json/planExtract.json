@@ -1,0 +1,119 @@
+{
+  "plans": {
+    "medical": [
+      {
+        "planName": "1",
+        "planCode": "123",
+        "planType": "EPO",
+        "totalMonthlyCost": 570,
+        "metalTier": "silver",
+        "deductible": 5300,
+        "planClass": "medical"
+      },
+      {
+        "planName": "2",
+        "planCode": "123",
+        "planType": "PPO",
+        "totalMonthlyCost": 580,
+        "metalTier": "gold",
+        "deductible": 5600,
+        "planClass": "medical"
+      },
+      {
+        "planName": "3",
+        "planCode": "123",
+        "planType": "EPO",
+        "totalMonthlyCost": 570,
+        "metalTier": "platinum",
+        "deductible": 5300,
+        "planClass": "medical"
+      },
+      {
+        "planName": "4",
+        "planCode": "123",
+        "planType": "PPO",
+        "totalMonthlyCost": 580,
+        "metalTier": "bronze",
+        "deductible": 5600,
+        "planClass": "medical"
+      },
+      {
+        "planName": "5",
+        "planCode": "123",
+        "planType": "EPO",
+        "totalMonthlyCost": 570,
+        "metalTier": "gold",
+        "deductible": 5300,
+        "planClass": "medical"
+      },
+      {
+        "planName": "6",
+        "planCode": "123",
+        "planType": "PPO",
+        "totalMonthlyCost": 580,
+        "metalTier": "gold",
+        "deductible": 5600,
+        "planClass": "medical"
+      },
+      {
+        "planName": "7",
+        "planCode": "123",
+        "planType": "EPO",
+        "totalMonthlyCost": 570,
+        "metalTier": "platinum",
+        "deductible": 5300,
+        "planClass": "medical"
+      },
+      {
+        "planName": "8",
+        "planCode": "123",
+        "planType": "PPO",
+        "totalMonthlyCost": 580,
+        "metalTier": "platinum",
+        "deductible": 5600,
+        "planClass": "medical"
+      },
+      {
+        "planName": "9",
+        "planCode": "123",
+        "planType": "EPO",
+        "totalMonthlyCost": 570,
+        "metalTier": "platinum",
+        "deductible": 5300,
+        "planClass": "medical"
+      },
+      {
+        "planName": "10",
+        "planCode": "123",
+        "planType": "PPO",
+        "totalMonthlyCost": 580,
+        "metalTier": "platinum",
+        "deductible": 5600,
+        "planClass": "medical"
+      }
+
+    ],
+    "dental": [
+      {
+        "planName": "5",
+        "planCode": "123",
+        "type": "EPO",
+        "totalMonthlyCost": 310,
+        "metalTier": "silver",
+        "deductible": 5300,
+        "planClass": "dental"
+      },
+      {
+        "planName": "6",
+        "planCode": "123",
+        "type": "PPO",
+        "totalMonthlyCost": 320,
+        "metalTier": "gold",
+        "deductible": 5600,
+        "planClass": "dental"
+      }
+    ],
+    "vision": [],
+    "life": []
+  }
+}

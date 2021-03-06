@@ -1,11 +1,17 @@
 import apis from "../utils/apis";
-import {ADD_PLAN, DELETE_PLAN, FETCH_PLANS, FETCH_SELECTED_PLANS, FILTER_PLANS_BY_METAL_TYPES} from "../utils/types";
+import {
+    ADD_PLAN,
+    DELETE_PLAN,
+    FETCH_PLANS,
+    FETCH_SELECTED_PLANS,
+    FILTER_PLANS_BY_METAL_TYPES,
+    SORT_PLANS_BY_MONTH_COST
+} from "../utils/types";
 import history from "../utils/history";
-import {filterChain} from "../utils/util";
+import {filterChain, sortPlansByTotalMonthlyCost} from "../utils/util";
 
 export const fetchPlans = (productLine) => async dispatch  => {
     const response = await apis.get('/plans');
-    console.log(response);
     dispatch({
         type: FETCH_PLANS,
         payload: {
@@ -13,7 +19,6 @@ export const fetchPlans = (productLine) => async dispatch  => {
             productLine: productLine
         }
     });
-    localStorage.setItem('productLine', productLine);
     localStorage.setItem('plans', JSON.stringify(response.data[productLine]));
     localStorage.setItem('filteredPlans', JSON.stringify(response.data[productLine]));
 }
@@ -45,11 +50,7 @@ export const deletePlan = (id) => async (dispatch, getState) => {
 }
 
 export const plansFilter = (plans, filter) => async dispatch  => {
-    console.log(plans);
-    console.log(filter);
     const filteredPlans = filterChain(plans, filter);
-    console.log(filteredPlans);
-
     dispatch({
         type: FILTER_PLANS_BY_METAL_TYPES,
         payload: {
@@ -58,4 +59,16 @@ export const plansFilter = (plans, filter) => async dispatch  => {
         }
     });
     localStorage.setItem('filteredPlans', JSON.stringify(filteredPlans));
+}
+
+export const sortPlans = (plans, sortItem) => async dispatch => {
+    const sortedPlans = sortPlansByTotalMonthlyCost(plans, sortItem);
+    dispatch({
+        type: SORT_PLANS_BY_MONTH_COST,
+        payload: {
+            plans,
+            sortedPlans
+        }
+    });
+    localStorage.setItem('sortItem', JSON.stringify(sortItem));
 }

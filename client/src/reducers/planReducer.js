@@ -1,10 +1,11 @@
 import {
-    FETCH_PLANS, FETCH_SELECTED_PLANS, FILTER_PLANS_BY_METAL_TYPES
+    FETCH_PLANS, FETCH_SELECTED_PLANS, FILTER_PLANS_BY_METAL_TYPES, SORT_PLANS_BY_MONTH_COST
 } from "../utils/types";
 
 const INIT_STATE = {
     plans: [],
     currentProductLine: 'medical',
+    sortItem: '',
     filteredPlans: [],
     allPlans: {}
 }
@@ -20,6 +21,9 @@ export default (state = INIT_STATE, action) => {
 
     if (action.type === FILTER_PLANS_BY_METAL_TYPES) {
         return {...state, plans: action.payload.plans, filteredPlans: action.payload.filteredPlans}
+    }
+    if (action.type === SORT_PLANS_BY_MONTH_COST) {
+        return {...state, filteredPlans: action.payload.plans, sortItem: action.payload.sortItem}
     }
 
     return state;

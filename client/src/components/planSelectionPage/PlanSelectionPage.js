@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addPlan, fetchPlans, plansFilter} from "../../actions/planActions";
+import {addPlan, fetchPlans, plansFilter, sortPlans} from "../../actions/planActions";
 import {Link} from "react-router-dom";
 import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
 import CustomButton from "../../customComponents/buttons/CustomButton";
@@ -46,7 +46,10 @@ class PlanSelectionPage extends React.Component {
     }
 
     handleFilters = (event) => {
-        const filters = {metalTiers: this.handleCheckMetalTierElement(event), planTypes: this.handleCheckPlanTypeElement(event)};
+        const filters = {
+            metalTiers: this.handleCheckMetalTierElement(event),
+            planTypes: this.handleCheckPlanTypeElement(event)
+        };
         this.props.plansFilter(this.props.plans, filters)
     }
 
@@ -122,18 +125,22 @@ class PlanSelectionPage extends React.Component {
         )
     }
 
+    render
+
     renderSortByTotalMonthCost = () => {
+        const sortItem = localStorage.getItem('sortItem') !== null ? JSON.parse(localStorage.getItem('sortItem')) : this.props.sortItem;
         return(
             <div>
                 <label>
                     {/*{" "}*/}
                     Sort by Total Month Cost
                     <select
-
+                        value={this.props.sortItem}
+                        onChange={(event) => this.props.sortPlans(this.props.filteredPlans, event.target.value)}
                     >
                         <option value="">ALL</option>
-                        <option value="LTH">Lowest to Highest</option>
-                        <option value="HTL">Highest to Lowest</option>
+                        <option value="lowestprice">Lowest to Highest</option>
+                        <option value="highestprice">Highest to Lowest</option>
                     </select>
                 </label>
             </div>
@@ -144,10 +151,6 @@ class PlanSelectionPage extends React.Component {
         this.props.fetchPlans(productLine);
         localStorage.setItem('productLine', productLine);
         this.defaultHandleFilters();
-    }
-
-    productLinePlansCounter = () => {
-
     }
 
     renderProductLinesBar() {
@@ -211,9 +214,9 @@ const mapStateToProps = (state) => {
     return {
         plans: state.planReducer.plans,
         filteredPlans: state.planReducer.filteredPlans,
-        currentProductLine: state.planReducer.currentProductLine
-
+        currentProductLine: state.planReducer.currentProductLine,
+        sortItem: state.planReducer.sortItem
     }
 }
 
-export default connect(mapStateToProps, {fetchPlans, addPlan, plansFilter})(PlanSelectionPage);
+export default connect(mapStateToProps, {fetchPlans, addPlan, plansFilter, sortPlans})(PlanSelectionPage);

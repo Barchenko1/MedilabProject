@@ -14,7 +14,7 @@ const defaultPlanFilter = {
 }
 
 
-export const filterChain = (plans, filter = defaultPlanFilter) => {
+export const filterChain = (plans, filter) => {
     let filterChain = plans;
     if (filter.metalTiers.filter(f => f.isChecked === true).length !== 0) {
         filterChain = filter.metalTiers.map(f => {
@@ -27,4 +27,21 @@ export const filterChain = (plans, filter = defaultPlanFilter) => {
         }).flat();
     }
     return [...filterChain];
+}
+
+export const sortPlansByTotalMonthlyCost = (plans, sortItem) => {
+    if (sortItem !== "") {
+        plans.sort((a, b) =>
+            sortItem === "lowestprice"
+                ? a.totalMonthlyCost > b.totalMonthlyCost
+                ? 1
+                : -1
+                : a.totalMonthlyCost < b.totalMonthlyCost
+                ? 1
+                : -1
+        );
+    } else {
+        plans.sort((a, b) => (a.id > b.id ? 1 : -1));
+    }
+    return plans;
 }
