@@ -9,32 +9,6 @@ import {filterChain} from "../../utils/util";
 
 class PlanSelectionPage extends React.Component {
 
-    checkBox = props => {
-        return (
-            <li>
-                <input key={props.id} onChange={props.handleCheckChieldElement} type="checkbox" checked={props.isChecked} value={props.value} /> {props.value}
-            </li>
-        )
-    }
-
-    componentDidMount() {
-        if (localStorage.getItem('productLine') !== null)  {
-            this.props.fetchPlans(localStorage.getItem('productLine'))
-        } else {
-            this.props.fetchPlans(this.props.currentProductLine)
-        }
-        if (localStorage.getItem('metalTiers') !== null) {
-            this.setState({metalTiers: JSON.parse(localStorage.getItem('metalTiers'))})
-        }
-        if (localStorage.getItem('planTypes') !== null) {
-            this.setState({planTypes: JSON.parse(localStorage.getItem('planTypes'))})
-        }
-        if (localStorage.getItem('metalTiers') !== null && localStorage.getItem('planTypes') !== null && localStorage.getItem('plans')) {
-            const filters = {metalTiers: JSON.parse(localStorage.getItem('metalTiers')), planTypes: JSON.parse(localStorage.getItem('planTypes'))};
-            this.props.plansFilter(JSON.parse(localStorage.getItem('plans')), filters)
-        }
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -53,8 +27,25 @@ class PlanSelectionPage extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('productLine') !== null)  {
+            this.props.fetchPlans(localStorage.getItem('productLine'))
+        } else {
+            this.props.fetchPlans(this.props.currentProductLine)
+        }
+        if (localStorage.getItem('metalTiers') !== null) {
+            this.setState({metalTiers: JSON.parse(localStorage.getItem('metalTiers'))})
+        }
+        if (localStorage.getItem('planTypes') !== null) {
+            this.setState({planTypes: JSON.parse(localStorage.getItem('planTypes'))})
+        }
+        // if (localStorage.getItem('metalTiers') !== null && localStorage.getItem('planTypes') !== null && localStorage.getItem('plans')) {
+        //     const filters = {metalTiers: JSON.parse(localStorage.getItem('metalTiers')), planTypes: JSON.parse(localStorage.getItem('planTypes'))};
+        //     this.props.plansFilter(JSON.parse(localStorage.getItem('plans')), filters)
+        // }
+    }
+
     handleFilters = (event) => {
-        // const filters = [...this.handleCheckMetalTierElement(event), ...this.handleCheckPlanTypeElement(event)];
         const filters = {metalTiers: this.handleCheckMetalTierElement(event), planTypes: this.handleCheckPlanTypeElement(event)};
         this.props.plansFilter(this.props.plans, filters)
     }
@@ -100,6 +91,7 @@ class PlanSelectionPage extends React.Component {
     renderMetalTierFilters() {
         return(
             <div>
+                <h3>Metal Tier</h3>
                 {
                     this.state.metalTiers.map((metalTier, index) => {
                         return (
@@ -116,6 +108,7 @@ class PlanSelectionPage extends React.Component {
     renderPlanTypesFilter() {
         return(
             <div>
+                <h3>Plan Type</h3>
                 {
                     this.state.planTypes.map((planType, index) => {
                         return (
@@ -125,6 +118,24 @@ class PlanSelectionPage extends React.Component {
                         )
                     })
                 }
+            </div>
+        )
+    }
+
+    renderSortByTotalMonthCost = () => {
+        return(
+            <div>
+                <label>
+                    {/*{" "}*/}
+                    Sort by Total Month Cost
+                    <select
+
+                    >
+                        <option value="">ALL</option>
+                        <option value="LTH">Lowest to Highest</option>
+                        <option value="HTL">Highest to Lowest</option>
+                    </select>
+                </label>
             </div>
         )
     }
@@ -140,7 +151,6 @@ class PlanSelectionPage extends React.Component {
     }
 
     renderProductLinesBar() {
-        console.log(this.props.currentProductLine)
         return(
             <div className="left floated content">
                 <Link
@@ -180,9 +190,13 @@ class PlanSelectionPage extends React.Component {
             <div>
                 <h2>Plan Selection</h2>
                 {this.renderProductLinesBar()}
+                {this.renderSortByTotalMonthCost()}
                 {this.renderMetalTierFilters()}
                 {this.renderPlanTypesFilter()}
-                <PlanSelectionList filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}/>
+                <PlanSelectionList
+                    filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}
+                    filteredPlans={this.props.filteredPlans}
+                />
                 <div className="buttonContainer">
                     <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
                     <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_SUMMARY}/>
