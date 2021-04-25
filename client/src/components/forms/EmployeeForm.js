@@ -100,6 +100,12 @@ class EmployeeForm extends React.Component {
                     label="First Name"
                 />
                 <CustomInput
+                    name='middleName'
+                    type='text'
+                    renderError={this.renderError}
+                    label="Middle Name"
+                />
+                <CustomInput
                     name='lastName'
                     type='text'
                     renderError={this.renderError}
@@ -136,7 +142,7 @@ class EmployeeForm extends React.Component {
                     label="Date of hire"
                 />
                 <CustomInput
-                    name='hoursWorked'
+                    name='hoursOfWork'
                     type='number'
                     renderError={this.renderError}
                     label="Hours worked"

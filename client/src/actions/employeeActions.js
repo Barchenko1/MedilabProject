@@ -17,7 +17,7 @@ const getEmployeesToLocalStorage = (getState) => {
 let counter = 0;
 
 export const createEmployee = (formProps) => async (dispatch, getState) => {
-    const response = await apis.post('/employees', {...formProps, actionId: ++counter});
+    const response = await apis.post('/employees/addEmployee', {...formProps, actionId: ++counter});
     dispatch({
         type: CREATE_EMPLOYEE,
         payload: response.data
