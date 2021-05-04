@@ -1,29 +1,33 @@
 package com.barchenko.project.entity.dto.req;
 
 import com.barchenko.project.entity.dto.req.DependentDTORequest;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class EmployeeDTORequest {
-    private Long employee_id;
+    private Long employeeId;
     private String firstName;
     private String middleName;
     private String lastName;
     private String email;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateOfHire;
     private int hoursOfWork;
     private int salary;
     private String gender;
-    private List<DependentDTORequest> dependents;
+    private List<DependentDTORequest> dependents = new ArrayList<>();
 
-    public Long getEmployee_id() {
-        return employee_id;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee_id(Long employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {

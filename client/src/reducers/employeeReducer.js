@@ -16,7 +16,9 @@ export default (state = INIT_STATE, action) => {
         return newState
     }
     if (action.type === EDIT_EMPLOYEE) {
-        return {...state, employees: state.employees.map(employee => employee.id === action.payload.id ? action.payload : employee)}
+        console.log(action);
+        console.log(state);
+        return {...state, employees: state.employees.map(employee => employee.employeeId === action.payload.id ? action.payload : employee)}
     }
     if (action.type === GET_EMPLOYEES) {
         return {...state, employees: action.payload}
@@ -25,7 +27,7 @@ export default (state = INIT_STATE, action) => {
         return {...state, [action.payload.id]: action.payload}
     }
     if (action.type === DELETE_EMPLOYEE) {
-        const newState = {...state, employees: state.employees.filter(employee => employee.id !== action.payload)};
+        const newState = {...state, employees: state.employees.filter(employee => employee.employeeId !== action.payload)};
         return newState
 
     }

@@ -13,12 +13,13 @@ class EmployeeList extends React.Component {
     }
 
     renderEmployees() {
+        console.log(this.props.employees)
         return this.props.employees.map((employee, index) => {
             return(
                 <div className="item" key={index}>
                     {this.renderActions(employee)}
                     <div className="content">
-                        {employee.firstName} {employee.lastName} {employee.age}
+                        {employee.firstName} {employee.lastName}
                     </div>
                 </div>
             )
@@ -28,10 +29,10 @@ class EmployeeList extends React.Component {
     renderActions(employee) {
         return(
             <div className="right floated content">
-                <Link to={`/employee/edit/${employee.id}`} className="ui button primary">
+                <Link to={`/employee/edit/${employee.employeeId}`} className="ui button primary">
                     EDIT
                 </Link>
-                <button onClick={() => this.props.deleteEmployee(employee.id)} className="ui button negative">
+                <button onClick={() => this.props.deleteEmployee(employee.employeeId)} className="ui button negative">
                     DELETE
                 </button>
             </div>

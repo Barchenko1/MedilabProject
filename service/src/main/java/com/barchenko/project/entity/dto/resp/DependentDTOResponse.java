@@ -1,8 +1,8 @@
-package com.barchenko.project.entity.dto.req;
+package com.barchenko.project.entity.dto.resp;
 
 import java.util.Date;
 
-public class DependentDTORequest {
+public class DependentDTOResponse {
     private Long dependentId;
     private String firstName;
     private String lastName;
@@ -57,4 +57,12 @@ public class DependentDTORequest {
     public void setRelationship(String relationship) {
         this.relationship = relationship;
     }
+
+//    public EmployeeDTOResponse getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(EmployeeDTOResponse employee) {
+//        this.employee = employee;
+//    }
 }

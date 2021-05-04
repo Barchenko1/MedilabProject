@@ -22,31 +22,34 @@ export const createEmployee = (formProps) => async (dispatch, getState) => {
         type: CREATE_EMPLOYEE,
         payload: response.data
     });
-    getEmployeesToLocalStorage(getState)
+    // getEmployeesToLocalStorage(getState)
     history.push('/employees');
 }
 
 export const editEmployee = (id, formProps) => async (dispatch, getState) => {
-    const response = await apis.put(`/employees/${id}`, {...formProps});
+    const response = await apis.put(`/employees/${id}`, {...formProps, employeeId: id});
+    console.log(response);
     dispatch({
         type: EDIT_EMPLOYEE,
         payload: response.data
     });
-    getEmployeesToLocalStorage(getState)
+    // getEmployeesToLocalStorage(getState)
     history.push('/employees');
 }
 
 export const getEmployees = () => async (dispatch, getState) => {
     const response = await apis.get('/employees');
+    console.log(response);
     dispatch({
         type: GET_EMPLOYEES,
         payload: response.data
     })
-    getEmployeesToLocalStorage(getState);
+    // getEmployeesToLocalStorage(getState);
 }
 
 export const getEmployee = (id) => async (dispatch) => {
     const response = await apis.get(`/employees/${id}`);
+    console.log(response);
     dispatch({
         type: GET_EMPLOYEE,
         payload: response.data
@@ -59,6 +62,6 @@ export const deleteEmployee = (id) => async (dispatch, getState) => {
         type: DELETE_EMPLOYEE,
         payload: id
     })
-    getEmployeesToLocalStorage(getState)
-    history.push('/employees')
+    // getEmployeesToLocalStorage(getState)
+    // history.push('/employees')
 }

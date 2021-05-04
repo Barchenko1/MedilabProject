@@ -22,4 +22,12 @@ public class Status {
     @Column
     @Enumerated(EnumType.STRING)
     private StatusName name;
+
+    public Long getStatusId() {
+        return statusId;
+    }
+
+    public StatusName getName() {
+        return name;
+    }
 }

@@ -21,4 +21,12 @@ public class Relationship {
     @Column
     @Enumerated(EnumType.STRING)
     private RelationshipName name;
+
+    public Long getRelationShipId() {
+        return relationShipId;
+    }
+
+    public RelationshipName getName() {
+        return name;
+    }
 }

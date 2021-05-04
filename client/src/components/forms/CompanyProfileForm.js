@@ -27,13 +27,13 @@ class CompanyProfileForm extends React.Component {
             <div>
                 <CustomInput
                     type="text"
-                    name="fistName"
+                    name="companyName"
                     renderError={this.renderError}
-                    label="First name"/>
+                    label="Company name"/>
                 <CustomDropDown
-                    name="gender"
+                    name="organizationType"
                     data={this.organizationTypes}
-                    label="Gender"
+                    label="Organization Type"
                     renderError={this.renderError}
                 />
             </div>

@@ -91,6 +91,7 @@ class EmployeeForm extends React.Component {
     }
 
     render() {
+        console.log(this.props.initialValues);
         return(
             <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                 <CustomInput

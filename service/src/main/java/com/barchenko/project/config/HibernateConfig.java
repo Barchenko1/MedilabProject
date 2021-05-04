@@ -2,6 +2,10 @@ package com.barchenko.project.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +20,11 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "com.barchenko.project")
-@EnableTransactionManagement
 @PropertySource(value = "classpath:db.properties")
+@EnableAutoConfiguration(exclude = {
+        HibernateJpaAutoConfiguration.class })
 public class HibernateConfig {
+
     private Environment environment;
 
     @Autowired

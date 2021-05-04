@@ -1,5 +1,8 @@
 package com.barchenko.project.entity.tables;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class Employee {
     @Column
     private String email;
     @Column
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
     @Column
     private Date dateOfHire;
@@ -38,16 +44,16 @@ public class Employee {
     @Column
     private int salary;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "gender_id", nullable = false)
     private Gender gender;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.REMOVE, CascadeType.REFRESH})
-    private List<Dependent> dependents;
+    @OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL})
+    private List<Dependent> dependents = new ArrayList<>();
 
     public Long getEmployeeId() {
         return employeeId;

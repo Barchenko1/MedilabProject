@@ -22,7 +22,7 @@ class EmployeeEdit extends React.Component {
             'gender',
             'email',
             'dateOfHire',
-            'hoursWorked',
+            'hoursOfWork',
             'salary',
             'dependents'));
         return(
@@ -36,13 +36,14 @@ class EmployeeEdit extends React.Component {
                         initialValues={_.pick(
                             this.props.employee,
                             'firstName',
+                            'middleName',
                             'lastName',
                             'age',
                             'birthdate',
                             'gender',
                             'email',
                             'dateOfHire',
-                            'hoursWorked',
+                            'hoursOfWork',
                             'salary',
                             'dependents')}
                         onSubmit={this.onSubmit}
@@ -59,7 +60,7 @@ class EmployeeEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         // employee: state.employeeReducer[ownProps.match.params.id]
-        employee: state.employeeReducer.employees.find(employee => employee.id == ownProps.match.params.id)
+        employee: state.employeeReducer.employees.find(employee => employee.employeeId == ownProps.match.params.id)
     }
 }
 

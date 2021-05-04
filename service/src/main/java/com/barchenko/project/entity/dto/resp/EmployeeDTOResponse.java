@@ -1,15 +1,18 @@
 package com.barchenko.project.entity.dto.resp;
 
 
+import com.barchenko.project.entity.tables.Dependent;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
-@Entity
 public class EmployeeDTOResponse {
-    @Id
-    private Long employee_id;
+    private Long employeeId;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -20,15 +23,15 @@ public class EmployeeDTOResponse {
     private int salary;
     private String gender;
     private String status;
-//    private List<DependentDTORequest> dependents;
+    private List<DependentDTOResponse> dependents;
 
 
-    public Long getEmployee_id() {
-        return employee_id;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee_id(Long employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -111,4 +114,19 @@ public class EmployeeDTOResponse {
         this.status = status;
     }
 
+    public List<DependentDTOResponse> getDependents() {
+        return dependents;
+    }
+
+    public void setDependents(List<DependentDTOResponse> dependents) {
+        this.dependents = dependents;
+    }
+
+//    public List<Dependent> getDependents() {
+//        return dependents;
+//    }
+//
+//    public void setDependents(List<Dependent> dependents) {
+//        this.dependents = dependents;
+//    }
 }

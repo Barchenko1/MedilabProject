@@ -2,6 +2,7 @@ import React from 'react';
 import {Field} from "redux-form";
 
 const renderDropDown = (props) => {
+    console.log(props);
     return(
         <div>
             <label>{props.label}</label>
