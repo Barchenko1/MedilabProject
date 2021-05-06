@@ -1,6 +1,7 @@
 package com.barchenko.project.entity.tables;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OptimisticLock;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,8 @@ public class Employee {
     @Column
     private String email;
     @Column
+    private String phone;
+    @Column
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
     @Column
@@ -52,7 +55,8 @@ public class Employee {
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "employee", orphanRemoval = true, cascade = {CascadeType.ALL})
+    @OptimisticLock(excluded = true)
     private List<Dependent> dependents = new ArrayList<>();
 
     public Long getEmployeeId() {
@@ -93,6 +97,14 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Date getBirthdate() {

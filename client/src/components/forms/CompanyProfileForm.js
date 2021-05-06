@@ -100,26 +100,26 @@ class CompanyProfileForm extends React.Component {
     renderContactPerson() {
         return(
             <div>
-                <CustomInput
-                    type="text"
-                    name="fistName"
-                    renderError={this.renderError}
-                    label="First name"/>
-                <CustomInput
-                    type="text"
-                    name="lastName"
-                    renderError={this.renderError}
-                    label="Last name"/>
+                {/*<CustomInput*/}
+                {/*    type="text"*/}
+                {/*    name="fistName"*/}
+                {/*    renderError={this.renderError}*/}
+                {/*    label="First name"/>*/}
+                {/*<CustomInput*/}
+                {/*    type="text"*/}
+                {/*    name="lastName"*/}
+                {/*    renderError={this.renderError}*/}
+                {/*    label="Last name"/>*/}
                 <CustomInput
                     type="email"
                     name="email"
                     renderError={this.renderError}
-                    label="Email"/>
+                    label="Company contact email"/>
                 <CustomInput
                     type="text"
                     name="phone"
                     renderError={this.renderError}
-                    label="Phone number"/>
+                    label="Company contact phone number"/>
             </div>
         )
     }

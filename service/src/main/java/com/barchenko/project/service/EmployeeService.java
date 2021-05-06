@@ -2,7 +2,6 @@ package com.barchenko.project.service;
 
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
-import com.barchenko.project.entity.tables.Employee;
 
 import java.util.List;
 

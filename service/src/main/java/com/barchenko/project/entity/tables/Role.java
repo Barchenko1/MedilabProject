@@ -16,27 +16,18 @@ import javax.persistence.Table;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "role_id")
+    private Long roleId;
 
     @Enumerated(EnumType.STRING)
     @Column
     private RoleName name;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
+    public Long getRoleId() {
+        return roleId;
     }
 
     public RoleName getName() {
         return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
     }
 }

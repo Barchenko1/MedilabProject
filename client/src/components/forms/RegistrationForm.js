@@ -17,8 +17,8 @@ class RegistrationForm extends React.Component {
             <div>
                 <label>Role</label>
                 <div>
-                    <CustomRadioButton name="role" caption="Customer" radioButtonValue="customer" renderError={this.renderError}/>
-                    <CustomRadioButton name="role" caption="Individual" radioButtonValue="individual" renderError={this.renderError}/>
+                    <CustomRadioButton name="role" caption="Customer" radioButtonValue="role_customer" renderError={this.renderError}/>
+                    <CustomRadioButton name="role" caption="Individual" radioButtonValue="role_individual" renderError={this.renderError}/>
                 </div>
             </div>
         )

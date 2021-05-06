@@ -1,5 +1,5 @@
 package com.barchenko.project.entity.enums;
 
 public enum RoleName {
-    CUSTOMER, INDIVIDUAL, EMPLOYEE
+    ROLE_CUSTOMER, ROLE_INDIVIDUAL, ROLE_EMPLOYEE
 }

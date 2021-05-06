@@ -9,3 +9,7 @@ INSERT INTO status (name) VALUES ('DELETED');
 
 INSERT INTO relationship (name) VALUES ('SPOUSE');
 INSERT INTO relationship (name) VALUES ('CHILD');
+
+INSERT INTO role (nameRole) VALUES ('ROLE_CUSTOMER');
+INSERT INTO role (nameRole) VALUES ('ROLE_INDIVIDUAL');
+INSERT INTO role (nameRole) VALUES ('ROLE_EMPLOYEE');

@@ -27,8 +27,7 @@ export const signOut = () => async dispatch => {
 }
 
 export const registration = (formProps) => async dispatch => {
-    const form = {...formProps, role:"USER"}
-    const response = await apis.post('/api/auth/signup', form);
+    const response = await apis.post('/auth/signup', formProps);
     dispatch ({
         type: REGISTRATION,
         payload: response.data

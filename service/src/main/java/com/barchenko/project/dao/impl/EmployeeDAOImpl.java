@@ -2,8 +2,8 @@ package com.barchenko.project.dao.impl;
 
 import com.barchenko.project.dao.EmployeeDAO;
 import com.barchenko.project.entity.tables.Employee;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.QueryHints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -67,10 +67,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getAllEmployees() {
         EntityManager em = entityManagerFactory.createEntityManager();
-        List<Employee> employeeList = em.createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class).getResultList();
-//        List<Dependent> dependentList = em.createNativeQuery(GET_ALL_DEPENDENTS, Dependent.class).getResultList();
-//        List<EmployeeDTOResponse> employees = em
-//                .createNativeQuery(FIND_ALL_EMPLOYEES_DTO, EmployeeDTOResponse.class)
+        List<Employee> employeeList = em.createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
+                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+//        List<Employee> employees = em
+//                .createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
 //                .getResultList();
         if (employeeList.isEmpty()) {
             throw new IllegalArgumentException("list is empty");

@@ -1,4 +1,4 @@
-package com.barchenko.project.dao.impl;
+package com.barchenko.project.dao.transaction.impl;
 
 import com.barchenko.project.builder.DependentBuilder;
 import com.barchenko.project.builder.EmployeeBuilder;
@@ -7,7 +7,7 @@ import com.barchenko.project.dao.EmployeeDAO;
 import com.barchenko.project.dao.GenderDAO;
 import com.barchenko.project.dao.RelationShipDAO;
 import com.barchenko.project.dao.StatusDAO;
-import com.barchenko.project.dao.TransactionEmployeeDependentDAO;
+import com.barchenko.project.dao.transaction.TransactionEmployeeDependentDAO;
 import com.barchenko.project.entity.dto.req.DependentDTORequest;
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.tables.Dependent;
@@ -28,6 +28,11 @@ import static java.util.Objects.nonNull;
 @Repository
 @Transactional
 public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeDependentDAO {
+
+    private static final String GET_ALL_EMPLOYEES_DATA = "SELECT *\n" +
+            "\tFROM employee e\n" +
+            "    JOIN gender g ON g.gender_id=e.gender_id\n" +
+            "    JOIN status s ON s.status_id=e.status_id;";
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -130,8 +135,9 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
             transaction = session.beginTransaction();
             Employee employee = employeeDAO.findEmployeeById(employeeId);
             employeeDAO.deleteEmployee(employee);
-            transaction.commit();
-        }catch (RuntimeException ex) {
+            session.flush();
+            session.clear();
+        } catch (RuntimeException ex) {
             if (nonNull(transaction)) {
                 transaction.rollback();
             }
