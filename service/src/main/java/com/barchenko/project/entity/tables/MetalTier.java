@@ -16,8 +16,8 @@ import javax.persistence.Table;
 public class MetalTier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "metalTier_id")
+    private Long metalTierId;
     @Enumerated(EnumType.STRING)
     @Column
     private MetalTierName name;

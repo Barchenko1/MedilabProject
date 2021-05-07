@@ -19,6 +19,8 @@ public class Quote {
     @Column(name = "quote_id")
     private Long quoteId;
     @Column
+    private String name;
+    @Column
     private Date dateOfCreate;
     @Column
     private Date dateOfExpire;
@@ -28,4 +30,52 @@ public class Quote {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "proposal_Id", nullable = false)
     private Proposal proposal;
+
+    public Long getQuoteId() {
+        return quoteId;
+    }
+
+    public void setQuoteId(Long quoteId) {
+        this.quoteId = quoteId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDateOfCreate() {
+        return dateOfCreate;
+    }
+
+    public void setDateOfCreate(Date dateOfCreate) {
+        this.dateOfCreate = dateOfCreate;
+    }
+
+    public Date getDateOfExpire() {
+        return dateOfExpire;
+    }
+
+    public void setDateOfExpire(Date dateOfExpire) {
+        this.dateOfExpire = dateOfExpire;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Proposal getProposal() {
+        return proposal;
+    }
+
+    public void setProposal(Proposal proposal) {
+        this.proposal = proposal;
+    }
 }

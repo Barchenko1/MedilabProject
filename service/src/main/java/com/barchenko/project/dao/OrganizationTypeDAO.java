@@ -1,7 +1,7 @@
 package com.barchenko.project.dao;
 
-import com.barchenko.project.entity.tables.Organization;
+import com.barchenko.project.entity.tables.OrganizationType;
 
 public interface OrganizationTypeDAO {
-    Organization getOrganizationTypeByName(String name);
+    OrganizationType getOrganizationTypeByName(String name);
 }

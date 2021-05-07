@@ -37,7 +37,7 @@ public class Dependent {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name = "employee_id", insertable = false, updatable=false, nullable = false)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
     public Long getDependentId() {

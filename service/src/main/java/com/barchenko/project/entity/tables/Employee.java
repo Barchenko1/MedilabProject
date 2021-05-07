@@ -36,8 +36,6 @@ public class Employee {
     @Column
     private String email;
     @Column
-    private String phone;
-    @Column
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
     @Column
@@ -97,14 +95,6 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public Date getBirthdate() {

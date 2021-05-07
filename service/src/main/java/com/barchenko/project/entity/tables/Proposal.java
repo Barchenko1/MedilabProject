@@ -1,5 +1,6 @@
 package com.barchenko.project.entity.tables;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "proposal")
@@ -35,7 +39,14 @@ public class Proposal {
     private Plan plan;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "organizationType_id", nullable = false)
-    private Organization organization;
+    private OrganizationType organizationType;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "proposal_productLine",
+            joinColumns = { @JoinColumn(name = "proposal_id") },
+            inverseJoinColumns = { @JoinColumn(name = "productLine_id") }
+    )
+    private Set<ProductLine> productLines = new HashSet<>();
 
     public Long getProposalId() {
         return proposalId;
@@ -93,11 +104,19 @@ public class Proposal {
         this.plan = plan;
     }
 
-    public Organization getOrganization() {
-        return organization;
+    public OrganizationType getOrganization() {
+        return organizationType;
     }
 
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
+    public void setOrganization(OrganizationType organizationType) {
+        this.organizationType = organizationType;
+    }
+
+    public Set<ProductLine> getProductLines() {
+        return productLines;
+    }
+
+    public void setProductLines(Set<ProductLine> productLines) {
+        this.productLines = productLines;
     }
 }

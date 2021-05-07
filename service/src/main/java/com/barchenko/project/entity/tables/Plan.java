@@ -19,8 +19,8 @@ import javax.persistence.Table;
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "plan_id")
+    private Long planId;
     @Column
     private String planCode;
     @Column
@@ -39,12 +39,12 @@ public class Plan {
     @Column
     private int monthCost;
 
-    public Long getId() {
-        return id;
+    public Long getPlanId() {
+        return planId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPlanId(Long planId) {
+        this.planId = planId;
     }
 
     public String getPlanCode() {

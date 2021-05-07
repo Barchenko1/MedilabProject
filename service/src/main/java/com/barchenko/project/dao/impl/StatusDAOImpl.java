@@ -8,6 +8,9 @@ import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
 import static java.util.Objects.isNull;
 
 @Repository
@@ -16,13 +19,14 @@ public class StatusDAOImpl implements StatusDAO {
     private static final String SELECT_STATUS_BY_NAME = "select * from status where name = ?;";
 
     @Autowired
-    private SessionFactory sessionFactory;
+    private EntityManagerFactory entityManagerFactory;
 
     @Override
     public Status getStatusByName(String name) {
-        NativeQuery<Status> query = sessionFactory.getCurrentSession().createNativeQuery(SELECT_STATUS_BY_NAME);
-        query.setParameter(1, name);
-        Status status = query.addEntity(Status.class).getSingleResult();
+        EntityManager em = entityManagerFactory.createEntityManager();
+        Status status = (Status) em.createNativeQuery(SELECT_STATUS_BY_NAME, Status.class)
+                .setParameter(1, name)
+                .getSingleResult();
         if (isNull(status)) {
             return null;
         }

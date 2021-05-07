@@ -10,6 +10,16 @@ INSERT INTO status (name) VALUES ('DELETED');
 INSERT INTO relationship (name) VALUES ('SPOUSE');
 INSERT INTO relationship (name) VALUES ('CHILD');
 
-INSERT INTO role (nameRole) VALUES ('ROLE_CUSTOMER');
-INSERT INTO role (nameRole) VALUES ('ROLE_INDIVIDUAL');
-INSERT INTO role (nameRole) VALUES ('ROLE_EMPLOYEE');
+INSERT INTO role (name) VALUES ('ROLE_CUSTOMER');
+INSERT INTO role (name) VALUES ('ROLE_INDIVIDUAL');
+INSERT INTO role (name) VALUES ('ROLE_EMPLOYEE');
+
+INSERT INTO organizationType (name) VALUES ('PARTNERSHIP');
+INSERT INTO organizationType (name) VALUES ('LIMITED LIABILITY COMPANY (LLC)');
+INSERT INTO organizationType (name) VALUES ('C-CORP');
+INSERT INTO organizationType (name) VALUES ('NONPROFIT');
+
+INSERT INTO productLine (name) VALUES ('MEDICAL');
+INSERT INTO productLine (name) VALUES ('DENTAL');
+INSERT INTO productLine (name) VALUES ('VISION');
+INSERT INTO productLine (name) VALUES ('LIFE');

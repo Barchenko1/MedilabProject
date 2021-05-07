@@ -7,10 +7,10 @@ import CustomCheckBox from "../../customComponents/checkBoxes/CustomCheckBox";
 class CompanyProfileForm extends React.Component {
 
     organizationTypes = [
-        'Commercial',
-        'State',
-        'Company',
-        'Formal'
+        'Partnership',
+        'Limited liability company (LLC)',
+        'C corp',
+        'Nonprofit'
     ];
 
     renderError(meta) {
@@ -74,6 +74,11 @@ class CompanyProfileForm extends React.Component {
         return(
             <div>
                 <CustomInput
+                    type="number"
+                    name="houseNumber"
+                    renderError={this.renderError}
+                    label="House number"/>
+                <CustomInput
                     type="text"
                     name="address"
                     renderError={this.renderError}
@@ -89,7 +94,7 @@ class CompanyProfileForm extends React.Component {
                     renderError={this.renderError}
                     label="State"/>
                 <CustomInput
-                    type="text"
+                    type="number"
                     name="zipCode"
                     renderError={this.renderError}
                     label="ZIP Code"/>

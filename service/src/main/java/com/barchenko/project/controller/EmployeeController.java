@@ -2,7 +2,6 @@ package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
-import com.barchenko.project.entity.tables.Employee;
 import com.barchenko.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @PostMapping("/addEmployee")
+    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
     public ResponseEntity<?> addEmployeeData(@Valid @RequestBody EmployeeDTORequest employeeDTO) {
         employeeService.addEmployeeDependentData(employeeDTO);
         return ResponseEntity.ok("Successful");

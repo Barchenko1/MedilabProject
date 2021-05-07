@@ -59,19 +59,19 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
     private DependentBuilder dependentBuilder;
 
     @Override
-    public void saveEmployeeDependentDate(EmployeeDTORequest employeeDTORequest) {
+    public void saveEmployeeDependentDate(Employee employee, List<DependentDTORequest> dependentDTORequestList) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            List<DependentDTORequest> dependentDTORequests = employeeDTORequest.getDependents();
-            Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
-                    employeeDTORequest,
-                    genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),
-                    statusDAO.getStatusByName(CREATED.name()));
+//            List<DependentDTORequest> dependentDTORequestList = employeeDTORequest.getDependents();
+//            Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
+//                    employeeDTORequest,
+//                    genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),
+//                    statusDAO.getStatusByName(CREATED.name()));
             employeeDAO.createEmployee(employee);
-            if (nonNull(employeeDTORequest.getDependents())) {
-                List<Dependent> dependents = dependentDTORequests.stream()
+            if (nonNull(dependentDTORequestList)) {
+                List<Dependent> dependents = dependentDTORequestList.stream()
                         .map(dependentDTORequest -> dependentBuilder.transformDependentDTORequestToDependent(
                                 dependentDTORequest,
                                 genderDAO.getGenderByName(dependentDTORequest.getGender().toUpperCase()),
@@ -92,6 +92,29 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
         }
         session.close();
     }
+
+//    @Override
+//    public void saveEmployeeDependentDate(Employee employee, List<Dependent> dependents) {
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = null;
+//        try {
+//            transaction = session.beginTransaction();;
+//            employeeDAO.createEmployee(employee);
+//            if (!dependents.isEmpty()) {
+//                dependents.forEach(dependent -> dependentDAO.createDependent(dependent));
+//            }
+//            session.flush();
+//            session.clear();
+//        }catch (RuntimeException ex) {
+//            if (nonNull(transaction)) {
+//                transaction.rollback();
+//            }
+//        }
+//        if (nonNull(transaction)) {
+//            transaction.commit();
+//        }
+//        session.close();
+//    }
 
     @Override
     public void updateEmployeeDependentDate(EmployeeDTORequest employeeDTORequest) {

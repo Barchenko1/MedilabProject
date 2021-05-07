@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import CompanyProfileForm from "../forms/CompanyProfileForm";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import {ADD_EMPLOYEES_PAGE, HOME_PAGE} from "../../utils/consts";
+import {saveUpdateCompanyProfile} from "../../actions/companyProfileActions";
 
 class CompanyProfilePage extends React.Component {
 
     onSubmit = (formProps) => {
-
+        this.props.saveUpdateCompanyProfile(formProps);
     }
 
     render() {
@@ -35,10 +36,13 @@ class CompanyProfilePage extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
+// const mapStateToProps = (state) => {
+//     return {
+//
+//     }
+// }
 
-    }
-}
-
-export default connect(mapStateToProps)(CompanyProfilePage);
+export default connect(
+    null,
+    {saveUpdateCompanyProfile})
+(CompanyProfilePage);

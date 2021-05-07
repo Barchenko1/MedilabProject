@@ -1,7 +1,7 @@
 package com.barchenko.project.dao.impl;
 
 import com.barchenko.project.dao.OrganizationTypeDAO;
-import com.barchenko.project.entity.tables.Organization;
+import com.barchenko.project.entity.tables.OrganizationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +17,11 @@ public class OrganizationTypeDAOImpl implements OrganizationTypeDAO {
     private EntityManagerFactory entityManagerFactory;
 
     @Override
-    public Organization getOrganizationTypeByName(String name) {
+    public OrganizationType getOrganizationTypeByName(String name) {
         EntityManager em = entityManagerFactory.createEntityManager();
-        Organization organization = (Organization) em.createNativeQuery(SELECT_ORGANIZATION_BY_NAME, Organization.class)
+        OrganizationType organizationType = (OrganizationType) em.createNativeQuery(SELECT_ORGANIZATION_BY_NAME, OrganizationType.class)
                 .setParameter(1, name)
                 .getSingleResult();
-        return organization;
+        return organizationType;
     }
 }

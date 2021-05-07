@@ -1,24 +1,24 @@
 package com.barchenko.project.entity.tables;
 
-import com.barchenko.project.entity.enums.MetalTierName;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "class")
-public class PlanClass {
+@Table(name = "productLine")
+public class ProductLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id")
-    private Long classId;
-    @Enumerated(EnumType.STRING)
+    @Column(name = "productLine_id")
+    private Long productLineId;
     @Column
-    private MetalTierName name;
+    private String name;
+    @ManyToMany(mappedBy = "productLines")
+    private Set<Proposal> proposals = new HashSet<>();
 }

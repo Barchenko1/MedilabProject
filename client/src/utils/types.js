@@ -8,6 +8,8 @@ export const SIGN_IN = 'SING_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const REGISTRATION = 'REGISTRATION';
 
+export const SAVE_UPDATE_COMPANY_PROFILE = 'SAVE_UPDATE_COMPANY_PROFILE';
+
 export const FETCH_PLANS = "FETCH_PLANS";
 export const ADD_PLAN = 'ADD_PLAN';
 export const DELETE_PLAN = 'DELETE_PLAN';
