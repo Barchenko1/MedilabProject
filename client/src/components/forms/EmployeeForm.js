@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, FieldArray, reduxForm } from "redux-form";
-import '../addEmployeePage/EmployeeForm.css'
+import '../addEmployeePage/EmployeeForm.scss'
 import {Link} from "react-router-dom";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomInput from "../../customComponents/inputs/CustomInput";

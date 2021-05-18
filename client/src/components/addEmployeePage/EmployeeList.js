@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getEmployees, deleteEmployee} from "../../actions/employeeActions";
 import {Link} from "react-router-dom";
 import CustomButton from "../../customComponents/buttons/CustomButton";
-import './EmployeeList.css'
+import './EmployeeList.scss'
 import {COMPANY_PROFILE_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
 
 class EmployeeList extends React.Component {
