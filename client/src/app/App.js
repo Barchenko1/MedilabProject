@@ -8,14 +8,14 @@ import {
   ADD_EMPLOYEES_PAGE,
   ADD_INDIVIDUAL_EMPLOYEE_PAGE,
   COMPANY_PROFILE_PAGE,
-  CREATE_EMPLOYEE,
+  CREATE_EMPLOYEE, CREATE_QUOTE,
   EDIT_EMPLOYEE,
   HOME_PAGE,
   LOGIN_PAGE,
   PLAN_SELECTION_PAGE,
   QUOTE_OVERVIEW,
   QUOTE_SUMMARY,
-  REGISTRATION_PAGE
+  REGISTRATION_PAGE, USER_PROFILE
 } from "../utils/consts";
 import LoginPage from "../components/authenticationPage/LoginPage";
 import RegistrationPage from "../components/authenticationPage/RegistrationPage";
@@ -26,6 +26,8 @@ import AddIndividualEmployeePage from "../components/addIndividualEmployeePage/A
 import QuoteSummaryPage from "../components/quoteSummary/QuoteSummaryPage";
 import QuoteOverviewPage from "../components/quoteOverview/QuoteOverviewPage";
 import PlanSelectionPage from "../components/planSelectionPage/PlanSelectionPage";
+import QuoteCreate from "../components/quotePage/QuoteCreate";
+import UserProfilePage from "../components/UserProfile/UserProfilePage";
 
 const App = () => {
   return (
@@ -38,6 +40,11 @@ const App = () => {
               <Route path={REGISTRATION_PAGE} exact component={RegistrationPage} />
 
               <Route path={HOME_PAGE} exact component={HomePage} />
+
+              <Route path={CREATE_QUOTE} exact component={QuoteCreate} />
+
+              <Route path={USER_PROFILE} exact component={UserProfilePage} />
+
               <Route path={COMPANY_PROFILE_PAGE} exact component={CompanyProfilePage} />
 
               <Route path={CREATE_EMPLOYEE} exact component={EmployeeCreate} />

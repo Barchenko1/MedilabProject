@@ -4,9 +4,11 @@ import {reducer} from "redux-form";
 import authReducer from "./authReducer";
 import planReducer from "./planReducer";
 import companyProfileReducer from "./companyProfileReducer";
+import quoteReducer from "./quoteReducer";
 
 export default combineReducers({
     form: reducer,
+    quoteReducer,
     companyProfileReducer,
     employeeReducer,
     authReducer,
