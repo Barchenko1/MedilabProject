@@ -31,7 +31,7 @@ import UserProfilePage from "../components/UserProfile/UserProfilePage";
 
 const App = () => {
   return (
-    <div className="ui container">
+    <div className="">
         <Router history={history}>
           <div>
             <Header />

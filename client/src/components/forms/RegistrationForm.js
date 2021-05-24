@@ -69,7 +69,7 @@ class RegistrationForm extends React.Component {
 
 }
 
-const validation = (formProps) => {
+const validate = (formProps) => {
     const errors = {};
 
     return errors
@@ -77,7 +77,7 @@ const validation = (formProps) => {
 
 const formWrapper = reduxForm({
     form: 'registrationForm',
-    validation
+    validate
 })(RegistrationForm);
 
 export default formWrapper;

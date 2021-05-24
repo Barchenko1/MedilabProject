@@ -1,20 +1,30 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import './Header.scss';
+import history from "../utils/history";
 
 const Header = () => {
+
+    function onChange(e) {
+        history.push(`${e.target.value}`);
+    }
+
     return(
-        <div>
-            Header
-            <div style={{textAlign: 'right'}}>
-                <Link to="/quote/new" className="ui button primary" >
-                    Create Quote
+        <div className="header">
+            <div className="header_logo">
+                <Link to="/">
+                    <img src="logo.png" className="header_logo--img"/>
                 </Link>
-                <Link to="/user-profile" className="ui button primary" >
-                    User Profile
-                </Link>
-                <Link to="/" className="ui button primary" >
-                    Log out
-                </Link>
+            </div>
+            <div className="header_wrapper">
+                <div className="header_avatar"/>
+                <div style={{textAlign: 'right'}}>
+                    <select onClick={onChange} className="header_dropdown">
+                        <option value="/quote/new">Create Quote</option>
+                        <option value="/user-profile">  User Profile</option>
+                        <option value="/"> Log out</option>
+                    </select>
+                </div>
             </div>
         </div>
     )

@@ -14,7 +14,13 @@ class CompanyProfileForm extends React.Component {
     ];
 
     renderError(meta) {
-
+        if (meta.touched && meta.error) {
+            return(
+                <div>
+                    {meta.error}
+                </div>
+            )
+        }
     };
 
     onSubmit = (formProps) => {
@@ -24,7 +30,7 @@ class CompanyProfileForm extends React.Component {
 
     renderCompanyInfo() {
         return(
-            <div>
+            <React.Fragment>
                 <CustomInput
                     type="text"
                     name="companyName"
@@ -36,7 +42,7 @@ class CompanyProfileForm extends React.Component {
                     label="Organization Type"
                     renderError={this.renderError}
                 />
-            </div>
+            </React.Fragment>
         )
     }
 
@@ -104,17 +110,7 @@ class CompanyProfileForm extends React.Component {
 
     renderContactPerson() {
         return(
-            <div>
-                {/*<CustomInput*/}
-                {/*    type="text"*/}
-                {/*    name="fistName"*/}
-                {/*    renderError={this.renderError}*/}
-                {/*    label="First name"/>*/}
-                {/*<CustomInput*/}
-                {/*    type="text"*/}
-                {/*    name="lastName"*/}
-                {/*    renderError={this.renderError}*/}
-                {/*    label="Last name"/>*/}
+            <React.Fragment>
                 <CustomInput
                     type="email"
                     name="email"
@@ -125,14 +121,14 @@ class CompanyProfileForm extends React.Component {
                     name="phone"
                     renderError={this.renderError}
                     label="Company contact phone number"/>
-            </div>
+            </React.Fragment>
         )
     }
 
     render() {
         console.log(this.props)
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="">
                 {this.renderCompanyInfo()}
                 {this.renderProductLines()}
                 {this.renderBillingAddress()}
@@ -145,15 +141,18 @@ class CompanyProfileForm extends React.Component {
     }
 }
 
-const validation = (formProps) => {
+const validate = (formProps) => {
     const errors = {};
-
+    console.log(formProps)
+    if (!formProps.companyName) {
+        errors.companyName = 'You must enter a company name';
+    }
     return errors
 }
 
 const formWrapper = reduxForm({
     form: 'companyProfileForm',
-    validation
+    validate
 })(CompanyProfileForm);
 
 export default formWrapper;
