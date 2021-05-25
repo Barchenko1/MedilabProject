@@ -2,6 +2,7 @@ import React from 'react';
 import RegistrationForm from "../forms/RegistrationForm";
 import {connect} from 'react-redux';
 import {registration} from '../../actions/authActions';
+import "./AuthorizationPage.scss";
 
 class RegistrationPage extends React.Component {
 
@@ -11,8 +12,8 @@ class RegistrationPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Registration</h3>
+            <div className="authorization">
+                <h3 className="authorization_header">Registration</h3>
                 <RegistrationForm onSubmit={this.onSubmit} />
             </div>
         );

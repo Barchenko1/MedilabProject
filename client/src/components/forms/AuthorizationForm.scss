@@ -1,0 +1,61 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+    &_item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &_label {
+        margin-top: 1rem;
+        display: flex;
+        flex: 50%;
+    }
+
+    &_input {
+        width: 100%;
+        padding: .5rem;
+        border: none;
+        border-bottom: 1px solid #c2bbbb;
+        outline: none;
+
+        &:focus {
+            border-bottom: 1px solid #1C4A5A;
+        }
+    }
+
+    &_buttons {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+
+        &-submit {
+            background-color: #0cb8b6;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: .5rem;
+        }
+    
+        &-link {
+            margin-left: 2rem;
+        }
+    }
+}
+
+.role {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8rem;
+
+    &_label {
+        margin-bottom: .5rem;
+    }
+}
+
+.errormsg {
+    color: red;
+}

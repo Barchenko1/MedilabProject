@@ -1,5 +1,6 @@
 import { Router, Route, Switch, Link } from 'react-router-dom';
 import Header from "../components/Header";
+import './App.scss';
 import history from "../utils/history";
 import EmployeeCreate from "../components/addEmployeePage/EmployeeCreate";
 import EmployeeList from "../components/addEmployeePage/EmployeeList";
@@ -27,13 +28,13 @@ import QuoteSummaryPage from "../components/quoteSummary/QuoteSummaryPage";
 import QuoteOverviewPage from "../components/quoteOverview/QuoteOverviewPage";
 import PlanSelectionPage from "../components/planSelectionPage/PlanSelectionPage";
 import QuoteCreate from "../components/quotePage/QuoteCreate";
-import UserProfilePage from "../components/UserProfile/UserProfilePage";
+import UserProfilePage from "../components/userProfilePage/UserProfilePage";
 
 const App = () => {
   return (
-    <div className="">
+    <div className="page_container">
         <Router history={history}>
-          <div>
+          <div className="content_wrap">
             <Header />
             <Switch>
               <Route path={LOGIN_PAGE} exact component={LoginPage} />
