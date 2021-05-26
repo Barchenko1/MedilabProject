@@ -4,6 +4,7 @@ import CompanyProfileForm from "../forms/CompanyProfileForm";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import {ADD_EMPLOYEES_PAGE, HOME_PAGE} from "../../utils/consts";
 import {saveUpdateCompanyProfile} from "../../actions/companyProfileActions";
+import "../PagesHeader.scss";
 
 class CompanyProfilePage extends React.Component {
 
@@ -14,7 +15,7 @@ class CompanyProfilePage extends React.Component {
     render() {
         return (
             <div>
-                <h2>CompanyProfilePage</h2>
+                <h2 className="page_header">CompanyProfilePage</h2>
                 <CompanyProfileForm
                     onSubmit={this.onSubmit}
                     initialValues={

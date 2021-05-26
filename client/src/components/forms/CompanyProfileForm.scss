@@ -1,0 +1,50 @@
+.wrapper {
+  display: table;
+  width: 65rem;
+
+  &_right,
+  &_left {
+    display: table-cell;
+    padding-left: 2rem;
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-label {
+      margin-top: 1rem;
+      display: flex;
+      flex: 50%;
+    }
+
+    &-input {
+      width: 100%;
+      padding: .5rem;
+      border: none;
+      border-bottom: 1px solid #c2bbbb;
+      outline: none;
+
+      &:focus {
+        border-bottom: 1px solid #1C4A5A;
+      }
+    }
+  }
+}
+
+.cp_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-button {
+    background-color: #0cb8b6;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: .5rem;
+
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+}

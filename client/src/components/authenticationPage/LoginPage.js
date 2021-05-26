@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from "../forms/LoginForm";
 import {connect} from 'react-redux';
 import {signIn} from "../../actions/authActions";
-import "./AuthorizationPage.scss";
+import "../PagesHeader.scss";
 
 class LoginPage extends React.Component {
 
@@ -12,8 +12,8 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div className="authorization">
-                <h3 className="authorization_header">Login</h3>
+            <div>
+                <h3 className="page_header">Login</h3>
                 <LoginForm onSubmit={this.onSubmit}/>
             </div>
         );

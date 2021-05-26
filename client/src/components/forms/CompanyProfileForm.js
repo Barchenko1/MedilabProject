@@ -3,7 +3,7 @@ import {reduxForm} from "redux-form";
 import CustomInput from "../../customComponents/inputs/CustomInput";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomCheckBox from "../../customComponents/checkBoxes/CustomCheckBox";
-import './Form.scss'
+import './CompanyProfileForm.scss'
 
 class CompanyProfileForm extends React.Component {
 
@@ -31,36 +31,36 @@ class CompanyProfileForm extends React.Component {
 
     renderCompanyInfo() {
         return(
-            <div className="form_left">
+            <div className="wrapper_left">
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_left-item"
+                    labelStyle='wrapper_left-label'
+                    inputStyle='wrapper_left-input'
                     type="text"
                     name="companyName"
                     renderError={this.renderError}
                     label="Company name"/>
                 {this.renderProductLines()}
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_left-item"
+                    labelStyle='wrapper_left-label'
+                    inputStyle='wrapper_left-input'
                     type="email"
                     name="email"
                     renderError={this.renderError}
                     label="Company contact email"/>
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_left-item"
+                    labelStyle='wrapper_left-label'
+                    inputStyle='wrapper_left-input'
                     type="text"
                     name="phone"
                     renderError={this.renderError}
                     label="Company contact phone number"/>
                 <CustomDropDown
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_left-item"
+                    labelStyle='wrapper_left-label'
+                    inputStyle='wrapper_left-input'
                     name="organizationType"
                     data={this.organizationTypes}
                     label="Organization Type"
@@ -74,69 +74,69 @@ class CompanyProfileForm extends React.Component {
         return(
             <div>
                 <label>Product Lines</label>
-                    <CustomCheckBox
-                        name="medical"
-                        caption="Medical"
-                        renderError={this.renderError}
-                    />
-                    <CustomCheckBox
-                        name="dental"
-                        caption="Dental"
-                        renderError={this.renderError}
-                    />
-                    <CustomCheckBox
-                        name="vision"
-                        caption="Vision"
-                        renderError={this.renderError}
-                    />
-                    <CustomCheckBox
-                        name="life"
-                        caption="Life"
-                        renderError={this.renderError}
-                    />
+                <CustomCheckBox
+                    name="medical"
+                    caption="Medical"
+                    renderError={this.renderError}
+                />
+                <CustomCheckBox
+                    name="dental"
+                    caption="Dental"
+                    renderError={this.renderError}
+                />
+                <CustomCheckBox
+                    name="vision"
+                    caption="Vision"
+                    renderError={this.renderError}
+                />
+                <CustomCheckBox
+                    name="life"
+                    caption="Life"
+                    renderError={this.renderError}
+                />
             </div>
         )
     }
 
     renderBillingAddress() {
         return(
-            <div className="form_right">
+            <div className="wrapper_right">
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_right-item"
+                    labelStyle='wrapper_right-label'
+                    inputStyle='wrapper_right-input'
                     type="number"
                     name="houseNumber"
                     renderError={this.renderError}
                     label="House number"/>
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_right-item"
+                    labelStyle='wrapper_right-label'
+                    inputStyle='wrapper_right-input'
                     type="text"
                     name="address"
                     renderError={this.renderError}
                     label="Street Address"/>
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_right-item"
+                    labelStyle='wrapper_right-label'
+                    inputStyle='wrapper_right-input'
                     type="text"
                     name="city"
                     renderError={this.renderError}
                     label="City"/>
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_right-item"
+                    labelStyle='wrapper_right-label'
+                    inputStyle='wrapper_right-input'
                     type="text"
                     name="state"
                     renderError={this.renderError}
                     label="State"/>
                 <CustomInput
-                    groupStyle="form_item"
-                    labelStyle='form_label'
-                    inputStyle='form_input'
+                    groupStyle="wrapper_right-item"
+                    labelStyle='wrapper_right-label'
+                    inputStyle='wrapper_right-input'
                     type="number"
                     name="zipCode"
                     renderError={this.renderError}
@@ -148,10 +148,12 @@ class CompanyProfileForm extends React.Component {
     render() {
         console.log(this.props)
         return (
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="form">
-                {this.renderCompanyInfo()}
-                {this.renderBillingAddress()}
-                <button className="ui button primary">
+            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="cp_form">
+                <div className="wrapper">
+                    {this.renderCompanyInfo()}
+                    {this.renderBillingAddress()}
+                </div>
+                <button className="cp_form-button">
                     Continue
                 </button>
             </form>
