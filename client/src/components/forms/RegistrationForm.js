@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {LOGIN_PAGE} from "../../utils/consts";
 import CustomRadioButton from "../../customComponents/radioButtons/CustomRadioButton";
 import CustomInput from "../../customComponents/inputs/CustomInput";
-import "./AuthorizationForm.scss";
+import "./Form.scss";
 
 
 class RegistrationForm extends React.Component {

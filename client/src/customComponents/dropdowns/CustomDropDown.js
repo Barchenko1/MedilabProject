@@ -4,9 +4,9 @@ import {Field} from "redux-form";
 const renderDropDown = (props) => {
     console.log(props);
     return(
-        <div>
-            <label>{props.label}</label>
-            <select {...props.input}>
+        <div className={props.groupStyle}>
+            <label className={props.labelStyle}>{props.label}</label>
+            <select className={props.selectStyle} {...props.input}>
                 <option value=""/>
                 {props.data.map(data =>
                     <option value={data} key={data}>{data}</option>)}
