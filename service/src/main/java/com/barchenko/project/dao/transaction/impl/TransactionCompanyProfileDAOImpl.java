@@ -33,7 +33,7 @@ public class TransactionCompanyProfileDAOImpl implements TransactionCompanyProfi
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-
+            proposalDAO.createUpdateProposal(proposal);
             session.flush();
             session.clear();
         } catch (RuntimeException ex) {

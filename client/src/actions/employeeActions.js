@@ -8,6 +8,8 @@ import {
 import _ from 'lodash';
 import history from "../utils/history";
 import apis from "../utils/apis";
+import {getCookie} from "../utils/util";
+import {TOKEN} from "../utils/consts";
 
 const getEmployeesToLocalStorage = (getState) => {
     const employees = getState().employeeReducer.employees.slice();
@@ -38,7 +40,9 @@ export const editEmployee = (id, formProps) => async (dispatch, getState) => {
 }
 
 export const getEmployees = () => async (dispatch, getState) => {
-    const response = await apis.get('/employees');
+    const response = await apis.get('/employees',
+        { headers: { authorization: getCookie(TOKEN) }}
+    );
     console.log(response);
     dispatch({
         type: GET_EMPLOYEES,

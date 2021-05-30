@@ -3,7 +3,7 @@ import apis from "./apis";
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 
 export const createBasicAuthToken = (username, password) => {
-    return 'Basic ' + window.btoa(username + ":" + password)
+    return 'Basic ' + window.btoa(username + ":" + password);
 }
 
 export const logout = () => {

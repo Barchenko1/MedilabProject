@@ -23,5 +23,6 @@ export const USER_PROFILE_PAGE = '/user-profile';
 export const INDIVIDUAL_EMPLOYEE_PROFILE_PAGE = '/individual-profile';
 export const ADD_INDIVIDUAL_EMPLOYEE_PAGE = '/add-individual';
 
+export const TOKEN = "token";
 export const ACCESS_TOKEN = 'accessToken';
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';

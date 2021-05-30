@@ -6,46 +6,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import java.util.Optional;
+
 import static java.util.Objects.isNull;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
 
-    private static final String GET_ALL_USER_DATA = "SELECT *\n" +
-            "\tFROM user u\n" +
-            "    JOIN role r ON r.role_id=u.role_id\n" +
-            "    JOIN status s ON s.status_id=u.status_id\n " +
-            "    where u.login or u.email = ?;";
+    private static final String GET_USER_DATA = "SELECT * FROM user where user.username = ? OR user.email = ?;";
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
+
     @Override
-    public void createQuote(User user) {
+    public void createUpdateUser(User user) {
         if (isNull(user)) {
             throw new IllegalArgumentException("user is null");
         }
         try {
             sessionFactory.getCurrentSession()
-                    .save(user);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public User findUserByLoginOrEmail(String loginEmail) {
-        return null;
-    }
-
-    @Override
-    public void updateUser(User user) {
-        if (isNull(user)) {
-            throw new IllegalArgumentException("user is null");
-        }
-        try {
-            sessionFactory.getCurrentSession()
-                    .update(user);
+                    .saveOrUpdate(user);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -62,5 +48,27 @@ public class UserDAOImpl implements UserDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Optional<User> findByUsernameOrEmail(String usernameOrEmail) {
+        if (isNull(usernameOrEmail)) {
+            throw new IllegalArgumentException("usernameOrEmail is null");
+        }
+        User user = null;
+        try {
+            EntityManager em = entityManagerFactory.createEntityManager();
+            user = (User) em.createNativeQuery(GET_USER_DATA, User.class)
+                    .setParameter(1, usernameOrEmail)
+                    .setParameter(2, usernameOrEmail)
+                    .getSingleResult();
+        }
+        catch (NoResultException e) {
+            return Optional.empty();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return Optional.of(user);
     }
 }

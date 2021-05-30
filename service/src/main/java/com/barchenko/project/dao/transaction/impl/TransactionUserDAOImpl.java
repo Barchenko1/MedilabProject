@@ -39,7 +39,7 @@ public class TransactionUserDAOImpl implements TransactionUserDAO {
     private UserBuilder userBuilder;
 
     @Override
-    public void saveUserData(UserDTORequest userDTORequest) {
+    public void saveOrUpdateUserData(UserDTORequest userDTORequest) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -47,21 +47,17 @@ public class TransactionUserDAOImpl implements TransactionUserDAO {
             Role role = roleDAO.getRoleByName(userDTORequest.getRole().toUpperCase());
             Status status = statusDAO.getStatusByName(StatusName.PENDING.name());
             User user = userBuilder.transformUserDTORequestTOUser(userDTORequest, role, status);
-            userDAO.createQuote(user);
+            userDAO.createUpdateUser(user);
+            transaction.commit();
         }catch (RuntimeException ex) {
             if (nonNull(transaction)) {
                 transaction.rollback();
             }
         }
-        if (nonNull(transaction)) {
-            transaction.commit();
-        }
+//        if (nonNull(transaction)) {
+//            transaction.commit();
+//        }
         session.close();
-    }
-
-    @Override
-    public void updateUserData(UserDTORequest userDTORequest) {
-
     }
 
     @Override
