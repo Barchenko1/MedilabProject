@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class QuoteDTORequest {
     private String name;
-    private Date dateOfExpired;
+    private Date dateOfExpire;
 
     public String getName() {
         return name;
@@ -14,11 +14,11 @@ public class QuoteDTORequest {
         this.name = name;
     }
 
-    public Date getDateOfExpired() {
-        return dateOfExpired;
+    public Date getDateOfExpire() {
+        return dateOfExpire;
     }
 
-    public void setDateOfExpired(Date dateOfExpired) {
-        this.dateOfExpired = dateOfExpired;
+    public void setDateOfExpire(Date dateOfExpire) {
+        this.dateOfExpire = dateOfExpire;
     }
 }

@@ -5,26 +5,23 @@ import history from "../utils/history";
 import {createBasicAuthToken, logout, registerSuccessfulLogin} from "../utils/apiService";
 
 export const signIn = (formProps) => async dispatch => {
-    const response = await apis.post('/auth/signin', formProps,
-        { headers: { authorization: createBasicAuthToken(formProps.usernameOrEmail, formProps.password) }}
-    );
-    let token = 'Basic ' + window.btoa(response.data.principal.username + ":" + formProps.password);
+    const response = await apis.post('/auth/signin', formProps);
+    console.log(response)
+    let token = 'Basic ' + window.btoa(formProps.usernameOrEmail + ":" + formProps.password);
     document.cookie = `${TOKEN}=${token}`;
-    console.log(response);
     dispatch ({
         type: SIGN_IN,
         payload: response.data
     })
-    // registerSuccessfulLogin(formProps, response.data.principal);
     history.push("/");
 };
 
 export const signOut = () => async dispatch => {
     await apis.get("/auth/signout");
+    document.cookie = `${TOKEN}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     dispatch ({
         type: SIGN_OUT
     })
-    logout();
     history.push(LOGIN_PAGE);
 }
 

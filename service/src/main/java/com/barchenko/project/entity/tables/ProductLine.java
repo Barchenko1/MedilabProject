@@ -19,6 +19,6 @@ public class ProductLine {
     private Long productLineId;
     @Column
     private String name;
-    @ManyToMany(mappedBy = "productLines")
-    private Set<Proposal> proposals = new HashSet<>();
+//    @ManyToMany(mappedBy = "productLines")
+//    private Set<Proposal> proposals = new HashSet<>();
 }

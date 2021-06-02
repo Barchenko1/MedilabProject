@@ -40,15 +40,14 @@ export const editEmployee = (id, formProps) => async (dispatch, getState) => {
 }
 
 export const getEmployees = () => async (dispatch, getState) => {
+    console.log(getCookie(TOKEN));
     const response = await apis.get('/employees',
         { headers: { authorization: getCookie(TOKEN) }}
     );
-    console.log(response);
     dispatch({
         type: GET_EMPLOYEES,
         payload: response.data
     })
-    // getEmployeesToLocalStorage(getState);
 }
 
 export const getEmployee = (id) => async (dispatch) => {

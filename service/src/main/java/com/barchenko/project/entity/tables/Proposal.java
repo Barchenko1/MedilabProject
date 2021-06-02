@@ -32,9 +32,6 @@ public class Proposal {
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User creator;
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "plan_id", nullable = false)
     private Plan plan;
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -86,14 +83,6 @@ public class Proposal {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public User getCreator() {
-        return creator;
-    }
-
-    public void setCreator(User creator) {
-        this.creator = creator;
     }
 
     public Plan getPlan() {

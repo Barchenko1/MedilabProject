@@ -22,14 +22,14 @@ class QuoteForm extends React.Component {
         return(
             <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                 <CustomInput
-                    name='quoteName'
+                    name='name'
                     type='text'
                     renderError={this.renderError}
                     label="Quote Name"
                 />
                 <CustomInput
-                    name='effectiveDate'
-                    type='text'
+                    name='dateOfExpire'
+                    type='date'
                     renderError={this.renderError}
                     label="Effective Date"
                 />

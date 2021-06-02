@@ -1,5 +1,7 @@
 package com.barchenko.project.appUser;
 
+import com.barchenko.project.entity.tables.Role;
+import com.barchenko.project.entity.tables.Status;
 import com.barchenko.project.entity.tables.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,16 +18,25 @@ public class UserPrincipal implements UserDetails {
     private String username;
 
     private String email;
+
+    private String phone;
     @JsonIgnore
     private String password;
 
+    private Status status;
+
+    private Role role;
+
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long userId, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long userId, String username, String email, String phone, String password, Status status, Role role, Collection<? extends GrantedAuthority> authorities) {
         this.id = userId;
         this.username = username;
         this.email = email;
+        this.phone = phone;
         this.password = password;
+        this.status = status;
+        this.role = role;
         this.authorities = authorities;
     }
 
@@ -36,7 +47,10 @@ public class UserPrincipal implements UserDetails {
                 user.getUserId(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getPhone(),
                 user.getPassword(),
+                user.getStatus(),
+                user.getRole(),
                 authorities
         );
         return userPrincipal;
@@ -77,4 +91,23 @@ public class UserPrincipal implements UserDetails {
         return true;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Role getRole() {
+        return role;
+    }
 }

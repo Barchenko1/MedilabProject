@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/init/quote")
+@RequestMapping("/quote")
 public class QuoteController {
 
     @Autowired
     private QuoteService quoteService;
 
-    @RequestMapping(value = "/addCompanyData", method = RequestMethod.POST)
-    public ResponseEntity<?> addEmployeeData(@Valid @RequestBody QuoteDTORequest quoteDTORequest) {
+    @RequestMapping(value = "/init", method = RequestMethod.POST)
+    public ResponseEntity<?> initQuote(@Valid @RequestBody QuoteDTORequest quoteDTORequest) {
         quoteService.createQuote(quoteDTORequest);
         return ResponseEntity.ok("Successful");
     }

@@ -39,7 +39,7 @@ public class UserController {
                         loginRequest.getPassword()
                 )
         );
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         return ResponseEntity.ok(authentication);
     }
@@ -47,6 +47,15 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<?> addEmployeeData(@Valid @RequestBody UserDTORequest userDTORequest) {
         userService.saveOrUpdateUser(userDTORequest);
+        return ResponseEntity.ok("Successful");
+    }
+
+    @RequestMapping(value = "/signout", method = RequestMethod.GET)
+    public ResponseEntity<?> logOutUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            SecurityContextHolder.clearContext();
+        }
         return ResponseEntity.ok("Successful");
     }
 }

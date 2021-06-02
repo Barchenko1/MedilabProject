@@ -25,7 +25,6 @@ class CompanyProfileForm extends React.Component {
     };
 
     onSubmit = (formProps) => {
-        console.log(formProps)
         this.props.onSubmit(formProps);
     }
 
@@ -146,7 +145,6 @@ class CompanyProfileForm extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="cp_form">
                 <div className="wrapper">
@@ -163,7 +161,6 @@ class CompanyProfileForm extends React.Component {
 
 const validate = (formProps) => {
     const errors = {};
-    console.log(formProps)
     if (!formProps.companyName) {
         errors.companyName = 'You must enter a company name';
     }

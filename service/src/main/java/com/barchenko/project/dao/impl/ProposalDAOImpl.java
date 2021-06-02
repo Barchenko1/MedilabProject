@@ -15,7 +15,7 @@ public class ProposalDAOImpl implements ProposalDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void createUpdateProposal(Proposal proposal) {
+    public void saveOrUpdateProposal(Proposal proposal) {
         if (isNull(proposal)) {
             throw new IllegalArgumentException("proposal is null");
         }

@@ -2,10 +2,15 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import './Header.scss';
 import history from "../utils/history";
+import {connect} from "react-redux";
+import {signOut} from "../actions/authActions";
 
-const Header = () => {
+const Header = (props) => {
 
     function onChange(e) {
+        if (`${e.target.value}` === '/') {
+            props.signOut();
+        }
         history.push(`${e.target.value}`);
     }
 
@@ -30,4 +35,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default connect(null, {signOut})(Header);

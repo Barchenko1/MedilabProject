@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
@@ -21,9 +23,13 @@ public class Quote {
     @Column
     private String name;
     @Column
-    private Date dateOfCreate;
+//    @Temporal(TemporalType.DATE)
+    private Date dateOfCreate = new Date();
     @Column
     private Date dateOfExpire;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User creator;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "employee_Id", nullable = false)
     private Employee employee;
@@ -61,6 +67,14 @@ public class Quote {
 
     public void setDateOfExpire(Date dateOfExpire) {
         this.dateOfExpire = dateOfExpire;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public Employee getEmployee() {
