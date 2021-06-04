@@ -6,6 +6,7 @@ import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../util
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import PlanSelectionList from "./PlanSelectionList";
 import {filterChain} from "../../utils/util";
+import './PlanSelectionPage.scss'
 
 class PlanSelectionPage extends React.Component {
 
@@ -188,21 +189,25 @@ class PlanSelectionPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
+                <div className="container-wrapper">
+                <div className="container-wrapper_left">
                 <h2>Plan Selection</h2>
-                {this.renderProductLinesBar()}
-                {this.renderSortByTotalMonthCost()}
-                {this.renderMetalTierFilters()}
-                {this.renderPlanTypesFilter()}
-                <PlanSelectionList
+                    {this.renderProductLinesBar()}
+                    {this.renderSortByTotalMonthCost()}
+                    {this.renderMetalTierFilters()}
+                    {this.renderPlanTypesFilter()}
+                </div>
+                <PlanSelectionList className="container-wrapper_right"
                     filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}
                     filteredPlans={this.props.filteredPlans}
                 />
-                <div className="buttonContainer">
+                {/* <div className="container-wrapper_right">
                     <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
                     <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_SUMMARY}/>
-                </div>
+                </div> */}
             </div>
+        </div>
         );
     }
 

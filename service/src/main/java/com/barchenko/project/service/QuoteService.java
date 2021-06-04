@@ -1,7 +1,8 @@
 package com.barchenko.project.service;
 
 import com.barchenko.project.entity.dto.req.QuoteDTORequest;
+import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
 
 public interface QuoteService {
-    void createQuote(QuoteDTORequest quoteDTORequest);
+    QuoteDTOResponse createQuote(QuoteDTORequest quoteDTORequest);
 }

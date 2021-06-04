@@ -1,6 +1,7 @@
 package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.QuoteDTORequest;
+import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
 import com.barchenko.project.service.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class QuoteController {
     private QuoteService quoteService;
 
     @RequestMapping(value = "/init", method = RequestMethod.POST)
-    public ResponseEntity<?> initQuote(@Valid @RequestBody QuoteDTORequest quoteDTORequest) {
-        quoteService.createQuote(quoteDTORequest);
-        return ResponseEntity.ok("Successful");
+    public ResponseEntity<QuoteDTOResponse> initQuote(@Valid @RequestBody QuoteDTORequest quoteDTORequest) {
+        QuoteDTOResponse quoteDTOResponse = quoteService.createQuote(quoteDTORequest);
+        return ResponseEntity.ok(quoteDTOResponse);
     }
 }

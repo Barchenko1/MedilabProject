@@ -3,7 +3,7 @@ export const REGISTRATION_PAGE = '/registration';
 export const MAIN_PAGE = '/';
 
 export const HOME_PAGE = '/medilab';
-export const COMPANY_PROFILE_PAGE = '/company-profile';
+export const COMPANY_PROFILE_PAGE = '/company-profile/:quoteId';
 
 export const CREATE_QUOTE = '/quote/new';
 

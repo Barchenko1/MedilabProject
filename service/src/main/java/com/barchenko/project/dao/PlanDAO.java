@@ -3,8 +3,9 @@ package com.barchenko.project.dao;
 import com.barchenko.project.entity.tables.Plan;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PlanDAO {
-    void getPlanByPlanCode(String planCode);
-    List<Plan> getAllPlans();
+    Optional<Plan> getPlanByPlanCode(String planCode);
+    Optional<List<Plan>> getAllPlans();
 }

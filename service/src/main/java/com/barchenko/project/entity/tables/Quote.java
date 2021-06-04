@@ -23,7 +23,6 @@ public class Quote {
     @Column
     private String name;
     @Column
-//    @Temporal(TemporalType.DATE)
     private Date dateOfCreate = new Date();
     @Column
     private Date dateOfExpire;

@@ -8,10 +8,13 @@ import {
     SORT_PLANS_BY_MONTH_COST
 } from "../utils/types";
 import history from "../utils/history";
-import {filterChain, sortPlansByTotalMonthlyCost} from "../utils/util";
+import {filterChain, getCookie, sortPlansByTotalMonthlyCost} from "../utils/util";
+import {TOKEN} from "../utils/consts";
 
 export const fetchPlans = (productLine) => async dispatch  => {
-    const response = await apis.get('/plans');
+    const response = await apis.get('/plans', {
+        headers: { authorization: getCookie(TOKEN) }
+    });
     dispatch({
         type: FETCH_PLANS,
         payload: {

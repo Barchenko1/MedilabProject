@@ -1,6 +1,7 @@
 package com.barchenko.project.controller;
 
 import com.barchenko.project.appUser.CustomAuthenticationProvider;
+import com.barchenko.project.appUser.UserPrincipal;
 import com.barchenko.project.entity.dto.req.LoginPasswordDTORequest;
 import com.barchenko.project.entity.dto.req.UserDTORequest;
 import com.barchenko.project.service.UserService;
@@ -42,6 +43,12 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
         return ResponseEntity.ok(authentication);
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public ResponseEntity<?> profileDetails() {
+        UserPrincipal currentUser = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return ResponseEntity.ok(currentUser);
     }
     
     @RequestMapping(value = "/signup", method = RequestMethod.POST)

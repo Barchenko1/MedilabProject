@@ -1,8 +1,8 @@
-import {REGISTRATION, SIGN_IN, SIGN_OUT} from "../utils/types";
+import {PROFILE, REGISTRATION, SIGN_IN, SIGN_OUT} from "../utils/types";
 import apis from "../utils/apis";
 import {LOGIN_PAGE, TOKEN} from "../utils/consts";
 import history from "../utils/history";
-import {createBasicAuthToken, logout, registerSuccessfulLogin} from "../utils/apiService";
+import {getCookie} from "../utils/util";
 
 export const signIn = (formProps) => async dispatch => {
     const response = await apis.post('/auth/signin', formProps);
@@ -15,6 +15,16 @@ export const signIn = (formProps) => async dispatch => {
     })
     history.push("/");
 };
+
+export const getProfile = () => async dispatch => {
+    const response = await apis.get('/auth/profile', {
+        headers: { authorization: getCookie(TOKEN) }
+    });
+    dispatch ({
+        type: PROFILE,
+        payload: response.data
+    })
+}
 
 export const signOut = () => async dispatch => {
     await apis.get("/auth/signout");

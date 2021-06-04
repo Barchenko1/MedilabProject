@@ -9,7 +9,8 @@ import "../PagesHeader.scss";
 class CompanyProfilePage extends React.Component {
 
     onSubmit = (formProps) => {
-        this.props.saveUpdateCompanyProfile(formProps);
+        console.log(this.props.quote);
+        this.props.saveUpdateCompanyProfile(formProps, this.props.quote.quoteId);
     }
 
     render() {
@@ -37,13 +38,13 @@ class CompanyProfilePage extends React.Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        quote: state.quoteReducer.quote
+    }
+}
 
 export default connect(
-    null,
+    mapStateToProps,
     {saveUpdateCompanyProfile})
 (CompanyProfilePage);

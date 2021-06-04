@@ -2,11 +2,7 @@ package com.barchenko.project.dao.transaction.impl;
 
 import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.transaction.TransactionQuoteDAO;
-import com.barchenko.project.entity.enums.StatusName;
 import com.barchenko.project.entity.tables.Quote;
-import com.barchenko.project.entity.tables.Role;
-import com.barchenko.project.entity.tables.Status;
-import com.barchenko.project.entity.tables.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -27,7 +23,7 @@ public class TransactionQuoteDAOImpl implements TransactionQuoteDAO {
     private QuoteDAO quoteDAO;
 
     @Override
-    public void createQuote(Quote quote) {
+    public Quote createQuote(Quote quote) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -40,5 +36,6 @@ public class TransactionQuoteDAOImpl implements TransactionQuoteDAO {
             }
         }
         session.close();
+        return quote;
     }
 }

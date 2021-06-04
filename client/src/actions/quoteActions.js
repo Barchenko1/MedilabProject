@@ -11,9 +11,10 @@ export const createQuote = (formProps) => async (dispatch, getState) => {
     const response = await apis.post('/quote/init', formProps,
         { headers: { authorization: getCookie(TOKEN) }}
     );
+    console.log(response);
     dispatch({
         type: CREATE_QUOTE,
         payload: response.data
     });
-    history.push('/company-profile');
+    history.push(`/company-profile/${response.data.quoteId}/`);
 }
