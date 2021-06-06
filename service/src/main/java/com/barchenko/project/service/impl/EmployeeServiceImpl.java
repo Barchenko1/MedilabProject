@@ -8,21 +8,18 @@ import com.barchenko.project.dao.GenderDAO;
 import com.barchenko.project.dao.RelationShipDAO;
 import com.barchenko.project.dao.StatusDAO;
 import com.barchenko.project.dao.transaction.TransactionEmployeeDependentDAO;
-import com.barchenko.project.entity.dto.req.DependentDTORequest;
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
-import com.barchenko.project.entity.tables.Dependent;
 import com.barchenko.project.entity.tables.Employee;
+import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.barchenko.project.entity.enums.StatusName.CREATED;
-import static java.util.Objects.nonNull;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -52,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private StatusDAO statusDAO;
 
     @Override
-    public void addEmployeeDependentData(EmployeeDTORequest employeeDTORequest) {
+    public void addEmployeeDependentData(long quoteId, EmployeeDTORequest employeeDTORequest) {
 //        List<DependentDTORequest> dependentDTORequests = employeeDTORequest.getDependents();
 //        Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
 //                employeeDTORequest,
@@ -72,12 +69,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeeDTORequest,
                 genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),
                 statusDAO.getStatusByName(CREATED.name()));
-        transactionEmployeeDependentDAO.saveEmployeeDependentDate(employee, employeeDTORequest.getDependents());
+        transactionEmployeeDependentDAO.saveEmployeeDependentDate(quoteId, employee, employeeDTORequest.getDependents());
     }
 
     @Override
-    public List<EmployeeDTOResponse> getEmployeesDependentsData() {
-        List<Employee> employeeList = employeeDAO.getAllEmployees();
+    public List<EmployeeDTOResponse> getEmployeesDependentsDataByQuoteId(long quoteId) {
+        List<Employee> employeeList = employeeDAO.getAllEmployeesByQuoteId(quoteId);
         List<EmployeeDTOResponse> employeeDTOResponses = employeeList.stream()
                 .map(employee -> employeeBuilder.transformEmployeeToEmployeeDTOResponse(employee,
                         dependentBuilder.transformDependentListToDependentDTOResponseList(employee.getDependents())))
@@ -86,12 +83,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void updateEmployeeDependentData(EmployeeDTORequest employeeDTORequest) {
+    public void updateEmployeeDependentData(long quoteId, EmployeeDTORequest employeeDTORequest) {
         transactionEmployeeDependentDAO.updateEmployeeDependentDate(employeeDTORequest);
     }
 
     @Override
-    public void deleteEmployeeDependentData(long id) {
+    public void deleteEmployeeDependentData(long quoteId, long id) {
         transactionEmployeeDependentDAO.deleteEmployeeDependentData(id);
     }
 }

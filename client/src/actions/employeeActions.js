@@ -18,36 +18,39 @@ const getEmployeesToLocalStorage = (getState) => {
 
 let counter = 0;
 
-export const createEmployee = (formProps) => async (dispatch, getState) => {
-    const response = await apis.post('/employees/addEmployee', {...formProps, actionId: ++counter});
+export const createEmployee = (quoteId, formProps) => async (dispatch, getState) => {
+    const response = await apis.post(`/${quoteId}/employees/addEmployee`, {...formProps, actionId: ++counter}, {
+        headers: { authorization: getCookie(TOKEN) }
+    });
     dispatch({
         type: CREATE_EMPLOYEE,
         payload: response.data
     });
-    // getEmployeesToLocalStorage(getState)
-    history.push('/employees');
+    history.push(`/${quoteId}/employees`);
 }
 
-export const editEmployee = (id, formProps) => async (dispatch, getState) => {
-    const response = await apis.put(`/employees/${id}`, {...formProps, employeeId: id});
+export const editEmployee = (id, formProps, quoteId) => async (dispatch, getState) => {
+    const response = await apis.put(`/${quoteId}/employees/${id}`, {...formProps, employeeId: id}, {
+        headers: { authorization: getCookie(TOKEN) }
+    });
     console.log(response);
     dispatch({
         type: EDIT_EMPLOYEE,
         payload: response.data
     });
-    // getEmployeesToLocalStorage(getState)
-    history.push('/employees');
+    history.push(`/${quoteId}/employees`);
 }
 
-export const getEmployees = () => async (dispatch, getState) => {
+export const getEmployees = (quoteId) => async (dispatch, getState) => {
     console.log(getCookie(TOKEN));
-    const response = await apis.get('/employees',
+    const response = await apis.get(`/${quoteId}/employees`,
         { headers: { authorization: getCookie(TOKEN) }}
     );
     dispatch({
         type: GET_EMPLOYEES,
         payload: response.data
-    })
+    });
+    history.push(`/${quoteId}/employees`);
 }
 
 export const getEmployee = (id) => async (dispatch) => {
@@ -59,8 +62,10 @@ export const getEmployee = (id) => async (dispatch) => {
     })
 }
 
-export const deleteEmployee = (id) => async (dispatch, getState) => {
-    await apis.delete(`/employees/${id}`);
+export const deleteEmployee = (quoteId, id) => async (dispatch, getState) => {
+    await apis.delete(`/${quoteId}/employees/${id}`,
+        { headers: { authorization: getCookie(TOKEN) }
+        });
     dispatch({
         type: DELETE_EMPLOYEE,
         payload: id

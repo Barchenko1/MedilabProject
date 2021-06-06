@@ -131,7 +131,6 @@ class PlanSelectionPage extends React.Component {
         return(
             <div>
                 <label>
-                    {/*{" "}*/}
                     Sort by Total Month Cost
                     <select
                         value={this.props.sortItem}

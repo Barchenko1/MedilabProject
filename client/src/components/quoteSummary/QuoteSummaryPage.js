@@ -70,7 +70,8 @@ class QuoteSummaryPage extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        allPlans: state.planReducer.allPlans
+        allPlans: state.planReducer.allPlans,
+        quote: state.quoteReducer.quote
     }
 }
 

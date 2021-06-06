@@ -30,7 +30,7 @@ class EmployeeEdit extends React.Component {
                 EmployeeEdit
                 <Modal
                     header="Edit employee"
-                    onDismiss={() => history.push('/employees')}
+                    onDismiss={() => history.push(`/${this.props.quote.quoteId}/employees`)}
                 >
                     <EmployeeForm
                         initialValues={_.pick(
@@ -47,7 +47,7 @@ class EmployeeEdit extends React.Component {
                             'salary',
                             'dependents')}
                         onSubmit={this.onSubmit}
-                        to="/employees"
+                        to={`/${this.props.quote.quoteId}/employees`}
                         submitButton='Edit'
                         cancelButton='Cancel'
                     />
@@ -60,9 +60,12 @@ class EmployeeEdit extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         // employee: state.employeeReducer[ownProps.match.params.id]
-        employee: state.employeeReducer.employees.find(employee => employee.employeeId == ownProps.match.params.id)
+        employee: state.employeeReducer.employees.find(employee => employee.employeeId == ownProps.match.params.id),
+        quote: state.quoteReducer.quote
     }
 }
+
+
 
 export default connect(
     mapStateToProps,

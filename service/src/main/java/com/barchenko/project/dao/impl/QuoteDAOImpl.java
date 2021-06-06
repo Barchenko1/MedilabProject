@@ -1,8 +1,10 @@
 package com.barchenko.project.dao.impl;
 
 import com.barchenko.project.dao.QuoteDAO;
+import com.barchenko.project.entity.tables.OrganizationType;
 import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.entity.tables.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -69,11 +71,14 @@ public class QuoteDAOImpl implements QuoteDAO {
     @Override
     public Optional<Quote> findQuoteById(long id) {
         Quote quote = null;
+        Session session = sessionFactory.getCurrentSession();
         try {
-            EntityManager em = entityManagerFactory.createEntityManager();
-            quote = (Quote) em.createNativeQuery(GET_QUOTE_DATA, Quote.class)
-                    .setParameter(1, id)
-                    .getSingleResult();
+//            EntityManager em = entityManagerFactory.createEntityManager();
+//            quote = (Quote) em.createNativeQuery(GET_QUOTE_DATA, Quote.class)
+//                    .setParameter(1, id)
+//                    .getSingleResult();
+            quote = session.createNativeQuery(GET_QUOTE_DATA, Quote.class)
+                    .setParameter(1, id).getSingleResult();
         }
         catch (NoResultException e) {
             return Optional.empty();

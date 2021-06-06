@@ -23,10 +23,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     private static final String GET_ALL_EMPLOYEES = "SELECT * FROM employee";
     private static final String GET_ALL_DEPENDENTS = "SELECT * FROM dependent";
-    private static final String GET_ALL_EMPLOYEES_DATA = "SELECT *\n" +
-            "\tFROM employee e\n" +
-            "    JOIN gender g ON g.gender_id=e.gender_id\n" +
-            "    JOIN status s ON s.status_id=e.status_id;";
+    private static final String GET_ALL_EMPLOYEES_DATA = "SELECT * FROM employee e\n" +
+            "JOIN gender g ON g.gender_id=e.gender_id\n" +
+            "JOIN status s ON s.status_id=e.status_id\n" +
+            "JOIN quote q ON q.employee_id=e.employee_id\n" +
+            "where q.quote_id = ?;";
     private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM employee where employee_id=?";
 
     @Autowired
@@ -65,17 +66,18 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployeesByQuoteId(long quoteId) {
         EntityManager em = entityManagerFactory.createEntityManager();
         List<Employee> employeeList = em.createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
-                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
+//                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
+                .setParameter(1, quoteId)
                 .getResultList();
 //        List<Employee> employees = em
 //                .createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
 //                .getResultList();
-        if (employeeList.isEmpty()) {
-            throw new IllegalArgumentException("list is empty");
-        }
+//        if (employeeList.isEmpty()) {
+//            throw new IllegalArgumentException("list is empty");
+//        }
         return employeeList;
     }
 

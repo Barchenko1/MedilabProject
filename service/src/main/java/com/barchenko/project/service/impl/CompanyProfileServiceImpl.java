@@ -65,12 +65,7 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
                         address,
                         organizationType,
                         productLines);
-        Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
-        if (quoteOptional.isEmpty()) {
-            throw new IllegalStateException("error");
-        }
-        quoteOptional.get().setProposal(proposal);
-        transactionCompanyProfileDAO.saveOrUpdateCompanyProfileData(quoteOptional.get(), proposal, address);
+        transactionCompanyProfileDAO.saveOrUpdateCompanyProfileData(quoteId, proposal, address);
     }
 
     private String transformRequestOrganizationTypeToString(String requestOrganizationType) {

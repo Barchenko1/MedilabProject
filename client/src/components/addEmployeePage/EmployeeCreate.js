@@ -10,7 +10,8 @@ class EmployeeCreate extends React.Component {
 
     onSubmit = formProps => {
         console.log(formProps)
-        this.props.createEmployee(formProps);
+        console.log(this.props.quote.quoteId)
+        this.props.createEmployee(this.props.quote.quoteId, formProps);
     }
 
     render() {
@@ -18,7 +19,7 @@ class EmployeeCreate extends React.Component {
             <div>
                 <Modal
                     header="Create new employee"
-                    onDismiss={() => history.push('/employees')}
+                    onDismiss={() => history.push(`/${this.props.quote.quoteId}/employees`)}
                 >
                     <EmployeeForm
                         onSubmit={this.onSubmit}
@@ -32,7 +33,13 @@ class EmployeeCreate extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        quote: state.quoteReducer.quote
+    }
+}
+
 export default connect(
-    null,
+    mapStateToProps,
     {createEmployee})
 (EmployeeCreate);

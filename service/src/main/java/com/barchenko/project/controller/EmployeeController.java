@@ -6,7 +6,6 @@ import com.barchenko.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,33 +15,33 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public ResponseEntity<?> addEmployeeData(@Valid @RequestBody EmployeeDTORequest employeeDTO) {
-        employeeService.addEmployeeDependentData(employeeDTO);
+    @RequestMapping(value = "/{quoteId}/employees/addEmployee", method = RequestMethod.POST)
+    public ResponseEntity<?> addEmployeeData(@PathVariable long quoteId, @Valid @RequestBody EmployeeDTORequest employeeDTO) {
+        employeeService.addEmployeeDependentData(quoteId, employeeDTO);
         return ResponseEntity.ok("Successful");
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<EmployeeDTOResponse> getEmployeesData() {
-        List<EmployeeDTOResponse> employeeDTOResponses = employeeService.getEmployeesDependentsData();
+    @RequestMapping(value= "/{quoteId}/employees", method = RequestMethod.GET)
+    public List<EmployeeDTOResponse> getEmployeesData(@PathVariable long quoteId) {
+        List<EmployeeDTOResponse> employeeDTOResponses = employeeService.getEmployeesDependentsDataByQuoteId(quoteId);
         return employeeDTOResponses;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateEmployeeDate(@RequestBody EmployeeDTORequest employeeDTORequest) {
-        employeeService.updateEmployeeDependentData(employeeDTORequest);
+    @RequestMapping(value = "/{quoteId}/employees/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateEmployeeDate(@PathVariable long quoteId, @RequestBody EmployeeDTORequest employeeDTORequest) {
+        employeeService.updateEmployeeDependentData(quoteId, employeeDTORequest);
         return ResponseEntity.ok("Successful");
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteEmployeeData(@PathVariable long id) {
-        employeeService.deleteEmployeeDependentData(id);
+    @RequestMapping(value = "/{quoteId}/employees/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteEmployeeData(@PathVariable long quoteId, @PathVariable long id) {
+        employeeService.deleteEmployeeDependentData(quoteId, id);
         return ResponseEntity.ok("Successfull");
     }
 

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static java.util.Objects.nonNull;
 
 @Repository
@@ -33,13 +35,19 @@ public class TransactionCompanyProfileDAOImpl implements TransactionCompanyProfi
     private AddressDAO addressDAO;
 
     @Override
-    public void saveOrUpdateCompanyProfileData(Quote quote, Proposal proposal, Address address) {
+    public void saveOrUpdateCompanyProfileData(long quoteId, Proposal proposal, Address address) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             addressDAO.saveOrUpdateAddress(address);
             proposalDAO.saveOrUpdateProposal(proposal);
+            Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
+            if (quoteOptional.isEmpty()) {
+                throw new IllegalStateException("error");
+            }
+            Quote quote = quoteOptional.get();
+            quote.setProposal(proposal);
             quoteDAO.updateQuote(quote);
             transaction.commit();
         } catch (RuntimeException ex) {

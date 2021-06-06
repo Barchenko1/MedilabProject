@@ -27,13 +27,13 @@ public class Quote {
     @Column
     private Date dateOfExpire;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User creator;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "employee_Id", nullable = false)
+    @JoinColumn(name = "employee_id")
     private Employee employee;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "proposal_Id", nullable = false)
+    @JoinColumn(name = "proposal_id")
     private Proposal proposal;
 
     public Long getQuoteId() {

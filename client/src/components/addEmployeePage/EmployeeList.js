@@ -9,7 +9,7 @@ import {COMPANY_PROFILE_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
 class EmployeeList extends React.Component {
 
     componentDidMount() {
-        this.props.getEmployees();
+        this.props.getEmployees(this.props.quote.quoteId);
     }
 
     renderEmployees() {
@@ -29,10 +29,10 @@ class EmployeeList extends React.Component {
     renderActions(employee) {
         return(
             <div className="right floated content">
-                <Link to={`/employee/edit/${employee.employeeId}`} className="ui button primary">
+                <Link to={`/${this.props.quote.quoteId}/employee/edit/${employee.employeeId}`} className="ui button primary">
                     EDIT
                 </Link>
-                <button onClick={() => this.props.deleteEmployee(employee.employeeId)} className="ui button negative">
+                <button onClick={() => this.props.deleteEmployee(this.props.quote.quoteId, employee.employeeId)} className="ui button negative">
                     DELETE
                 </button>
             </div>
@@ -40,9 +40,10 @@ class EmployeeList extends React.Component {
     }
 
     renderCreate() {
+        let toLink = `/${this.props.quote.quoteId}/employee/new`
         return(
             <div style={{textAlign: 'left'}}>
-                <Link to="/employee/new" className="ui button primary" >
+                <Link to={toLink} className="ui button primary" >
                     Create Employee
                 </Link>
             </div>
@@ -58,7 +59,7 @@ class EmployeeList extends React.Component {
                     {this.renderEmployees()}
                 </div>
                 <div className="buttonContainer">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={COMPANY_PROFILE_PAGE}/>
+                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>
                     <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>
                 </div>
             </div>
@@ -68,7 +69,8 @@ class EmployeeList extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        employees: state.employeeReducer.employees
+        employees: state.employeeReducer.employees,
+        quote: state.quoteReducer.quote
     }
 }
 

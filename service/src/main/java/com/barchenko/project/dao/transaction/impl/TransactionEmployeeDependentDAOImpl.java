@@ -5,6 +5,7 @@ import com.barchenko.project.builder.EmployeeBuilder;
 import com.barchenko.project.dao.DependentDAO;
 import com.barchenko.project.dao.EmployeeDAO;
 import com.barchenko.project.dao.GenderDAO;
+import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.RelationShipDAO;
 import com.barchenko.project.dao.StatusDAO;
 import com.barchenko.project.dao.transaction.TransactionEmployeeDependentDAO;
@@ -12,6 +13,7 @@ import com.barchenko.project.entity.dto.req.DependentDTORequest;
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.tables.Dependent;
 import com.barchenko.project.entity.tables.Employee;
+import com.barchenko.project.entity.tables.Quote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.barchenko.project.entity.enums.StatusName.CREATED;
@@ -58,17 +61,15 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
     @Autowired
     private DependentBuilder dependentBuilder;
 
+    @Autowired
+    private QuoteDAO quoteDAO;
+
     @Override
-    public void saveEmployeeDependentDate(Employee employee, List<DependentDTORequest> dependentDTORequestList) {
+    public void saveEmployeeDependentDate(long quoteId, Employee employee, List<DependentDTORequest> dependentDTORequestList) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-//            List<DependentDTORequest> dependentDTORequestList = employeeDTORequest.getDependents();
-//            Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
-//                    employeeDTORequest,
-//                    genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),
-//                    statusDAO.getStatusByName(CREATED.name()));
             employeeDAO.createEmployee(employee);
             if (nonNull(dependentDTORequestList)) {
                 List<Dependent> dependents = dependentDTORequestList.stream()
@@ -80,41 +81,25 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
                         .collect(Collectors.toList());
                 dependents.forEach(dependent -> dependentDAO.createDependent(dependent));
             }
-            session.flush();
-            session.clear();
+            Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
+            if (quoteOptional.isEmpty()) {
+                throw new IllegalStateException("error");
+            }
+            Quote quote = quoteOptional.get();
+            quote.setEmployee(employee);
+            if (quote.getEmployee() == null) {
+                quoteDAO.updateQuote(quote);
+            } else {
+                quoteDAO.createQuote(quote);
+            }
+            transaction.commit();
         }catch (RuntimeException ex) {
             if (nonNull(transaction)) {
                 transaction.rollback();
             }
         }
-        if (nonNull(transaction)) {
-            transaction.commit();
-        }
         session.close();
     }
-
-//    @Override
-//    public void saveEmployeeDependentDate(Employee employee, List<Dependent> dependents) {
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = null;
-//        try {
-//            transaction = session.beginTransaction();;
-//            employeeDAO.createEmployee(employee);
-//            if (!dependents.isEmpty()) {
-//                dependents.forEach(dependent -> dependentDAO.createDependent(dependent));
-//            }
-//            session.flush();
-//            session.clear();
-//        }catch (RuntimeException ex) {
-//            if (nonNull(transaction)) {
-//                transaction.rollback();
-//            }
-//        }
-//        if (nonNull(transaction)) {
-//            transaction.commit();
-//        }
-//        session.close();
-//    }
 
     @Override
     public void updateEmployeeDependentDate(EmployeeDTORequest employeeDTORequest) {
@@ -158,8 +143,7 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
             transaction = session.beginTransaction();
             Employee employee = employeeDAO.findEmployeeById(employeeId);
             employeeDAO.deleteEmployee(employee);
-            session.flush();
-            session.clear();
+            transaction.commit();
         } catch (RuntimeException ex) {
             if (nonNull(transaction)) {
                 transaction.rollback();

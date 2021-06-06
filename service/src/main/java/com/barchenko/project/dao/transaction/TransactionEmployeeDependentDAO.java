@@ -8,7 +8,7 @@ import com.barchenko.project.entity.tables.Employee;
 import java.util.List;
 
 public interface TransactionEmployeeDependentDAO {
-    void saveEmployeeDependentDate(Employee employee, List<DependentDTORequest> dependentDTORequestList);
+    void saveEmployeeDependentDate(long quoteId, Employee employee, List<DependentDTORequest> dependentDTORequestList);
 //    void saveEmployeeDependentDate(Employee employee, List<Dependent> dependents);
     void updateEmployeeDependentDate(EmployeeDTORequest employeeDTORequest);
     void deleteEmployeeDependentData(long employeeId);

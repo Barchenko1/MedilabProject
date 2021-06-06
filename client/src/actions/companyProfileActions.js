@@ -15,5 +15,5 @@ export const saveUpdateCompanyProfile = (formProps, quoteId) => async (dispatch,
         type: SAVE_UPDATE_COMPANY_PROFILE,
         payload: response.data
     });
-    history.push('/employees');
+    history.push(`/${quoteId}/employees`);
 }

@@ -3,15 +3,15 @@ export const REGISTRATION_PAGE = '/registration';
 export const MAIN_PAGE = '/';
 
 export const HOME_PAGE = '/medilab';
-export const COMPANY_PROFILE_PAGE = '/company-profile/:quoteId';
+export const COMPANY_PROFILE_PAGE = '/:quoteId/company-profile/';
 
 export const CREATE_QUOTE = '/quote/new';
 
 export const USER_PROFILE = '/user-profile';
 
-export const ADD_EMPLOYEES_PAGE = '/employees';
-export const CREATE_EMPLOYEE = '/employee/new';
-export const EDIT_EMPLOYEE = '/employee/edit/:id';
+export const ADD_EMPLOYEES_PAGE = '/:quoteId/employees';
+export const CREATE_EMPLOYEE = '/:quoteId/employee/new';
+export const EDIT_EMPLOYEE = '/:quoteId/employee/edit/:id';
 
 export const PLAN_SELECTION_PAGE = '/plan-selection';
 

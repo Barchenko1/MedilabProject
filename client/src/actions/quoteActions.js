@@ -16,5 +16,5 @@ export const createQuote = (formProps) => async (dispatch, getState) => {
         type: CREATE_QUOTE,
         payload: response.data
     });
-    history.push(`/company-profile/${response.data.quoteId}/`);
+    history.push(`/${response.data.quoteId}/company-profile/`);
 }
