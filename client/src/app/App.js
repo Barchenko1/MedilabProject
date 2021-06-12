@@ -23,12 +23,12 @@ import RegistrationPage from "../components/authenticationPage/RegistrationPage"
 import CompanyProfilePage from "../components/companyProfilePage/CompanyProfilePage";
 import HomePage from "../components/homePage/HomePage";
 import Footer from "../components/Footer";
-import AddIndividualEmployeePage from "../components/addIndividualEmployeePage/AddIndividualEmployeePage";
 import QuoteSummaryPage from "../components/quoteSummary/QuoteSummaryPage";
 import QuoteOverviewPage from "../components/quoteOverview/QuoteOverviewPage";
 import PlanSelectionPage from "../components/planSelectionPage/PlanSelectionPage";
 import QuoteCreate from "../components/quotePage/QuoteCreate";
 import UserProfilePage from "../components/userProfilePage/UserProfilePage";
+import IndividualAddDetailsPage from "../components/addIndividualEmployeePage/IndividualAddDetailsPage";
 
 const App = () => {
   return (
@@ -58,7 +58,7 @@ const App = () => {
 
               <Route path={QUOTE_OVERVIEW} exact component={QuoteOverviewPage} />
 
-              <Route path={ADD_INDIVIDUAL_EMPLOYEE_PAGE} exact component={AddIndividualEmployeePage} />
+              <Route path={ADD_INDIVIDUAL_EMPLOYEE_PAGE} exact component={IndividualAddDetailsPage} />
             </Switch>
           </div>
           <Footer />

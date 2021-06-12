@@ -62,12 +62,6 @@ class EmployeeForm extends React.Component {
                             renderError={this.renderError}
                             label="Birth date"
                         />
-                        <CustomInput
-                            name={`${dependent}.age`}
-                            type="number"
-                            renderError={this.renderError}
-                            label="Age"
-                        />
                         <CustomDropDown
                             name={`${dependent}.gender`}
                             data={this.genders}
@@ -117,12 +111,6 @@ class EmployeeForm extends React.Component {
                     type='date'
                     renderError={this.renderError}
                     label="Birth date"
-                />
-                <CustomInput
-                    name='age'
-                    type='number'
-                    renderError={this.renderError}
-                    label="Age"
                 />
                 <CustomDropDown
                     name="gender"
@@ -176,9 +164,7 @@ const validate = (formProps) => {
     if (!formProps.lastName) {
         errors.lastName = 'You must enter a last name';
     }
-    if (!formProps.age) {
-        errors.age = 'You must enter an age';
-    }
+
     return errors;
 }
 

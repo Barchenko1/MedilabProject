@@ -21,7 +21,7 @@ export const QUOTE_OVERVIEW = "/quote-overview";
 
 export const USER_PROFILE_PAGE = '/user-profile';
 export const INDIVIDUAL_EMPLOYEE_PROFILE_PAGE = '/individual-profile';
-export const ADD_INDIVIDUAL_EMPLOYEE_PAGE = '/add-individual';
+export const ADD_INDIVIDUAL_EMPLOYEE_PAGE = '/add-individual-info';
 
 export const TOKEN = "token";
 export const ACCESS_TOKEN = 'accessToken';
