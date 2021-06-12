@@ -34,8 +34,8 @@ const App = () => {
   return (
     <div className="page_container">
         <Router history={history}>
+          <Header />
           <div className="content_wrap">
-            <Header />
             <Switch>
               <Route path={LOGIN_PAGE} exact component={LoginPage} />
               <Route path={REGISTRATION_PAGE} exact component={RegistrationPage} />
@@ -60,8 +60,8 @@ const App = () => {
 
               <Route path={ADD_INDIVIDUAL_EMPLOYEE_PAGE} exact component={AddIndividualEmployeePage} />
             </Switch>
-            <Footer />
           </div>
+          <Footer />
         </Router>
     </div>
   );

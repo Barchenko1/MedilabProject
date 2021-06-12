@@ -1,0 +1,12 @@
+.graphics {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    &_item {
+        background-size: cover;
+        width: 50%;
+        height: 50rem;
+        border: 1px solid black;
+    }
+}
