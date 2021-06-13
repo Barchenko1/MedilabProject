@@ -14,6 +14,7 @@ public class CompanyProfileDTORequest {
     private int zipCode;
     private String email;
     private String phone;
+    private int discount;
 
     public String getCompanyName() {
         return companyName;
@@ -117,5 +118,13 @@ public class CompanyProfileDTORequest {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }

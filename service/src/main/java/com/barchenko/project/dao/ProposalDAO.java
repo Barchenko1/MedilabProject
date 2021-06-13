@@ -1,5 +1,6 @@
 package com.barchenko.project.dao;
 
+import com.barchenko.project.entity.tables.Company;
 import com.barchenko.project.entity.tables.Proposal;
 
 public interface ProposalDAO {

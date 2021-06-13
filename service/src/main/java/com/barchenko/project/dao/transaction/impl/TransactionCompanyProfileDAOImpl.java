@@ -1,10 +1,11 @@
 package com.barchenko.project.dao.transaction.impl;
 
 import com.barchenko.project.dao.AddressDAO;
+import com.barchenko.project.dao.CompanyDAO;
 import com.barchenko.project.dao.ProposalDAO;
 import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.transaction.TransactionCompanyProfileDAO;
-import com.barchenko.project.entity.tables.Address;
+import com.barchenko.project.entity.tables.Company;
 import com.barchenko.project.entity.tables.Proposal;
 import com.barchenko.project.entity.tables.Quote;
 import org.hibernate.Session;
@@ -34,13 +35,16 @@ public class TransactionCompanyProfileDAOImpl implements TransactionCompanyProfi
     @Autowired
     private AddressDAO addressDAO;
 
+    @Autowired
+    private CompanyDAO companyDAO;
+
     @Override
-    public void saveOrUpdateCompanyProfileData(long quoteId, Proposal proposal, Address address) {
+    public void saveOrUpdateCompanyProfileData(long quoteId, Proposal proposal, Company company) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            addressDAO.saveOrUpdateAddress(address);
+            companyDAO.saveOrUpdateCompany(company);
             proposalDAO.saveOrUpdateProposal(proposal);
             Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
             if (quoteOptional.isEmpty()) {

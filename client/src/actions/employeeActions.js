@@ -29,7 +29,7 @@ export const createEmployee = (quoteId, formProps) => async (dispatch, getState)
     history.push(`/${quoteId}/employees`);
 }
 
-export const editEmployee = (id, formProps, quoteId) => async (dispatch, getState) => {
+export const editEmployee = (quoteId, formProps, id) => async (dispatch, getState) => {
     const response = await apis.put(`/${quoteId}/employees/${id}`, {...formProps, employeeId: id}, {
         headers: { authorization: getCookie(TOKEN) }
     });
@@ -54,7 +54,9 @@ export const getEmployees = (quoteId) => async (dispatch, getState) => {
 }
 
 export const getEmployee = (id) => async (dispatch) => {
-    const response = await apis.get(`/employees/${id}`);
+    const response = await apis.get(`/employees/${id}`,
+        { headers: { authorization: getCookie(TOKEN) }
+        });
     console.log(response);
     dispatch({
         type: GET_EMPLOYEE,

@@ -50,21 +50,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addEmployeeDependentData(long quoteId, EmployeeDTORequest employeeDTORequest) {
-//        List<DependentDTORequest> dependentDTORequests = employeeDTORequest.getDependents();
-//        Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
-//                employeeDTORequest,
-//                genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),
-//                statusDAO.getStatusByName(CREATED.name()));
-//        List<Dependent> dependents = new ArrayList<>();
-//        if (nonNull(employeeDTORequest.getDependents())) {
-//            dependents = dependentDTORequests.stream()
-//                    .map(dependentDTORequest -> dependentBuilder.transformDependentDTORequestToDependent(
-//                            dependentDTORequest,
-//                            genderDAO.getGenderByName(dependentDTORequest.getGender().toUpperCase()),
-//                            relationShipDAO.getRelationShipByName(dependentDTORequest.getRelationship().toUpperCase()),
-//                            employee))
-//                    .collect(Collectors.toList());
-//        }
         Employee employee = employeeBuilder.transformEmployeeDTORequestToEmployee(
                 employeeDTORequest,
                 genderDAO.getGenderByName(employeeDTORequest.getGender().toUpperCase()),

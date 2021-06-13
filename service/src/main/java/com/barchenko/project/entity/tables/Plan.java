@@ -21,17 +21,17 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plan_id")
     private Long planId;
-    @Column
-    private String planCode;
-    @Column
+    @Column(name = "name")
     private String planName;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @Column(name = "code")
+    private String planCode;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "class_id", nullable = false)
     private PlanClass planClass;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "type_id", nullable = false)
     private PlanType planType;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "metalTier_id", nullable = false)
     private MetalTier metalTier;
     @Column

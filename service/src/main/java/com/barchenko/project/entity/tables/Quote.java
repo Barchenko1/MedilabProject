@@ -1,5 +1,6 @@
 package com.barchenko.project.entity.tables;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "quote")
@@ -29,9 +32,13 @@ public class Quote {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private User creator;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "quote_employee",
+            joinColumns = { @JoinColumn(name = "quote_id") },
+            inverseJoinColumns = { @JoinColumn(name = "employee_id") }
+    )
+    private List<Employee> employees;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "proposal_id")
     private Proposal proposal;
@@ -76,12 +83,12 @@ public class Quote {
         this.creator = creator;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public Proposal getProposal() {

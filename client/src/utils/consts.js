@@ -13,7 +13,7 @@ export const ADD_EMPLOYEES_PAGE = '/:quoteId/employees';
 export const CREATE_EMPLOYEE = '/:quoteId/employee/new';
 export const EDIT_EMPLOYEE = '/:quoteId/employee/edit/:id';
 
-export const PLAN_SELECTION_PAGE = '/plan-selection';
+export const PLAN_SELECTION_PAGE = '/:quoteId/plan-selection';
 
 export const QUOTE_SUMMARY = "/quote-summary";
 

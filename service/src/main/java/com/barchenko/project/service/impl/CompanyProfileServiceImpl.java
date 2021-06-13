@@ -1,7 +1,7 @@
 package com.barchenko.project.service.impl;
 
 import com.barchenko.project.appUser.UserPrincipal;
-import com.barchenko.project.builder.AddressBuilder;
+import com.barchenko.project.builder.CompanyBuilder;
 import com.barchenko.project.builder.ProposalBuilder;
 import com.barchenko.project.dao.OrganizationTypeDAO;
 import com.barchenko.project.dao.ProductLineDAO;
@@ -10,20 +10,17 @@ import com.barchenko.project.dao.transaction.TransactionCompanyProfileDAO;
 import com.barchenko.project.entity.dto.req.CompanyProfileDTORequest;
 import com.barchenko.project.entity.enums.OrganizationName;
 import com.barchenko.project.entity.enums.ProductLineName;
-import com.barchenko.project.entity.tables.Address;
 import com.barchenko.project.entity.tables.OrganizationType;
 import com.barchenko.project.entity.tables.ProductLine;
+import com.barchenko.project.entity.tables.Company;
 import com.barchenko.project.entity.tables.Proposal;
-import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.service.CompanyProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -36,7 +33,7 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
     private OrganizationTypeDAO organizationTypeDAO;
 
     @Autowired
-    private AddressBuilder addressBuilder;
+    private CompanyBuilder companyBuilder;
 
     @Autowired
     private ProposalBuilder proposalBuilder;
@@ -57,15 +54,15 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
         OrganizationType organizationType = organizationTypeDAO
                 .getOrganizationTypeByName(
                         transformRequestOrganizationTypeToString(companyProfileDTORequest.getOrganizationType().toUpperCase()));
-        Address address = addressBuilder.transformCompanyProfileToAddress(companyProfileDTORequest);
         Set<ProductLine> productLines = transformFlagsToProductLines(companyProfileDTORequest);
-        Proposal proposal = proposalBuilder
-                .transformCompanyProfileDTORequestToProposal(
+        Company company = companyBuilder
+                .transformCompanyProfileDTORequestToCompany(
                         companyProfileDTORequest,
-                        address,
-                        organizationType,
-                        productLines);
-        transactionCompanyProfileDAO.saveOrUpdateCompanyProfileData(quoteId, proposal, address);
+                        organizationType);
+        Proposal proposal = proposalBuilder.transformCompanyProfileDTORequestToProposal(company,
+                companyProfileDTORequest.getDiscount(),
+                productLines);
+        transactionCompanyProfileDAO.saveOrUpdateCompanyProfileData(quoteId, proposal, company);
     }
 
     private String transformRequestOrganizationTypeToString(String requestOrganizationType) {
@@ -95,7 +92,7 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
 
     private boolean isUserCreatedQuote() {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return !quoteDAO.findQuoteByUsernameOrEmail(userPrincipal.getUsername(), userPrincipal.getEmail()).isPresent();
+        return quoteDAO.findQuoteByUsernameOrEmail(userPrincipal.getUsername(), userPrincipal.getEmail()).isEmpty();
     }
 
 }

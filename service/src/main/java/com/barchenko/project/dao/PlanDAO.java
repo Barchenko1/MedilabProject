@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface PlanDAO {
     Optional<Plan> getPlanByPlanCode(String planCode);
-    Optional<List<Plan>> getAllPlans();
+    Optional<List<Plan>> getPlansByProductLine(String productLine);
 }

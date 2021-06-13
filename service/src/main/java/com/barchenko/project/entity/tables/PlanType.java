@@ -1,6 +1,6 @@
 package com.barchenko.project.entity.tables;
 
-import com.barchenko.project.entity.enums.MetalTierName;
+import com.barchenko.project.entity.enums.PlanTypeName;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,5 +20,21 @@ public class PlanType {
     private Long typeId;
     @Enumerated(EnumType.STRING)
     @Column
-    private MetalTierName name;
+    private PlanTypeName name;
+
+    public Long getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
+    }
+
+    public PlanTypeName getName() {
+        return name;
+    }
+
+    public void setName(PlanTypeName name) {
+        this.name = name;
+    }
 }

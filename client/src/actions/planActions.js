@@ -11,19 +11,22 @@ import history from "../utils/history";
 import {filterChain, getCookie, sortPlansByTotalMonthlyCost} from "../utils/util";
 import {TOKEN} from "../utils/consts";
 
-export const fetchPlans = (productLine) => async dispatch  => {
-    const response = await apis.get('/plans', {
+export const fetchPlans = (quoteId, productLine) => async dispatch  => {
+    const response = await apis.get(`${quoteId}/plans?productLine=${productLine}`, {
         headers: { authorization: getCookie(TOKEN) }
     });
+    console.log(response);
+    console.log(productLine)
     dispatch({
         type: FETCH_PLANS,
         payload: {
-            plans: response.data[productLine],
+            plans: response.data,
             productLine: productLine
         }
     });
-    localStorage.setItem('plans', JSON.stringify(response.data[productLine]));
-    localStorage.setItem('filteredPlans', JSON.stringify(response.data[productLine]));
+    history.push(`/${quoteId}/plan-selection`);
+    localStorage.setItem('plans', JSON.stringify(response.data));
+    localStorage.setItem('filteredPlans', JSON.stringify(response.data));
 }
 
 export const fetchSelectedPlans = () => async dispatch  => {

@@ -86,11 +86,9 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
                 throw new IllegalStateException("error");
             }
             Quote quote = quoteOptional.get();
-            quote.setEmployee(employee);
-            if (quote.getEmployee() == null) {
+            quote.getEmployees().add(employee);
+            if (quote.getEmployees() == null) {
                 quoteDAO.updateQuote(quote);
-            } else {
-                quoteDAO.createQuote(quote);
             }
             transaction.commit();
         }catch (RuntimeException ex) {
@@ -122,15 +120,11 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
                         .collect(Collectors.toList());
                 dependents.forEach(dependent -> dependentDAO.updateDependent(dependent));
             }
-            session.flush();
-            session.clear();
+            transaction.commit();
         }catch (RuntimeException ex) {
             if (nonNull(transaction)) {
                 transaction.rollback();
             }
-        }
-        if (nonNull(transaction)) {
-            transaction.commit();
         }
         session.close();
     }

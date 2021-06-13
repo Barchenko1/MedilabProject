@@ -22,5 +22,19 @@ public class MetalTier {
     @Column
     private MetalTierName name;
 
+    public Long getMetalTierId() {
+        return metalTierId;
+    }
 
+    public void setMetalTierId(Long metalTierId) {
+        this.metalTierId = metalTierId;
+    }
+
+    public MetalTierName getName() {
+        return name;
+    }
+
+    public void setName(MetalTierName name) {
+        this.name = name;
+    }
 }

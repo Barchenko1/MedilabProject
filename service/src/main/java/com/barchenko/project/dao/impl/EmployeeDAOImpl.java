@@ -26,7 +26,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     private static final String GET_ALL_EMPLOYEES_DATA = "SELECT * FROM employee e\n" +
             "JOIN gender g ON g.gender_id=e.gender_id\n" +
             "JOIN status s ON s.status_id=e.status_id\n" +
-            "JOIN quote q ON q.employee_id=e.employee_id\n" +
+            "JOIN quote_employee q ON q.employee_id=e.employee_id\n" +
             "where q.quote_id = ?;";
     private static final String GET_EMPLOYEE_BY_ID = "SELECT * FROM employee where employee_id=?";
 
@@ -69,15 +69,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public List<Employee> getAllEmployeesByQuoteId(long quoteId) {
         EntityManager em = entityManagerFactory.createEntityManager();
         List<Employee> employeeList = em.createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
-//                .setHint(QueryHints.PASS_DISTINCT_THROUGH, false)
                 .setParameter(1, quoteId)
                 .getResultList();
-//        List<Employee> employees = em
-//                .createNativeQuery(GET_ALL_EMPLOYEES_DATA, Employee.class)
-//                .getResultList();
-//        if (employeeList.isEmpty()) {
-//            throw new IllegalArgumentException("list is empty");
-//        }
         return employeeList;
     }
 

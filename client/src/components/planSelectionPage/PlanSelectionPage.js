@@ -30,9 +30,9 @@ class PlanSelectionPage extends React.Component {
 
     componentDidMount() {
         if (localStorage.getItem('productLine') !== null)  {
-            this.props.fetchPlans(localStorage.getItem('productLine'))
+            this.props.fetchPlans(this.props.quote.quoteId, localStorage.getItem('productLine'))
         } else {
-            this.props.fetchPlans(this.props.currentProductLine)
+            this.props.fetchPlans(this.props.quote.quoteId, this.props.currentProductLine)
         }
         if (localStorage.getItem('metalTiers') !== null) {
             this.setState({metalTiers: JSON.parse(localStorage.getItem('metalTiers'))})
@@ -40,10 +40,6 @@ class PlanSelectionPage extends React.Component {
         if (localStorage.getItem('planTypes') !== null) {
             this.setState({planTypes: JSON.parse(localStorage.getItem('planTypes'))})
         }
-        // if (localStorage.getItem('metalTiers') !== null && localStorage.getItem('planTypes') !== null && localStorage.getItem('plans')) {
-        //     const filters = {metalTiers: JSON.parse(localStorage.getItem('metalTiers')), planTypes: JSON.parse(localStorage.getItem('planTypes'))};
-        //     this.props.plansFilter(JSON.parse(localStorage.getItem('plans')), filters)
-        // }
     }
 
     handleFilters = (event) => {
@@ -146,7 +142,7 @@ class PlanSelectionPage extends React.Component {
     }
 
     onClickProductLine(productLine) {
-        this.props.fetchPlans(productLine);
+        this.props.fetchPlans(this.props.quote.quoteId, productLine);
         localStorage.setItem('productLine', productLine);
         this.defaultHandleFilters();
     }
@@ -214,6 +210,7 @@ class PlanSelectionPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
+        quote: state.quoteReducer.quote,
         plans: state.planReducer.plans,
         filteredPlans: state.planReducer.filteredPlans,
         currentProductLine: state.planReducer.currentProductLine,

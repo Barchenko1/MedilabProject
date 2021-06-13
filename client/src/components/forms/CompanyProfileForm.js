@@ -45,9 +45,9 @@ class CompanyProfileForm extends React.Component {
                     labelStyle='wrapper_left-label'
                     inputStyle='wrapper_left-input'
                     type="number"
-                    name="capacity"
+                    name="discount"
                     renderError={this.renderError}
-                    label="Discount for employees"/>
+                    label="Discount for employees (%)"/>
                 <CustomInput
                     groupStyle="wrapper_left-item"
                     labelStyle='wrapper_left-label'

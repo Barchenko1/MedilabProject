@@ -9,7 +9,7 @@ import _ from 'lodash';
 class EmployeeEdit extends React.Component {
 
     onSubmit = (formProps) => {
-        this.props.editEmployee(this.props.match.params.id, formProps);
+        this.props.editEmployee(this.props.quote.quoteId, formProps, this.props.match.params.id);
     }
 
     render() {
