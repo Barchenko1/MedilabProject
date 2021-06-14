@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addPlan, fetchPlans, plansFilter, sortPlans} from "../../actions/planActions";
+import {fetchPlans, plansFilter, sortPlans} from "../../actions/planActions";
 import {Link} from "react-router-dom";
 import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
 import CustomButton from "../../customComponents/buttons/CustomButton";
@@ -194,6 +194,7 @@ class PlanSelectionPage extends React.Component {
                     {this.renderPlanTypesFilter()}
                 </div>
                 <PlanSelectionList className="container-wrapper_right"
+                    quote = {this.props.quote}
                     filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}
                     filteredPlans={this.props.filteredPlans}
                 />
@@ -218,4 +219,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {fetchPlans, addPlan, plansFilter, sortPlans})(PlanSelectionPage);
+export default connect(mapStateToProps, {fetchPlans, plansFilter, sortPlans})(PlanSelectionPage);

@@ -1,7 +1,7 @@
 .profile {
     margin: 2rem auto;
     width: 70%;
-    min-height: 25rem;
+    //min-height: 25rem;
     background-color: #f3ebeb; 
     border-top: 1px solid #1C4A5A;
     border-bottom: 1px solid #1C4A5A;
@@ -12,9 +12,13 @@
     &_card {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-top: 1rem;
         margin-bottom: 2rem;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
 
         &-item {
             padding: 1rem;
@@ -35,7 +39,7 @@
         color: white;
         text-align: center;
 
-        padding: .7rem 2rem .7rem;
+        padding: .5rem 1rem .5rem;
         cursor: pointer;
         transition: .5s all;
 

@@ -17,7 +17,7 @@ export const PLAN_SELECTION_PAGE = '/:quoteId/plan-selection';
 
 export const QUOTE_SUMMARY = "/quote-summary";
 
-export const QUOTE_OVERVIEW = "/quote-overview";
+export const QUOTE_OVERVIEW = '/:quoteId/quote-overview';
 
 export const USER_PROFILE_PAGE = '/user-profile';
 export const INDIVIDUAL_EMPLOYEE_PROFILE_PAGE = '/individual-profile';

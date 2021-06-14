@@ -39,12 +39,17 @@ export const fetchSelectedPlans = () => async dispatch  => {
 
 }
 
-export const addPlan = (formProps) => async (dispatch, getState) => {
-    const response = await apis.post('/');
+export const addPlan = (quoteId, planCode) => async (dispatch, getState) => {
+    console.log(quoteId);
+    console.log(planCode);
+    const response = await apis.get(`${quoteId}/plan?planCode=${planCode}`, {
+        headers: { authorization: getCookie(TOKEN) }
+    });
     dispatch({
         type: ADD_PLAN,
         payload: response.data
     });
+    history.push(`/${quoteId}/plan-selection`);
 }
 
 export const deletePlan = (id) => async (dispatch, getState) => {

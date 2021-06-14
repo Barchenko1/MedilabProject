@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {addPlan, fetchPlans, plansFilter} from "../../actions/planActions";
 import {filterChain} from "../../utils/util";
 import CustomButton from "../../customComponents/buttons/CustomButton";
-import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
+import {ADD_EMPLOYEES_PAGE, QUOTE_OVERVIEW} from "../../utils/consts";
 
 class PlanSelectionList extends React.Component {
 
@@ -14,7 +14,7 @@ class PlanSelectionList extends React.Component {
     renderActions(plan) {
         return(
             <div>
-                <button onClick={() => this.props.addPlan(plan.id)} className="ui button primary">
+                <button onClick={() => this.props.addPlan(this.props.quote.quoteId, plan.planCode)} className="ui button primary">
                     ADD PLAN
                 </button>
             </div>
@@ -56,7 +56,7 @@ class PlanSelectionList extends React.Component {
                 {this.renderPlanDetails()}
                 <div className="container-wrapper_right--button">
                     <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_SUMMARY}/>
+                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_OVERVIEW}/>
                 </div>
             </div>
         );

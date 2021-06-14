@@ -4,6 +4,7 @@ import '../addEmployeePage/EmployeeForm.scss'
 import {Link} from "react-router-dom";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomInput from "../../customComponents/inputs/CustomInput";
+import '../addIndividualEmployeePage/IndividualAddDetailsPage.scss'
 
 class EmployeeForm extends React.Component {
 
@@ -31,7 +32,7 @@ class EmployeeForm extends React.Component {
         return(
             <ul>
                 <li>
-                    <button type="button" onClick={() => fields.push({})}>
+                    <button className='add' type="button" onClick={() => fields.push({})}>
                         Add Dependent
                     </button>
                     {submitFailed && error && <span>{error}</span>}
@@ -39,41 +40,66 @@ class EmployeeForm extends React.Component {
                 {fields.map((dependent, index) => (
                     <li key={index}>
                         <button
+                            className='remove'
                             type="button"
                             title="Remove Member"
                             onClick={() => fields.remove(index)}
                         >Remove this dependent</button>
                         <h4>Dependent #{index + 1}</h4>
-                        <CustomInput
-                            name={`${dependent}.firstName`}
-                            type="text"
-                            renderError={this.renderError}
-                            label="First Name"
-                        />
-                        <CustomInput
-                            name={`${dependent}.lastName`}
-                            type="text"
-                            renderError={this.renderError}
-                            label="Last Name"
-                        />
-                        <CustomInput
-                            name={`${dependent}.birthdate`}
-                            type='date'
-                            renderError={this.renderError}
-                            label="Birth date"
-                        />
-                        <CustomDropDown
-                            name={`${dependent}.gender`}
-                            data={this.genders}
-                            label="Gender"
-                            renderError={this.renderError}
-                        />
-                        <CustomDropDown
-                            name={`${dependent}.relationship`}
-                            data={this.relationships}
-                            label="Relationship"
-                            renderError={this.renderError}
-                        />
+                        <div className='wrapper'>
+                            <div className='wrapper_left'>
+                                <CustomInput
+                                    groupStyle="wrapper_left-item"
+                                    labelStyle='wrapper_left-label'
+                                    inputStyle='wrapper_left-input'
+                                    name={`${dependent}.firstName`}
+                                    type="text"
+                                    renderError={this.renderError}
+                                    label="First Name"
+                                />
+                                <CustomInput
+                                    groupStyle="wrapper_left-item"
+                                    labelStyle='wrapper_left-label'
+                                    inputStyle='wrapper_left-input'
+                                    name={`${dependent}.lastName`}
+                                    type="text"
+                                    renderError={this.renderError}
+                                    label="Last Name"
+                                />
+                                <CustomInput
+                                    groupStyle="wrapper_left-item"
+                                    labelStyle='wrapper_left-label'
+                                    inputStyle='wrapper_left-input'
+                                    name={`${dependent}.birthdate`}
+                                    type='date'
+                                    renderError={this.renderError}
+                                    label="Birth date"
+                                />
+                            </div>
+
+                            <div className='wrapper_right'>
+                                <CustomDropDown
+                                    groupStyle="wrapper_right-item"
+                                    labelStyle='wrapper_right-label'
+                                    inputStyle='wrapper_right-input'
+                                    selectStyle='wrapper_right-select'
+                                    name={`${dependent}.gender`}
+                                    data={this.genders}
+                                    label="Gender"
+                                    renderError={this.renderError}
+                                />
+                                <CustomDropDown
+                                    groupStyle="wrapper_right-item"
+                                    labelStyle='wrapper_right-label'
+                                    inputStyle='wrapper_right-input'
+                                    selectStyle='wrapper_right-select'
+                                    name={`${dependent}.relationship`}
+                                    data={this.relationships}
+                                    label="Relationship"
+                                    renderError={this.renderError}
+                                />
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
@@ -87,70 +113,106 @@ class EmployeeForm extends React.Component {
     render() {
         console.log(this.props.initialValues);
         return(
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <CustomInput
-                    name='firstName'
-                    type='text'
-                    renderError={this.renderError}
-                    label="First Name"
-                />
-                <CustomInput
-                    name='middleName'
-                    type='text'
-                    renderError={this.renderError}
-                    label="Middle Name"
-                />
-                <CustomInput
-                    name='lastName'
-                    type='text'
-                    renderError={this.renderError}
-                    label="Last Name"
-                />
-                <CustomInput
-                    name='birthdate'
-                    type='date'
-                    renderError={this.renderError}
-                    label="Birth date"
-                />
-                <CustomDropDown
-                    name="gender"
-                    data={this.genders}
-                    label="Gender"
-                    renderError={this.renderError}
-                />
-                <CustomInput
-                    name='email'
-                    type='email'
-                    renderError={this.renderError}
-                    label="Email"
-                />
-                <CustomInput
-                    name='dateOfHire'
-                    type='date'
-                    renderError={this.renderError}
-                    label="Date of hire"
-                />
-                <CustomInput
-                    name='hoursOfWork'
-                    type='number'
-                    renderError={this.renderError}
-                    label="Hours worked"
-                />
-                <CustomInput
-                    name='salary'
-                    type='number'
-                    renderError={this.renderError}
-                    label="Salary"
-                />
-                <FieldArray
-                    name='dependents'
-                    component={this.renderDependentSection}
-                />
-                <div className="modal-container">
-                    <button>{this.props.submitButton}</button>
-                    <Link to={this.props.to}>{this.props.cancelButton}</Link>
-                </div>
-            </form>
+            <div className='center'>
+                <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <div className='wrapper'>
+                        <div className="wrapper_left">
+                            <CustomInput
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name='firstName'
+                                type='text'
+                                renderError={this.renderError}
+                                label="First Name"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name='middleName'
+                                type='text'
+                                renderError={this.renderError}
+                                label="Middle Name"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name='lastName'
+                                type='text'
+                                renderError={this.renderError}
+                                label="Last Name"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name='birthdate'
+                                type='date'
+                                renderError={this.renderError}
+                                label="Birth date"
+                            />
+                            <CustomDropDown
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name="gender"
+                                data={this.genders}
+                                label="Gender"
+                                renderError={this.renderError}
+                            />
+                        </div>
+
+                        <div className="wrapper_right">
+                            <CustomInput
+                                groupStyle="wrapper_right-item"
+                                labelStyle='wrapper_right-label'
+                                inputStyle='wrapper_right-input'
+                                name='email'
+                                type='email'
+                                renderError={this.renderError}
+                                label="Email"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_right-item"
+                                labelStyle='wrapper_right-label'
+                                inputStyle='wrapper_right-input'
+                                name='dateOfHire'
+                                type='date'
+                                renderError={this.renderError}
+                                label="Date of hire"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_right-item"
+                                labelStyle='wrapper_right-label'
+                                inputStyle='wrapper_right-input'
+                                name='hoursOfWork'
+                                type='number'
+                                renderError={this.renderError}
+                                label="Hours worked"
+                            />
+                            <CustomInput
+                                groupStyle="wrapper_right-item"
+                                labelStyle='wrapper_right-label'
+                                inputStyle='wrapper_right-input'
+                                name='salary'
+                                type='number'
+                                renderError={this.renderError}
+                                label="Salary"
+                            />
+                        </div>
+                    </div>
+                    <FieldArray
+                        name='dependents'
+                        component={this.renderDependentSection}
+                    />
+                    <div className='buttons'>
+                        <Link className='buttons_cancel' to={this.props.to}>{this.props.cancelButton}</Link>
+                        <button className='buttons_create'>{this.props.submitButton}</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

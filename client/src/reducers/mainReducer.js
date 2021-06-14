@@ -5,6 +5,7 @@ import authReducer from "./authReducer";
 import planReducer from "./planReducer";
 import companyProfileReducer from "./companyProfileReducer";
 import quoteReducer from "./quoteReducer";
+import quoteOverviewReducer from "./quoteOverviewReducer";
 
 export default combineReducers({
     form: reducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     companyProfileReducer,
     employeeReducer,
     authReducer,
-    planReducer
+    planReducer,
+    quoteOverviewReducer
 })

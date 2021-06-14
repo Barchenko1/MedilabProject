@@ -19,6 +19,7 @@ class IndividualAddDetailsPage extends React.Component {
                 {/*    submitButton='Create'*/}
                 {/*    cancelButton='Cancel'*/}
                 {/*/>*/}
+                <h1 className="page_header">Individual info</h1>
                 <EmployeeForm
                     onSubmit={this.onSubmit}
                     to="/add-individual"
