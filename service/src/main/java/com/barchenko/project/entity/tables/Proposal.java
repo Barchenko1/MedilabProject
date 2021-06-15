@@ -25,10 +25,18 @@ public class Proposal {
     private Long proposalId;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "plan_id")
+    private Plan plan;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "quote_id")
+    private Quote quote;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinTable(
             name = "proposal_productLine",
             joinColumns = { @JoinColumn(name = "proposal_id") },
@@ -36,7 +44,7 @@ public class Proposal {
     )
     private Set<ProductLine> productLines = new HashSet<>();
 
-    private int discount;
+    private int discount = 0;
 
     public Long getProposalId() {
         return proposalId;
@@ -68,5 +76,21 @@ public class Proposal {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Quote getQuote() {
+        return quote;
+    }
+
+    public void setQuote(Quote quote) {
+        this.quote = quote;
     }
 }

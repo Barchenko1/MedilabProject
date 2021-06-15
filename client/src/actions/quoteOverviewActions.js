@@ -1,6 +1,6 @@
 import apis from "../utils/apis";
 import {
-    FETCH_PLANS, GET_COMPANY, GET_EMPLOYEES,
+    FETCH_PLANS, GET_COMPANY, GET_EMPLOYEES, GET_QUOTE_PLANS,
 } from "../utils/types";
 import history from "../utils/history";
 import {TOKEN} from "../utils/consts";
@@ -31,12 +31,12 @@ export const getCompanyOverview = (quoteId) => async (dispatch, getState) => {
 }
 
 export const getPlanOverview = (quoteId) => async (dispatch, getState) => {
-    const response = await apis.get(`/${quoteId}/employees`,
+    const response = await apis.get(`/${quoteId}/quotePlans`,
         { headers: { authorization: getCookie(TOKEN) }}
     );
     console.log(response);
     dispatch({
-        type: GET_EMPLOYEES,
+        type: GET_QUOTE_PLANS,
         payload: response.data
     });
     history.push(`/${quoteId}/quote-overview`);

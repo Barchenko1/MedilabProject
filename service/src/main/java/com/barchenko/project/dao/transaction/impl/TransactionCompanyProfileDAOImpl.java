@@ -44,14 +44,20 @@ public class TransactionCompanyProfileDAOImpl implements TransactionCompanyProfi
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            companyDAO.saveOrUpdateCompany(company);
-            proposalDAO.saveOrUpdateProposal(proposal);
             Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
             if (quoteOptional.isEmpty()) {
                 throw new IllegalStateException("error");
             }
             Quote quote = quoteOptional.get();
-            quote.setProposal(proposal);
+            companyDAO.saveOrUpdateCompany(company);
+            proposal.setQuote(quote);
+            proposalDAO.saveOrUpdateProposal(proposal);
+//            Optional<Quote> quoteOptional = quoteDAO.findQuoteById(quoteId);
+//            if (quoteOptional.isEmpty()) {
+//                throw new IllegalStateException("error");
+//            }
+//            Quote quote = quoteOptional.get();
+//            quote.setProposal(proposal);
             quoteDAO.updateQuote(quote);
             transaction.commit();
         } catch (RuntimeException ex) {

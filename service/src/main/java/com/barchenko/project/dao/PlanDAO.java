@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface PlanDAO {
     Optional<Plan> getPlanByPlanCode(String planCode);
     Optional<List<Plan>> getPlansByProductLine(String productLine);
+    Optional<List<Plan>> getPlansByQuoteId(long quoteId);
 }

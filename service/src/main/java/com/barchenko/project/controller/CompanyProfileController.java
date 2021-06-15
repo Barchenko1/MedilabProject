@@ -1,6 +1,7 @@
 package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.CompanyProfileDTORequest;
+import com.barchenko.project.entity.dto.resp.CompanyDTOResponse;
 import com.barchenko.project.service.CompanyProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +21,17 @@ public class CompanyProfileController {
     private CompanyProfileService companyProfileService;
 
     @RequestMapping(value = "/{quoteId}/addCompanyData", method = RequestMethod.POST)
-    public ResponseEntity<?> addEmployeeData(
+    public ResponseEntity<?> addCompanyData(
             @PathVariable("quoteId") long quoteId,
             @Valid @RequestBody CompanyProfileDTORequest companyProfileDTORequest) {
         companyProfileService.saveOrUpdateCompanyProfileData(quoteId, companyProfileDTORequest);
         return ResponseEntity.ok("Successful");
+    }
+
+    @RequestMapping(value = "/{quoteId}/getCompany", method = RequestMethod.GET)
+    public CompanyDTOResponse findCompanyByQuoteId(
+            @PathVariable("quoteId") long quoteId) {
+        return companyProfileService.getCompanyByQuoteId(quoteId);
     }
 
 }

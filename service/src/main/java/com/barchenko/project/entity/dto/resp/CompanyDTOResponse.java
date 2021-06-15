@@ -1,56 +1,28 @@
-package com.barchenko.project.entity.tables;
+package com.barchenko.project.entity.dto.resp;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.ArrayList;
+import com.barchenko.project.entity.tables.Plan;
+
 import java.util.List;
 
-@Entity
-@Table(name = "company")
-public class Company {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "company_id")
+public class CompanyDTOResponse {
     private Long companyId;
-    @Column
     private String companyName;
-    @Column(name = "contact_phone")
     private String contactPhone;
-    @Column(name = "contact_email")
     private String contactEmail;
-    @Column(name = "street")
     private String street;
-    @Column
     private String city;
-    @Column(name = "house_number")
     private int houseNumber;
-    @Column
     private String state;
-    @Column(name = "zip_code")
     private int zipCode;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "organizationType_id")
-    private OrganizationType organizationType;
-
+    private List<Plan> planList;
+    private String organizationType;
 
     public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(Long proposalId) {
-        this.companyId = proposalId;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     public String getCompanyName() {
@@ -117,11 +89,19 @@ public class Company {
         this.zipCode = zipCode;
     }
 
-    public OrganizationType getOrganizationType() {
+    public List<Plan> getPlanList() {
+        return planList;
+    }
+
+    public void setPlanList(List<Plan> planList) {
+        this.planList = planList;
+    }
+
+    public String getOrganizationType() {
         return organizationType;
     }
 
-    public void setOrganizationType(OrganizationType organizationType) {
+    public void setOrganizationType(String organizationType) {
         this.organizationType = organizationType;
     }
 }

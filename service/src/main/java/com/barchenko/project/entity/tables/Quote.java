@@ -1,5 +1,9 @@
 package com.barchenko.project.entity.tables;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.hibernate.annotations.OptimisticLock;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -24,14 +30,16 @@ public class Quote {
     @Column(name = "quote_id")
     private Long quoteId;
     @Column
-    private String name;
+    private String quoteName;
     @Column
     private Date dateOfCreate = new Date();
     @Column
     private Date dateOfExpire;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private User creator;
+
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "quote_employee",
@@ -39,9 +47,10 @@ public class Quote {
             inverseJoinColumns = { @JoinColumn(name = "employee_id") }
     )
     private List<Employee> employees;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "proposal_id")
-    private Proposal proposal;
+
+    @OneToMany(mappedBy = "quote", orphanRemoval = true, cascade = {CascadeType.ALL})
+    @OptimisticLock(excluded = true)
+    private List<Proposal> proposals = new ArrayList<>();
 
     public Long getQuoteId() {
         return quoteId;
@@ -51,12 +60,12 @@ public class Quote {
         this.quoteId = quoteId;
     }
 
-    public String getName() {
-        return name;
+    public String getQuoteName() {
+        return quoteName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setQuoteName(String quoteName) {
+        this.quoteName = quoteName;
     }
 
     public Date getDateOfCreate() {
@@ -91,11 +100,11 @@ public class Quote {
         this.employees = employees;
     }
 
-    public Proposal getProposal() {
-        return proposal;
+    public List<Proposal> getProposals() {
+        return proposals;
     }
 
-    public void setProposal(Proposal proposal) {
-        this.proposal = proposal;
+    public void setProposals(List<Proposal> proposals) {
+        this.proposals = proposals;
     }
 }

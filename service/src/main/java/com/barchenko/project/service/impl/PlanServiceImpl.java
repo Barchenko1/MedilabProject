@@ -1,7 +1,11 @@
 package com.barchenko.project.service.impl;
 
 import com.barchenko.project.builder.PlanBuilder;
+import com.barchenko.project.dao.CompanyDAO;
 import com.barchenko.project.dao.PlanDAO;
+import com.barchenko.project.dao.ProposalDAO;
+import com.barchenko.project.dao.QuoteDAO;
+import com.barchenko.project.dao.transaction.TransactionPlanDAO;
 import com.barchenko.project.entity.dto.resp.PlanResponseDTO;
 import com.barchenko.project.entity.tables.Plan;
 import com.barchenko.project.service.PlanService;
@@ -19,6 +23,18 @@ public class PlanServiceImpl implements PlanService {
     private PlanDAO planDAO;
 
     @Autowired
+    private QuoteDAO quoteDAO;
+
+    @Autowired
+    private ProposalDAO proposalDAO;
+
+    @Autowired
+    private CompanyDAO companyDAO;
+
+    @Autowired
+    private TransactionPlanDAO transactionPlanDAO;
+
+    @Autowired
     private PlanBuilder planBuilder;
 
     @Override
@@ -32,7 +48,17 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public List<PlanResponseDTO> getPlansByQuoteId() {
-        return null;
+    public List<PlanResponseDTO> getPlansByQuoteId(long quoteId) {
+        Optional<List<Plan>> optionalPlans = planDAO.getPlansByQuoteId(quoteId);
+        List<PlanResponseDTO> planResponseDTOList = Collections.emptyList();
+        if (optionalPlans.isPresent()) {
+            planResponseDTOList = planBuilder.transformPlanListToPlanResponseDTOList(optionalPlans.get());
+        }
+        return planResponseDTOList;
+    }
+
+    @Override
+    public void addPlanToQuote(long quoteId, String planCode) {
+        transactionPlanDAO.addPlanToQuote(quoteId, planCode);
     }
 }

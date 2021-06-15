@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface PlanService {
     List<PlanResponseDTO> getPlans(String productLine);
-    List<PlanResponseDTO> getPlansByQuoteId();
+    List<PlanResponseDTO> getPlansByQuoteId(long quoteId);
+    void addPlanToQuote(long quoteId, String planCode);
 }

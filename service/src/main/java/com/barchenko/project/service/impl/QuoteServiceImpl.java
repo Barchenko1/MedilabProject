@@ -36,7 +36,7 @@ public class QuoteServiceImpl implements QuoteService {
     private QuoteDTOResponse createQuoteDTOResponse(Quote quote) {
         QuoteDTOResponse quoteDTOResponse = new QuoteDTOResponse();
         quoteDTOResponse.setQuoteId(quote.getQuoteId());
-        quoteDTOResponse.setQuoteName(quote.getName());
+        quoteDTOResponse.setQuoteName(quote.getQuoteName());
         return quoteDTOResponse;
     }
 }

@@ -37,7 +37,7 @@ class QuoteOverviewPage extends React.Component {
     }
 
     renderEmployeeDetailsOverview() {
-        console.log(this.props.employees)
+        console.log(this.props.employees);
         if (this.props.employees.length === 0) {
             return <div/>
         } else {
@@ -54,7 +54,7 @@ class QuoteOverviewPage extends React.Component {
         return this.props.employees.map((employee, index) => {
             return (
                 <div className="profile_card">
-                    Employee:
+                    Employee{index+1}:
                     <div className="profile_card-item">{employee.firstName}</div>
                     <div className="profile_card-item">{employee.middleName}</div>
                     <div className="profile_card-item">{employee.lastName}</div>
@@ -74,7 +74,7 @@ class QuoteOverviewPage extends React.Component {
         return dependents.map((dependent, index) => {
             return (
                 <div className="profile_card">
-                    Dependent:
+                    Dependent{index+1}:
                     <div className="profile_card-item">{dependent.firstName}</div>
                     <div className="profile_card-item">{dependent.lastName}</div>
                     <div className="profile_card-item">{dependent.birthdate}</div>
@@ -85,36 +85,35 @@ class QuoteOverviewPage extends React.Component {
         });
     }
 
+    renderPlanDetails() {
+        return this.props.plans.map((plan, index) => {
+            return (
+                <div className="profile_card">
+                    Plan{index+1}:
+                    <div className="profile_card-item">{plan.planName}</div>
+                    <div className="profile_card-item">{plan.planCode}</div>
+                    <div className="profile_card-item">{plan.totalMonthlyCost}</div>
+                    <div className="profile_card-item">{plan.deductible}</div>
+                    <div className="profile_card-item">{plan.planClass}</div>
+                    <div className="profile_card-item">{plan.metalTier}</div>
+                    <div className="profile_card-item">{plan.planType}</div>
+                </div>
+            )
+        });
+    }
+
     renderPlanDetailsOverview() {
-        return(
-            <div className="profile">
-                <div className="profile_card">
-                    <div className="profile_card-item">Username</div>
-                    <div className="profile_card-item">Email</div>
-                    <div className="profile_card-item">Phone number</div>
-                    <div className="profile_card-item">qwewqe</div>
+        console.log(this.props.plans)
+        if (this.props.employees.length === 0) {
+            return <div/>
+        } else {
+            return (
+                <div className="profile">
+                    {this.renderPlanDetails()}
+                    <button className="profile_button">Edit</button>
                 </div>
-                <div className="profile_card">
-                    <div className="profile_card-item">Username</div>
-                    <div className="profile_card-item">Email</div>
-                    <div className="profile_card-item">Phone number</div>
-                    <div className="profile_card-item">qwewqe</div>
-                </div>
-                <div className="profile_card">
-                    <div className="profile_card-item">Username</div>
-                    <div className="profile_card-item">Email</div>
-                    <div className="profile_card-item">Phone number</div>
-                    <div className="profile_card-item">qwewqe</div>
-                </div>
-                <div className="profile_card">
-                    <div className="profile_card-item">Username</div>
-                    <div className="profile_card-item">Email</div>
-                    <div className="profile_card-item">Phone number</div>
-                    <div className="profile_card-item">qwewqe</div>
-                </div>
-                <button className="profile_button">Edit</button>
-            </div>
-        )
+            )
+        }
     }
 
     render() {
@@ -136,7 +135,8 @@ const mapStateToProps = state => {
     return {
         quote: state.quoteReducer.quote,
         company: state.quoteOverviewReducer.company,
-        employees: state.quoteOverviewReducer.employees
+        employees: state.quoteOverviewReducer.employees,
+        plans: state.quoteOverviewReducer.plans
     }
 }
 

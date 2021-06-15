@@ -1,6 +1,7 @@
 
 export const CREATE_QUOTE = 'CREATE_QUOTE';
 export const GET_COMPANY = 'GET_COMPANY';
+export const GET_QUOTE_PLANS = 'GET_QUOTE_PLANS';
 export const CREATE_EMPLOYEE = 'CREATE_EMPLOYEE';
 export const EDIT_EMPLOYEE = 'EDIT_EMPLOYEE';
 export const GET_EMPLOYEES = 'GET_EMPLOYEES';

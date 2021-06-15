@@ -22,7 +22,7 @@ import static java.util.Objects.isNull;
 public class QuoteDAOImpl implements QuoteDAO {
 
     private static final String GET_QUOTE_DATA_BY_USER = "SELECT * FROM quote q JOIN user u ON q.user_id=u.user_id where u.username = ? OR u.email = ?;";
-    private static final String GET_QUOTE_DATA = "SELECT * FROM quote where quote.quote_id = ?;";
+    private static final String GET_QUOTE_DATA = "SELECT * FROM quote q where q.quote_id = ?;";
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -73,10 +73,6 @@ public class QuoteDAOImpl implements QuoteDAO {
         Quote quote = null;
         Session session = sessionFactory.getCurrentSession();
         try {
-//            EntityManager em = entityManagerFactory.createEntityManager();
-//            quote = (Quote) em.createNativeQuery(GET_QUOTE_DATA, Quote.class)
-//                    .setParameter(1, id)
-//                    .getSingleResult();
             quote = session.createNativeQuery(GET_QUOTE_DATA, Quote.class)
                     .setParameter(1, id).getSingleResult();
         }

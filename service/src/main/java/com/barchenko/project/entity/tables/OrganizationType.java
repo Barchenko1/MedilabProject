@@ -21,4 +21,20 @@ public class OrganizationType {
     @Enumerated(EnumType.STRING)
     @Column
     private OrganizationName name;
+
+    public Long getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    public OrganizationName getName() {
+        return name;
+    }
+
+    public void setName(OrganizationName name) {
+        this.name = name;
+    }
 }

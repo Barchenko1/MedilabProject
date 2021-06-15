@@ -32,11 +32,6 @@ import static java.util.Objects.nonNull;
 @Transactional
 public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeDependentDAO {
 
-    private static final String GET_ALL_EMPLOYEES_DATA = "SELECT *\n" +
-            "\tFROM employee e\n" +
-            "    JOIN gender g ON g.gender_id=e.gender_id\n" +
-            "    JOIN status s ON s.status_id=e.status_id;";
-
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -87,9 +82,7 @@ public class TransactionEmployeeDependentDAOImpl implements TransactionEmployeeD
             }
             Quote quote = quoteOptional.get();
             quote.getEmployees().add(employee);
-            if (quote.getEmployees() == null) {
-                quoteDAO.updateQuote(quote);
-            }
+            quoteDAO.updateQuote(quote);
             transaction.commit();
         }catch (RuntimeException ex) {
             if (nonNull(transaction)) {

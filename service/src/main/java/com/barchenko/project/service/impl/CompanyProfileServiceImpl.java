@@ -3,11 +3,13 @@ package com.barchenko.project.service.impl;
 import com.barchenko.project.appUser.UserPrincipal;
 import com.barchenko.project.builder.CompanyBuilder;
 import com.barchenko.project.builder.ProposalBuilder;
+import com.barchenko.project.dao.CompanyDAO;
 import com.barchenko.project.dao.OrganizationTypeDAO;
 import com.barchenko.project.dao.ProductLineDAO;
 import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.transaction.TransactionCompanyProfileDAO;
 import com.barchenko.project.entity.dto.req.CompanyProfileDTORequest;
+import com.barchenko.project.entity.dto.resp.CompanyDTOResponse;
 import com.barchenko.project.entity.enums.OrganizationName;
 import com.barchenko.project.entity.enums.ProductLineName;
 import com.barchenko.project.entity.tables.OrganizationType;
@@ -21,10 +23,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class CompanyProfileServiceImpl implements CompanyProfileService {
+
+    @Autowired
+    private CompanyDAO companyDAO;
 
     @Autowired
     private TransactionCompanyProfileDAO transactionCompanyProfileDAO;
@@ -63,6 +69,20 @@ public class CompanyProfileServiceImpl implements CompanyProfileService {
                 companyProfileDTORequest.getDiscount(),
                 productLines);
         transactionCompanyProfileDAO.saveOrUpdateCompanyProfileData(quoteId, proposal, company);
+    }
+
+    @Override
+    public CompanyDTOResponse getCompanyByQuoteId(long quoteId) {
+        if (isUserCreatedQuote()) {
+            // TODO check of attributes are the same and
+            // TODO if email not confirmed send confirmation email.
+            throw new IllegalStateException("error");
+        }
+        Optional<Company> optionalCompany = companyDAO.findCompanyByQuoteIdEM(quoteId);
+        if (optionalCompany.isEmpty()) {
+            throw new IllegalStateException("error");
+        }
+        return companyBuilder.transformCompanyToCompanyDTOResponse(optionalCompany.get());
     }
 
     private String transformRequestOrganizationTypeToString(String requestOrganizationType) {

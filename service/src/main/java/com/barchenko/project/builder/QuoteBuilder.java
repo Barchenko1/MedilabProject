@@ -11,7 +11,7 @@ import java.util.Date;
 public class QuoteBuilder {
     public Quote transformQuoteDTORequestToQuote(QuoteDTORequest quoteDTORequest, User user) {
         Quote quote = new Quote();
-        quote.setName(quoteDTORequest.getName());
+        quote.setQuoteName(quoteDTORequest.getName());
         quote.setDateOfCreate(new Date());
         quote.setDateOfExpire(quoteDTORequest.getDateOfExpire());
         quote.setCreator(user);
