@@ -16,7 +16,9 @@ import {
   PLAN_SELECTION_PAGE,
   QUOTE_OVERVIEW,
   QUOTE_SUMMARY,
-  REGISTRATION_PAGE, USER_PROFILE
+  REGISTRATION_PAGE,
+  USER_PROFILE,
+  EDIT_USER_PROFILE
 } from "../utils/consts";
 import LoginPage from "../components/authenticationPage/LoginPage";
 import RegistrationPage from "../components/authenticationPage/RegistrationPage";
@@ -29,10 +31,11 @@ import PlanSelectionPage from "../components/planSelectionPage/PlanSelectionPage
 import QuoteCreate from "../components/quotePage/QuoteCreate";
 import UserProfilePage from "../components/userProfilePage/UserProfilePage";
 import IndividualAddDetailsPage from "../components/addIndividualEmployeePage/IndividualAddDetailsPage";
+import EditUserProfile from '../components/userProfilePage/EditUserProfile';
 
 const App = () => {
   return (
-    <div className="page_container">
+      <div className="page_container">
         <Router history={history}>
           <Header />
           <div className="content_wrap">
@@ -45,6 +48,7 @@ const App = () => {
               <Route path={CREATE_QUOTE} exact component={QuoteCreate} />
 
               <Route path={USER_PROFILE} exact component={UserProfilePage} />
+              <Route path={EDIT_USER_PROFILE} exact component={EditUserProfile} />
 
               <Route path={COMPANY_PROFILE_PAGE} exact component={CompanyProfilePage} />
 
@@ -63,7 +67,7 @@ const App = () => {
           </div>
           <Footer />
         </Router>
-    </div>
+      </div>
   );
 }
 

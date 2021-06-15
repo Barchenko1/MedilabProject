@@ -4,6 +4,7 @@ import history from "../../utils/history";
 import {connect} from "react-redux";
 import QuoteForm from "../forms/QuoteForm";
 import {createQuote} from "../../actions/quoteActions";
+import {HOME_PAGE} from "../../utils/consts";
 
 class QuoteCreate extends React.Component {
 
@@ -17,7 +18,7 @@ class QuoteCreate extends React.Component {
             <div>
                 <Modal
                     header="Create new quote"
-                    onDismiss={() => history.push('/')}
+                    onDismiss={() => history.push(HOME_PAGE)}
                 >
                     <QuoteForm
                         onSubmit={this.onSubmit}

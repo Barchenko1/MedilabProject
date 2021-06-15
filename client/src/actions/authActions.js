@@ -1,6 +1,6 @@
 import {PROFILE, REGISTRATION, SIGN_IN, SIGN_OUT} from "../utils/types";
 import apis from "../utils/apis";
-import {LOGIN_PAGE, TOKEN} from "../utils/consts";
+import {HOME_PAGE, LOGIN_PAGE, TOKEN} from "../utils/consts";
 import history from "../utils/history";
 import {getCookie} from "../utils/util";
 
@@ -13,7 +13,7 @@ export const signIn = (formProps) => async dispatch => {
         type: SIGN_IN,
         payload: response.data
     })
-    history.push("/");
+    history.push(HOME_PAGE);
 };
 
 export const getProfile = () => async dispatch => {

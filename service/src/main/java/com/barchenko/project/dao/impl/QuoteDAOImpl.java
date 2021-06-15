@@ -1,9 +1,7 @@
 package com.barchenko.project.dao.impl;
 
 import com.barchenko.project.dao.QuoteDAO;
-import com.barchenko.project.entity.tables.OrganizationType;
 import com.barchenko.project.entity.tables.Quote;
-import com.barchenko.project.entity.tables.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,9 @@ import static java.util.Objects.isNull;
 public class QuoteDAOImpl implements QuoteDAO {
 
     private static final String GET_QUOTE_DATA_BY_USER = "SELECT * FROM quote q JOIN user u ON q.user_id=u.user_id where u.username = ? OR u.email = ?;";
-    private static final String GET_QUOTE_DATA = "SELECT * FROM quote q where q.quote_id = ?;";
+    private static final String GET_QUOTE_DATA_BY_QUOTE_ID = "SELECT * FROM quote q where q.quote_id = ?;";
+    private static final String GET_QUOTE_DATA_BY_QUOTE_NAME = "SELECT * FROM quote q where q.quoteName = ?;";
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -73,7 +73,7 @@ public class QuoteDAOImpl implements QuoteDAO {
         Quote quote = null;
         Session session = sessionFactory.getCurrentSession();
         try {
-            quote = session.createNativeQuery(GET_QUOTE_DATA, Quote.class)
+            quote = session.createNativeQuery(GET_QUOTE_DATA_BY_QUOTE_ID, Quote.class)
                     .setParameter(1, id).getSingleResult();
         }
         catch (NoResultException e) {
@@ -86,8 +86,21 @@ public class QuoteDAOImpl implements QuoteDAO {
     }
 
     @Override
-    public Quote findQuoteByName(String name) {
-        return null;
+    public Optional<Quote> findQuoteByName(String name) {
+        Quote quote = null;
+//        Session session = sessionFactory.getCurrentSession();
+        EntityManager em = entityManagerFactory.createEntityManager();
+        try {
+            quote = (Quote) em.createNativeQuery(GET_QUOTE_DATA_BY_QUOTE_NAME, Quote.class)
+                    .setParameter(1, name).getSingleResult();
+        }
+        catch (NoResultException e) {
+            return Optional.empty();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return Optional.of(quote);
     }
 
     @Override

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import {PLAN_SELECTION_PAGE} from "../../utils/consts";
 import {getCompanyOverview, getEmployeesOverview, getPlanOverview} from "../../actions/quoteOverviewActions";
+import {HOME_PAGE} from '../../utils/consts';
 
 class QuoteOverviewPage extends React.Component {
 
@@ -14,47 +15,43 @@ class QuoteOverviewPage extends React.Component {
 
     renderCompanyProfileOverview() {
         console.log(this.props.company);
-        if (!this.props.company) {
-            return <div/>
-        } else {
-            return(
-                <div className="profile">
-                    <div className="profile_card">
-                        <div className="profile_card-item">Company name: {this.props.company.companyName}</div>
-                        <div className="profile_card-item">Company phone: {this.props.company.contactPhone}</div>
-                        <div className="profile_card-item">Company email: {this.props.company.contactEmail}</div>
-                        <div className="profile_card-item">Company house: {this.props.company.houseNumber}</div>
-                        <div className="profile_card-item">Company street: {this.props.company.street}</div>
-                        <div className="profile_card-item">Company city: {this.props.company.city}</div>
-                        <div className="profile_card-item">Company state: {this.props.company.state}</div>
-                        <div className="profile_card-item">Company zipCode: {this.props.company.zipCode}</div>
-                        <div className="profile_card-item">Organization type: {this.props.company.organizationType}</div>
-                    </div>
-                    <button className="profile_button">Edit</button>
+        return(
+            <div className="profile">
+                <div className="profile_card">
+                    <div className="profile_card-item">Company name:</div>
+                    <div className="profile_card-item">Company phone:</div>
+                    <div className="profile_card-item">Company email:</div>
                 </div>
-            )
-        }
+                <div className="profile_card">
+                    <div className="profile_card-item">Company house:</div>
+                    <div className="profile_card-item">Company street:</div>
+                    <div className="profile_card-item">Company city:</div>
+                </div>
+                <div className="profile_card">
+                    <div className="profile_card-item">Company state:</div>
+                    <div className="profile_card-item">Company zipCode:</div>
+                    <div className="profile_card-item">Organization type:</div>
+                </div>
+                <button className="profile_button">Edit</button>
+            </div>
+        )
     }
 
     renderEmployeeDetailsOverview() {
-        console.log(this.props.employees);
-        if (this.props.employees.length === 0) {
-            return <div/>
-        } else {
-            return (
-                <div className="profile">
-                    {this.renderEmployeeDetails()}
-                    <button className="profile_button">Edit</button>
-                </div>
-            )
-        }
+        console.log(this.props.employees)
+        return (
+            <div className="profile">
+                {this.renderEmployeeDetails()}
+                <button className="profile_button">Edit</button>
+            </div>
+        )
     }
 
     renderEmployeeDetails() {
         return this.props.employees.map((employee, index) => {
             return (
                 <div className="profile_card">
-                    Employee{index+1}:
+                    Employee:
                     <div className="profile_card-item">{employee.firstName}</div>
                     <div className="profile_card-item">{employee.middleName}</div>
                     <div className="profile_card-item">{employee.lastName}</div>
@@ -74,7 +71,7 @@ class QuoteOverviewPage extends React.Component {
         return dependents.map((dependent, index) => {
             return (
                 <div className="profile_card">
-                    Dependent{index+1}:
+                    Dependent:
                     <div className="profile_card-item">{dependent.firstName}</div>
                     <div className="profile_card-item">{dependent.lastName}</div>
                     <div className="profile_card-item">{dependent.birthdate}</div>
@@ -85,46 +82,53 @@ class QuoteOverviewPage extends React.Component {
         });
     }
 
-    renderPlanDetails() {
-        return this.props.plans.map((plan, index) => {
-            return (
-                <div className="profile_card">
-                    Plan{index+1}:
-                    <div className="profile_card-item">{plan.planName}</div>
-                    <div className="profile_card-item">{plan.planCode}</div>
-                    <div className="profile_card-item">{plan.totalMonthlyCost}</div>
-                    <div className="profile_card-item">{plan.deductible}</div>
-                    <div className="profile_card-item">{plan.planClass}</div>
-                    <div className="profile_card-item">{plan.metalTier}</div>
-                    <div className="profile_card-item">{plan.planType}</div>
-                </div>
-            )
-        });
-    }
-
     renderPlanDetailsOverview() {
-        console.log(this.props.plans)
-        if (this.props.employees.length === 0) {
-            return <div/>
-        } else {
-            return (
-                <div className="profile">
-                    {this.renderPlanDetails()}
-                    <button className="profile_button">Edit</button>
+        return(
+            <div className="profile">
+                <div className="profile_card">
+                    <div className="profile_card-item">Username</div>
+                    <div className="profile_card-item">Email</div>
+                    <div className="profile_card-item">Phone number</div>
+                    <div className="profile_card-item">qwewqe</div>
                 </div>
-            )
-        }
+                <div className="profile_card">
+                    <div className="profile_card-item">Username</div>
+                    <div className="profile_card-item">Email</div>
+                    <div className="profile_card-item">Phone number</div>
+                    <div className="profile_card-item">qwewqe</div>
+                </div>
+                <div className="profile_card">
+                    <div className="profile_card-item">Username</div>
+                    <div className="profile_card-item">Email</div>
+                    <div className="profile_card-item">Phone number</div>
+                    <div className="profile_card-item">qwewqe</div>
+                </div>
+                <div className="profile_card">
+                    <div className="profile_card-item">Username</div>
+                    <div className="profile_card-item">Email</div>
+                    <div className="profile_card-item">Phone number</div>
+                    <div className="profile_card-item">qwewqe</div>
+                </div>
+                <button className="profile_button">Edit</button>
+            </div>
+        )
     }
 
     render() {
         return (
-            <div>
+            <div className='center'>
                 {this.renderCompanyProfileOverview()}
                 {this.renderEmployeeDetailsOverview()}
                 {this.renderPlanDetailsOverview()}
-                <div className="buttonContainer">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={PLAN_SELECTION_PAGE}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={`${this.props.quote.quoteId}/quote-overview`}/>
+                {/* <div className="buttonContainer">*/}
+                {/*    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={PLAN_SELECTION_PAGE}/>*/}
+                {/*    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={`${this.props.quote.quoteId}/quote-overview`}/>*/}
+                {/*</div>*/}
+                <div>
+                    <div className="buttonContainer">
+                        <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={PLAN_SELECTION_PAGE}/>
+                        <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={`${this.props.quote.quoteId}/quote-overview`}/>
+                    </div>
                 </div>
             </div>
         )
@@ -135,8 +139,7 @@ const mapStateToProps = state => {
     return {
         quote: state.quoteReducer.quote,
         company: state.quoteOverviewReducer.company,
-        employees: state.quoteOverviewReducer.employees,
-        plans: state.quoteOverviewReducer.plans
+        employees: state.quoteOverviewReducer.employees
     }
 }
 

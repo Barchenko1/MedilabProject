@@ -54,10 +54,6 @@ class PlanSelectionList extends React.Component {
         return (
             <div>
                 {this.renderPlanDetails()}
-                <div className="container-wrapper_right--button">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_OVERVIEW}/>
-                </div>
             </div>
         );
     }

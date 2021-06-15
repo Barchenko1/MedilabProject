@@ -2,11 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchPlans, plansFilter, sortPlans} from "../../actions/planActions";
 import {Link} from "react-router-dom";
-import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_SUMMARY} from "../../utils/consts";
+import {ADD_EMPLOYEES_PAGE, PLAN_SELECTION_PAGE, QUOTE_OVERVIEW, QUOTE_SUMMARY} from "../../utils/consts";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import PlanSelectionList from "./PlanSelectionList";
 import {filterChain} from "../../utils/util";
-import './PlanSelectionPage.scss'
+import './PlanSelectionPage.scss';
+import {HOME_PAGE} from '../../utils/consts';
 
 class PlanSelectionPage extends React.Component {
 
@@ -153,22 +154,22 @@ class PlanSelectionPage extends React.Component {
                 <Link
                     onClick={() => this.onClickProductLine('medical')}
                     to={PLAN_SELECTION_PAGE}>Medical</Link>
-                    {this.productLineCount('medical')}
+                {this.productLineCount('medical')}
                 <br/>
                 <Link
                     onClick={() => this.onClickProductLine("dental")}
                     to={PLAN_SELECTION_PAGE}>Dental</Link>
-                    {this.productLineCount('dental')}
+                {this.productLineCount('dental')}
                 <br/>
                 <Link
                     onClick={() => this.onClickProductLine("vision")}
                     to={PLAN_SELECTION_PAGE}>Vision</Link>
-                    {this.productLineCount('vision')}
+                {this.productLineCount('vision')}
                 <br/>
                 <Link
                     onClick={() => this.onClickProductLine("life")}
                     to={PLAN_SELECTION_PAGE}>Life</Link>
-                    {this.productLineCount('life')}
+                {this.productLineCount('life')}
             </div>
         )
     }
@@ -184,26 +185,41 @@ class PlanSelectionPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="container-wrapper">
-                <div className="container-wrapper_left">
-                <h2>Plan Selection</h2>
-                    {this.renderProductLinesBar()}
-                    {this.renderSortByTotalMonthCost()}
-                    {this.renderMetalTierFilters()}
-                    {this.renderPlanTypesFilter()}
+            <div>
+                <div className="card">
+                    <div className='center'>
+                        <h3>Do you want choose plans by yourself?</h3>
+                        <Link>Submit</Link>
+                    </div>
                 </div>
-                <PlanSelectionList className="container-wrapper_right"
-                    quote = {this.props.quote}
-                    filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}
-                    filteredPlans={this.props.filteredPlans}
-                />
-                {/* <div className="container-wrapper_right">
+                <div className="container addheight">
+                    <div className="container-wrapper">
+                        <div className="container-wrapper_left">
+                            <h2>Plan Selection</h2>
+                            {this.renderProductLinesBar()}
+                            {this.renderSortByTotalMonthCost()}
+                            {this.renderMetalTierFilters()}
+                            {this.renderPlanTypesFilter()}
+                        </div>
+                        <PlanSelectionList className="container-wrapper_right"
+                                           quote = {this.props.quote}
+                                           filter={{metalTiers: this.state.metalTiers, planTypes: this.state.planTypes}}
+                                           filteredPlans={this.props.filteredPlans}
+                        />
+                    </div>
+                </div>
+                {/* <div className='navbtns'>
                     <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
                     <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_SUMMARY}/>
                 </div> */}
+                <div className='center'>
+                    <div className="buttonContainer">
+                        <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
+                        <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_OVERVIEW}/>
+                    </div>
+                </div>
+
             </div>
-        </div>
         );
     }
 

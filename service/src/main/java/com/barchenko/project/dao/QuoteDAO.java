@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface QuoteDAO {
     Quote createQuote(Quote quote);
     Optional<Quote> findQuoteById(long id);
-    Quote findQuoteByName(String name);
+    Optional<Quote> findQuoteByName(String name);
     Quote findQuoteByXhref(String xhref);
     Optional<List<Quote>> findQuoteByUsernameOrEmail(String username, String email);
     void updateQuote(Quote quote);

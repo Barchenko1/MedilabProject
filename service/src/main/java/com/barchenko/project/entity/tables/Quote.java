@@ -29,7 +29,7 @@ public class Quote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "quote_id")
     private Long quoteId;
-    @Column
+    @Column(unique = true)
     private String quoteName;
     @Column
     private Date dateOfCreate = new Date();

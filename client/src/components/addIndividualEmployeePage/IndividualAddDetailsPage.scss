@@ -19,7 +19,7 @@ li {
     margin-left: auto;
     margin-right: 2rem;
     transition: 1s all;
-    
+
     margin-top: 3rem;
     margin-left: -.9rem;
 
@@ -38,7 +38,7 @@ li {
     margin-left: auto;
     margin-right: 2rem;
     transition: 1s all;
-    
+
     margin-top: 1rem;
     margin-left: -.9rem;
 
@@ -51,8 +51,10 @@ li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
     &_create {
+        margin-top: 1rem;
+
         background-color: #0cb8b6;
         color: #fff;
         padding: .2rem 2rem;
@@ -60,17 +62,16 @@ li {
         border-radius: .5rem;
         cursor: pointer;
         margin-left: auto;
-        margin-right: 2rem;
         transition: 1s all;
 
         &:hover {
             background-color: #0e9c9a;
         }
-    
+
         float: right;
         margin-right: -.2rem;
     }
-    
+
     &_cancel {
         outline: none;
         background-color: #258aac;

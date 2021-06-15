@@ -1,4 +1,42 @@
 .buttonContainer {
     display: flex;
     justify-content: space-between;
+    margin-top: 7rem;
+    align-items: baseline;
+    width: 46rem;
+
+    &_prev {
+        background-color: #2185d0;
+        color: #fff;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: .5rem;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: 2rem;
+        transition: 1s all;
+
+        &:hover {
+            background-color: #1066a8;
+            color: #fff;
+        }
+    }
+
+    &_cont {
+        background-color: #0cb8b6;
+        color: #fff;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: .5rem;
+        cursor: pointer;
+        transition: 1s all;
+
+        &:hover {
+            background-color: #0e9c9a;
+        }
+    }
+}
+
+.buttonLeft {
+
 }

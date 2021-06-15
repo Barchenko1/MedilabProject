@@ -27,12 +27,11 @@ class CompanyProfilePage extends React.Component {
                             life: false
                         }
                     }
-
                 />
-                <div className="buttonContainer">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={HOME_PAGE}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={ADD_EMPLOYEES_PAGE}/>
-                </div>
+                {/*<div className="navbtns">*/}
+                {/*    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={HOME_PAGE}/>*/}
+                {/*    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={ADD_EMPLOYEES_PAGE}/>*/}
+                {/*</div>*/}
             </div>
         );
     }

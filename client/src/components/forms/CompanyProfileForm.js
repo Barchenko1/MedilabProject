@@ -3,7 +3,10 @@ import {reduxForm} from "redux-form";
 import CustomInput from "../../customComponents/inputs/CustomInput";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomCheckBox from "../../customComponents/checkBoxes/CustomCheckBox";
-import './CompanyProfileForm.scss'
+import {Link} from "react-router-dom";
+import './CompanyProfileForm.scss';
+import CustomButton from '../../customComponents/buttons/CustomButton';
+import {HOME_PAGE} from '../../utils/consts';
 
 class CompanyProfileForm extends React.Component {
 
@@ -155,13 +158,16 @@ class CompanyProfileForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="cp_form">
-                <div className="wrapper">
+                <div className="wrapper addheight">
                     {this.renderCompanyInfo()}
                     {this.renderBillingAddress()}
                 </div>
-                <button className="cp_form-button">
-                    Continue
-                </button>
+                <div className="buttonContainer">
+                    <CustomButton className="buttonContainer_prev" styleProp={{textAlign: 'left'}} name="Previous" to={HOME_PAGE}/>
+                    <button className="buttonContainer_cont">
+                        Continue
+                    </button>
+                </div>
             </form>
         );
     }

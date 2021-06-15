@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {getEmployees, deleteEmployee} from "../../actions/employeeActions";
 import {Link} from "react-router-dom";
 import CustomButton from "../../customComponents/buttons/CustomButton";
-import './EmployeeList.scss'
+import './EmployeeList.scss';
 import {COMPANY_PROFILE_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
+import {HOME_PAGE} from '../../utils/consts';
 
 class EmployeeList extends React.Component {
 
@@ -42,7 +43,7 @@ class EmployeeList extends React.Component {
     renderCreate() {
         let toLink = `/${this.props.quote.quoteId}/employee/new`
         return(
-            <div style={{textAlign: 'left'}}>
+            <div className='buttonLeft'>
                 <Link to={toLink} className="ui button primary" >
                     Create Employee
                 </Link>
@@ -52,15 +53,21 @@ class EmployeeList extends React.Component {
 
     render() {
         return(
-            <div>
-                <h2>AddEmployeePage</h2>
-                {this.renderCreate()}
-                <div className="ui celled list">
-                    {this.renderEmployees()}
-                </div>
-                <div className="buttonContainer">
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>
+            <div className='center'>
+                <h2 className="page_header">AddEmployeePage</h2>
+                <div className='wrapper'>
+                    {this.renderCreate()}
+                    <div className="ui celled list addheight">
+                        {this.renderEmployees()}
+                    </div>
+                    {/*<div className="navbtns">*/}
+                    {/*    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>*/}
+                    {/*    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>*/}
+                    {/*</div>*/}
+                    <div className="buttonContainer">
+                        <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>
+                        <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>
+                    </div>
                 </div>
             </div>
         )

@@ -1,5 +1,5 @@
 import React from "react";
-import {FieldArray, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import CustomInput from "../../customComponents/inputs/CustomInput";
 
 class QuoteForm extends React.Component {
@@ -20,23 +20,36 @@ class QuoteForm extends React.Component {
 
     render() {
         return(
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                <CustomInput
-                    name='name'
-                    type='text'
-                    renderError={this.renderError}
-                    label="Quote Name"
-                />
-                <CustomInput
-                    name='dateOfExpire'
-                    type='date'
-                    renderError={this.renderError}
-                    label="Effective Date"
-                />
-                <div className="modal-container">
-                    <button>{this.props.submitButton}</button>
-                </div>
-            </form>
+            <div className='center'>
+                <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                    <div className='wrapper'>
+                        <div className='wrapper_left'>
+                            <CustomInput
+                                groupStyle="wrapper_left-item"
+                                labelStyle='wrapper_left-label'
+                                inputStyle='wrapper_left-input'
+                                name='name'
+                                type='text'
+                                renderError={this.renderError}
+                                label="Quote Name"
+                            />
+                        </div>
+                        <div className='wrapper_right'>
+                            <CustomInput
+                                groupStyle="wrapper_right-item"
+                                labelStyle='wrapper_right-label'
+                                name='dateOfExpire'
+                                type='date'
+                                renderError={this.renderError}
+                                label="Effective Date"
+                            />
+                        </div>
+                    </div>
+                    <div className='buttons'>
+                        <button className="buttons_create">{this.props.submitButton}</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

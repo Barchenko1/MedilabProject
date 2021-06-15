@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Footer.scss';
+import {HOME_PAGE} from "../utils/consts";
 
 
 const Footer = () => {
@@ -17,13 +18,13 @@ const Footer = () => {
                         <h4 className="footer_container--header">Quick Links</h4>
                         <ul className="footer_container--list">
                             <li className="footer_container--list-item">
-                                <Link className="footer_container--list-item-link" to="/">Home</Link>
+                                <Link className="footer_container--list-item-link" to={HOME_PAGE}>Home</Link>
                             </li>
                             <li className="footer_container--list-item">
-                                <Link className="footer_container--list-item-link" to="/">Service</Link>
+                                <Link className="footer_container--list-item-link" to={HOME_PAGE}>Service</Link>
                             </li>
                             <li className="footer_container--list-item">
-                                <Link className="footer_container--list-item-link" to="/">Appointment</Link>
+                                <Link className="footer_container--list-item-link" to={HOME_PAGE}>Appointment</Link>
                             </li>
                         </ul>
                     </div>
@@ -31,15 +32,15 @@ const Footer = () => {
                     <div className="footer_container--col">
                         <h4 className="footer_container--header">Social</h4>
                         <div className="footer_container--icons">
-                            <Link className="footer_container--icons-link" to="/">
+                            <Link className="footer_container--icons-link" to={HOME_PAGE}>
                                 <img src="git.png" className="footer_container--icons-link_img"/>
                             </Link>
 
-                            <Link to="/">
+                            <Link to={HOME_PAGE}>
                                 <img src="linkedin.png" className="footer_container--icons-link_img"/>
                             </Link>
 
-                            <Link to="/">
+                            <Link to={HOME_PAGE}>
                                 <img src="google.png" className="footer_container--icons-link_img"/>
                             </Link>
                         </div>

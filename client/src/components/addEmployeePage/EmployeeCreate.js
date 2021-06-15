@@ -23,7 +23,7 @@ class EmployeeCreate extends React.Component {
                 >
                     <EmployeeForm
                         onSubmit={this.onSubmit}
-                        to="/employees"
+                        to={`/${this.props.quote.quoteId}/employees`}
                         submitButton='Create'
                         cancelButton='Cancel'
                     />

@@ -8,6 +8,7 @@ export const COMPANY_PROFILE_PAGE = '/:quoteId/company-profile/';
 export const CREATE_QUOTE = '/quote/new';
 
 export const USER_PROFILE = '/user-profile';
+export const EDIT_USER_PROFILE = '/edit-user-profile';
 
 export const ADD_EMPLOYEES_PAGE = '/:quoteId/employees';
 export const CREATE_EMPLOYEE = '/:quoteId/employee/new';

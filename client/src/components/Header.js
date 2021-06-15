@@ -4,6 +4,7 @@ import './Header.scss';
 import history from "../utils/history";
 import {connect} from "react-redux";
 import {signOut} from "../actions/authActions";
+import {HOME_PAGE} from "../utils/consts";
 
 const Header = (props) => {
 
@@ -17,7 +18,7 @@ const Header = (props) => {
     return(
         <div className="header">
             <div className="header_logo">
-                <Link to="/">
+                <Link to="/medilab">
                     <img src="logo.png" className="header_logo--img"/>
                 </Link>
             </div>
@@ -27,7 +28,7 @@ const Header = (props) => {
                     <select onClick={onChange} className="header_dropdown">
                         <option value="/quote/new">Create Quote</option>
                         <option value="/user-profile">  User Profile</option>
-                        <option value="/"> Log out</option>
+                        <option value={HOME_PAGE}> Log out</option>
                     </select>
                 </div>
             </div>
