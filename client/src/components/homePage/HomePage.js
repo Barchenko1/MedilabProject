@@ -2,19 +2,22 @@ import React from 'react';
 import './HomePage.scss';
 import SearchBar from "../forms/SearchBar";
 import {ChartBar, ChartLine, ChartPie} from "../graphics/Chart";
+import {connect} from "react-redux";
+import {findQuote} from "../../actions/quoteActions";
 
 class HomePage extends React.Component {
 
-    onTermSubmit = async term => {
-
+    onTermSubmit = term => {
+        console.log(term);
+        this.props.findQuote(term);
     };
 
-    constructor(){
-        super();
-        this.state = {
-            chartData:{}
-        }
-    }
+    // constructor(){
+    //     super();
+    //     this.state = {
+    //         chartData:{}
+    //     }
+    // }
 
     componentWillMount(){
         this.getChartData();
@@ -73,4 +76,10 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+    return {
+        quote:state.quoteReducer.quote
+    }
+}
+
+export default connect(mapStateToProps, {findQuote})(HomePage);

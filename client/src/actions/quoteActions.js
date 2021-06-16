@@ -18,3 +18,15 @@ export const createQuote = (formProps) => async (dispatch, getState) => {
     });
     history.push(`/${response.data.quoteId}/company-profile/`);
 }
+
+export const findQuote = (formProps) => async (dispatch, getState) => {
+    const response = await apis.post('/quote/find', formProps,
+        { headers: { authorization: getCookie(TOKEN) }}
+    );
+    console.log(response);
+    dispatch({
+        type: CREATE_QUOTE,
+        payload: response.data
+    });
+    history.push(`/${response.data.quoteId}/company-profile/`);
+}

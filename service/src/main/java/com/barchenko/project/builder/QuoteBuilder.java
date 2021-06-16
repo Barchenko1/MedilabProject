@@ -1,6 +1,7 @@
 package com.barchenko.project.builder;
 
 import com.barchenko.project.entity.dto.req.QuoteDTORequest;
+import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
 import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.entity.tables.User;
 import org.springframework.stereotype.Component;
@@ -16,5 +17,12 @@ public class QuoteBuilder {
         quote.setDateOfExpire(quoteDTORequest.getDateOfExpire());
         quote.setCreator(user);
         return quote;
+    }
+
+    public QuoteDTOResponse createQuoteDTOResponseFromQuote(Quote quote) {
+        QuoteDTOResponse quoteDTOResponse = new QuoteDTOResponse();
+        quoteDTOResponse.setQuoteId(quote.getQuoteId());
+        quoteDTOResponse.setQuoteName(quote.getQuoteName());
+        return quoteDTOResponse;
     }
 }

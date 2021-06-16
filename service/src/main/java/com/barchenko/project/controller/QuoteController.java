@@ -1,6 +1,7 @@
 package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.QuoteDTORequest;
+import com.barchenko.project.entity.dto.req.SearchQuoteRequest;
 import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
 import com.barchenko.project.service.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class QuoteController {
     @RequestMapping(value = "/init", method = RequestMethod.POST)
     public ResponseEntity<QuoteDTOResponse> initQuote(@Valid @RequestBody QuoteDTORequest quoteDTORequest) {
         QuoteDTOResponse quoteDTOResponse = quoteService.createQuote(quoteDTORequest);
+        return ResponseEntity.ok(quoteDTOResponse);
+    }
+
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public ResponseEntity<QuoteDTOResponse> findQuote(@Valid @RequestBody SearchQuoteRequest searchQuoteRequest) {
+        QuoteDTOResponse quoteDTOResponse = quoteService.findQuote(searchQuoteRequest.getQuoteName());
         return ResponseEntity.ok(quoteDTOResponse);
     }
 }
