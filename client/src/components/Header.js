@@ -4,7 +4,7 @@ import './Header.scss';
 import history from "../utils/history";
 import {connect} from "react-redux";
 import {signOut} from "../actions/authActions";
-import {HOME_PAGE} from "../utils/consts";
+import {HOME_PAGE, LOGIN_PAGE} from "../utils/consts";
 
 const Header = (props) => {
 
@@ -28,7 +28,7 @@ const Header = (props) => {
                     <select onClick={onChange} className="header_dropdown">
                         <option value="/quote/new">Create Quote</option>
                         <option value="/user-profile">  User Profile</option>
-                        <option value={HOME_PAGE}> Log out</option>
+                        <option value={LOGIN_PAGE}> Log out</option>
                     </select>
                 </div>
             </div>

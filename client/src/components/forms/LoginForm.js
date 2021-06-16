@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
                     labelStyle='form_label'
                     inputStyle='form_input'
                     name="password"
-                    type="text"
+                    type="password"
                     renderError={this.renderError}
                     label="Enter Password"/>
                 <div className="form_buttons">

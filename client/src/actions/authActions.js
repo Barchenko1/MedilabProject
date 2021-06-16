@@ -41,7 +41,5 @@ export const registration = (formProps) => async dispatch => {
         type: REGISTRATION,
         payload: response.data
     })
-    if (response.data.success === true) {
-        history.push(LOGIN_PAGE);
-    }
+    history.push(LOGIN_PAGE);
 }
