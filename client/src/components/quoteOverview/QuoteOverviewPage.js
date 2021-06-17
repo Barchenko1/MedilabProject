@@ -39,12 +39,16 @@ class QuoteOverviewPage extends React.Component {
 
     renderEmployeeDetailsOverview() {
         console.log(this.props.employees)
-        return (
-            <div className="profile">
-                {this.renderEmployeeDetails()}
-                <button className="profile_button">Edit</button>
-            </div>
-        )
+        if (this.props.employees.length === 0) {
+            return <div/>
+        } else {
+            return (
+                <div className="profile">
+                    {this.renderEmployeeDetails()}
+                    <button className="profile_button">Edit</button>
+                </div>
+            )
+        }
     }
 
     renderEmployeeDetails() {
@@ -119,10 +123,6 @@ class QuoteOverviewPage extends React.Component {
                 {this.renderCompanyProfileOverview()}
                 {this.renderEmployeeDetailsOverview()}
                 {this.renderPlanDetailsOverview()}
-                {/* <div className="buttonContainer">*/}
-                {/*    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={PLAN_SELECTION_PAGE}/>*/}
-                {/*    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={`${this.props.quote.quoteId}/quote-overview`}/>*/}
-                {/*</div>*/}
                 <div>
                     <div className="buttonContainer">
                         <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={PLAN_SELECTION_PAGE}/>

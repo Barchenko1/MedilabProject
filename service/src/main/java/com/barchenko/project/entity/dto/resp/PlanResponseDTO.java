@@ -9,6 +9,7 @@ public class PlanResponseDTO {
     private String planClass;
     private String metalTier;
     private String planType;
+    private boolean isSelected;
 
     public long getPlanId() {
         return planId;
@@ -72,5 +73,13 @@ public class PlanResponseDTO {
 
     public void setPlanType(String planType) {
         this.planType = planType;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
