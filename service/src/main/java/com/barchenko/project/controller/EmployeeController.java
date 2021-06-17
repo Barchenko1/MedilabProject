@@ -2,6 +2,7 @@ package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
+import com.barchenko.project.entity.dto.resp.EmployeeQuoteStatisticDTOResponse;
 import com.barchenko.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +46,10 @@ public class EmployeeController {
         return ResponseEntity.ok("Successfull");
     }
 
+    @RequestMapping(value= "/employeeStatistic", method = RequestMethod.GET)
+    public ResponseEntity<List<EmployeeQuoteStatisticDTOResponse>>  getPlanMetalTierStatistic() {
+        List<EmployeeQuoteStatisticDTOResponse> employeeQuoteStatisticDTOResponseList = employeeService.getEmployeeQuoteStatistic();
+        return ResponseEntity.ok(employeeQuoteStatisticDTOResponseList);
+    }
 
 }

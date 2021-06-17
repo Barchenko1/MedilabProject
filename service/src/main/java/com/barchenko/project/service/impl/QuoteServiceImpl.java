@@ -7,12 +7,14 @@ import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.transaction.TransactionQuoteDAO;
 import com.barchenko.project.entity.dto.req.QuoteDTORequest;
 import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
+import com.barchenko.project.entity.dto.resp.QuoteStatisticDTOResponse;
 import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.service.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +48,14 @@ public class QuoteServiceImpl implements QuoteService {
             throw new IllegalArgumentException("error");
         }
         return quoteBuilder.createQuoteDTOResponseFromQuote(quote.get());
+    }
+
+    @Override
+    public List<QuoteStatisticDTOResponse> findQuoteCreationStatistic() {
+        Optional<List<QuoteStatisticDTOResponse>> optionalQuoteStatisticDTOResponse = quoteDAO.findQuoteCreationStatistic();
+        if (optionalQuoteStatisticDTOResponse.isEmpty()) {
+            throw new IllegalArgumentException("error");
+        }
+        return optionalQuoteStatisticDTOResponse.get();
     }
 }

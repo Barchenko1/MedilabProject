@@ -10,13 +10,14 @@ import com.barchenko.project.dao.StatusDAO;
 import com.barchenko.project.dao.transaction.TransactionEmployeeDependentDAO;
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
+import com.barchenko.project.entity.dto.resp.EmployeeQuoteStatisticDTOResponse;
 import com.barchenko.project.entity.tables.Employee;
-import com.barchenko.project.entity.tables.Quote;
 import com.barchenko.project.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.barchenko.project.entity.enums.StatusName.CREATED;
@@ -75,5 +76,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployeeDependentData(long quoteId, long id) {
         transactionEmployeeDependentDAO.deleteEmployeeDependentData(id);
+    }
+
+    @Override
+    public List<EmployeeQuoteStatisticDTOResponse> getEmployeeQuoteStatistic() {
+        Optional<List<EmployeeQuoteStatisticDTOResponse>> optionalEmployeeQuoteStatisticDTOResponses = employeeDAO.getEmployeeQuoteStatistic();
+        if (optionalEmployeeQuoteStatisticDTOResponses.isEmpty()) {
+            throw new IllegalArgumentException("error");
+        }
+        return optionalEmployeeQuoteStatisticDTOResponses.get();
     }
 }

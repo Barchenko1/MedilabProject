@@ -4,7 +4,7 @@ import {
     DELETE_PLAN,
     FETCH_PLANS,
     FETCH_SELECTED_PLANS,
-    FILTER_PLANS_BY_METAL_TYPES,
+    FILTER_PLANS_BY_METAL_TYPES, GET_METAL_PLAN_STATISTIC, GET_QUOTE_STATISTIC,
     SORT_PLANS_BY_MONTH_COST
 } from "../utils/types";
 import history from "../utils/history";
@@ -27,6 +27,17 @@ export const fetchPlans = (quoteId, productLine) => async dispatch  => {
     history.push(`/${quoteId}/plan-selection`);
     localStorage.setItem('plans', JSON.stringify(response.data));
     localStorage.setItem('filteredPlans', JSON.stringify(response.data));
+}
+
+export const getPlanMetalTierStatistic = () => async (dispatch, getState) => {
+    const response = await apis.get('/planStatistic',
+        { headers: { authorization: getCookie(TOKEN) }}
+    );
+    console.log(response);
+    dispatch({
+        type: GET_METAL_PLAN_STATISTIC,
+        payload: response.data
+    });
 }
 
 export const fetchSelectedPlans = () => async dispatch  => {

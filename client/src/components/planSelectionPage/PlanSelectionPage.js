@@ -7,7 +7,6 @@ import CustomButton from "../../customComponents/buttons/CustomButton";
 import PlanSelectionList from "./PlanSelectionList";
 import {filterChain} from "../../utils/util";
 import './PlanSelectionPage.scss';
-import {HOME_PAGE} from '../../utils/consts';
 
 class PlanSelectionPage extends React.Component {
 

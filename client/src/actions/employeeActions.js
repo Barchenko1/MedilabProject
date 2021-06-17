@@ -3,7 +3,7 @@ import {
     EDIT_EMPLOYEE,
     GET_EMPLOYEES,
     GET_EMPLOYEE,
-    DELETE_EMPLOYEE
+    DELETE_EMPLOYEE, GET_METAL_PLAN_STATISTIC, GET_EMPLOYEE_STATISTIC
 } from "../utils/types";
 import _ from 'lodash';
 import history from "../utils/history";
@@ -51,6 +51,17 @@ export const getEmployees = (quoteId) => async (dispatch, getState) => {
         payload: response.data
     });
     history.push(`/${quoteId}/employees`);
+}
+
+export const getEmployeesStatistic = () => async (dispatch, getState) => {
+    const response = await apis.get('/employeeStatistic',
+        { headers: { authorization: getCookie(TOKEN) }}
+    );
+    console.log(response);
+    dispatch({
+        type: GET_EMPLOYEE_STATISTIC,
+        payload: response.data
+    });
 }
 
 export const getEmployee = (id) => async (dispatch) => {

@@ -1,5 +1,10 @@
 import {
-    FETCH_PLANS, FETCH_SELECTED_PLANS, FILTER_PLANS_BY_METAL_TYPES, SORT_PLANS_BY_MONTH_COST
+    FETCH_PLANS,
+    FETCH_SELECTED_PLANS,
+    FILTER_PLANS_BY_METAL_TYPES,
+    GET_METAL_PLAN_STATISTIC,
+    GET_QUOTE_STATISTIC,
+    SORT_PLANS_BY_MONTH_COST
 } from "../utils/types";
 
 const INIT_STATE = {
@@ -7,7 +12,8 @@ const INIT_STATE = {
     currentProductLine: 'medical',
     sortItem: '',
     filteredPlans: [],
-    allPlans: {}
+    allPlans: {},
+    planStatistic: []
 }
 
 export default (state = INIT_STATE, action) => {
@@ -24,6 +30,10 @@ export default (state = INIT_STATE, action) => {
     }
     if (action.type === SORT_PLANS_BY_MONTH_COST) {
         return {...state, filteredPlans: action.payload.plans, sortItem: action.payload.sortItem}
+    }
+
+    if (action.type === GET_METAL_PLAN_STATISTIC) {
+        return {...state, planStatistic : action.payload};
     }
 
     return state;

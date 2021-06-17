@@ -1,5 +1,6 @@
 package com.barchenko.project.controller;
 
+import com.barchenko.project.entity.dto.resp.PlanMetalTierStatisticDTOResponse;
 import com.barchenko.project.entity.dto.resp.PlanResponseDTO;
 import com.barchenko.project.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,12 @@ public class PlanController {
         planService.addPlanToQuote(quoteId, planCode);
         return ResponseEntity.ok("Successful");
     }
+
+    @RequestMapping(value= "/planStatistic", method = RequestMethod.GET)
+    public ResponseEntity<List<PlanMetalTierStatisticDTOResponse>>  getPlanMetalTierStatistic() {
+        List<PlanMetalTierStatisticDTOResponse> planMetalTierStatisticDTOResponses = planService.getPlanMetalTierStatistic();
+        return ResponseEntity.ok(planMetalTierStatisticDTOResponses);
+    }
+
 
 }

@@ -6,6 +6,7 @@ import com.barchenko.project.dao.PlanDAO;
 import com.barchenko.project.dao.ProposalDAO;
 import com.barchenko.project.dao.QuoteDAO;
 import com.barchenko.project.dao.transaction.TransactionPlanDAO;
+import com.barchenko.project.entity.dto.resp.PlanMetalTierStatisticDTOResponse;
 import com.barchenko.project.entity.dto.resp.PlanResponseDTO;
 import com.barchenko.project.entity.tables.Plan;
 import com.barchenko.project.service.PlanService;
@@ -60,5 +61,14 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public void addPlanToQuote(long quoteId, String planCode) {
         transactionPlanDAO.addPlanToQuote(quoteId, planCode);
+    }
+
+    @Override
+    public List<PlanMetalTierStatisticDTOResponse> getPlanMetalTierStatistic() {
+        Optional<List<PlanMetalTierStatisticDTOResponse>> optionalPlanMetalTierStatisticDTOResponses = planDAO.getPlanMetalTierStatistic();
+        if (optionalPlanMetalTierStatisticDTOResponses.isEmpty()) {
+            throw new IllegalArgumentException("error");
+        }
+        return optionalPlanMetalTierStatisticDTOResponses.get();
     }
 }
