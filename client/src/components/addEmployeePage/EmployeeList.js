@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import CustomButton from "../../customComponents/buttons/CustomButton";
 import './EmployeeList.scss';
 import {COMPANY_PROFILE_PAGE, PLAN_SELECTION_PAGE} from "../../utils/consts";
-import {HOME_PAGE} from '../../utils/consts';
 
 class EmployeeList extends React.Component {
 
@@ -20,7 +19,7 @@ class EmployeeList extends React.Component {
                 <div className="item" key={index}>
                     {this.renderActions(employee)}
                     <div className="content">
-                        {employee.firstName} {employee.lastName}
+                        EE name: {employee.firstName}, EE last name: {employee.lastName}, EE birthdate: {new Date(employee.birthdate).toLocaleDateString()}, EE email: {employee.email}, EE hours of work: {employee.hoursOfWork}, EE salary {employee.salary}
                     </div>
                 </div>
             )
@@ -60,10 +59,6 @@ class EmployeeList extends React.Component {
                     <div className="ui celled list addheight">
                         {this.renderEmployees()}
                     </div>
-                    {/*<div className="navbtns">*/}
-                    {/*    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>*/}
-                    {/*    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>*/}
-                    {/*</div>*/}
                     <div className="buttonContainer">
                         <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={`/${this.props.quote.quoteId}/company-profile/`}/>
                         <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={PLAN_SELECTION_PAGE}/>

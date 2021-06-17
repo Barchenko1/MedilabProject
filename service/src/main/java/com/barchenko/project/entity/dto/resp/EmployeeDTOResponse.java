@@ -1,6 +1,9 @@
 package com.barchenko.project.entity.dto.resp;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +13,9 @@ public class EmployeeDTOResponse {
     private String middleName;
     private String lastName;
     private String email;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfHire;
     private int hoursOfWork;
     private int salary;

@@ -60,8 +60,8 @@ class QuoteOverviewPage extends React.Component {
                     <div className="profile_card-item">{employee.middleName}</div>
                     <div className="profile_card-item">{employee.lastName}</div>
                     <div className="profile_card-item">{employee.email}</div>
-                    <div className="profile_card-item">{employee.birthdate}</div>
-                    <div className="profile_card-item">{employee.dateOfHire}</div>
+                    <div className="profile_card-item">{new Date(employee.birthdate).toLocaleDateString()}</div>
+                    <div className="profile_card-item">{new Date(employee.dateOfHire).toLocaleDateString()}</div>
                     <div className="profile_card-item">{employee.hoursOfWork}</div>
                     <div className="profile_card-item">{employee.salary}</div>
                     <div className="profile_card-item">{employee.gender}</div>
@@ -78,7 +78,7 @@ class QuoteOverviewPage extends React.Component {
                     Dependent{index+1}:
                     <div className="profile_card-item">{dependent.firstName}</div>
                     <div className="profile_card-item">{dependent.lastName}</div>
-                    <div className="profile_card-item">{dependent.birthdate}</div>
+                    <div className="profile_card-item">{new Date(dependent.birthdate).toLocaleDateString()}</div>
                     <div className="profile_card-item">{dependent.gender}</div>
                     <div className="profile_card-item">{dependent.relationship}</div>
                 </div>

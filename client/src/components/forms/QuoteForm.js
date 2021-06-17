@@ -56,9 +56,12 @@ class QuoteForm extends React.Component {
 
 const validate = (formProps) => {
     const errors = {};
-
-    if (!formProps.firstName) {
-        errors.firstName = 'You must enter a first name';
+    console.log(formProps)
+    if (!formProps.name) {
+        errors.name = 'You must enter a quote name';
+    }
+    if (!formProps.dateOfExpire) {
+        errors.dateOfExpire = 'You must enter a quote name';
     }
 
     return errors;

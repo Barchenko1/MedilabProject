@@ -37,6 +37,7 @@ public class EmployeeBuilder {
         employeeDTOResponse.setEmail(employee.getEmail());
         employeeDTOResponse.setBirthdate(employee.getBirthdate());
         employeeDTOResponse.setDateOfHire(employee.getDateOfHire());
+        employeeDTOResponse.setHoursOfWork(employee.getHoursOfWork());
         employeeDTOResponse.setSalary(employee.getSalary());
         employeeDTOResponse.setGender(employee.getGender().getName().name().toLowerCase());
         employeeDTOResponse.setStatus(employee.getStatus().getName().name().toLowerCase());

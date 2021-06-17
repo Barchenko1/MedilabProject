@@ -14,16 +14,14 @@ class PlanSelectionPage extends React.Component {
         super(props);
         this.state = {
             metalTiers: [
-                {id: 1, key: 'metalTier', name: "Platinum", value: "platinum", isChecked: false},
-                {id: 2, key: 'metalTier', name: "Gold", value: "gold", isChecked: false},
-                {id: 3, key: 'metalTier', name: "Silver", value: "silver", isChecked: false},
-                {id: 4, key: 'metalTier', name: "Bronze", value: "bronze", isChecked: false}
+                {id: 1, key: 'metalTier', name: "PLATINUM", value: "PLATINUM", isChecked: false},
+                {id: 2, key: 'metalTier', name: "GOLD", value: "GOLD", isChecked: false},
+                {id: 3, key: 'metalTier', name: "SILVER", value: "SILVER", isChecked: false},
+                {id: 4, key: 'metalTier', name: "BRONZE", value: "BRONZE", isChecked: false}
             ],
             planTypes: [
-                {id: 1, key: 'planType', name: "EPO", value: "EPO", isChecked: false},
-                {id: 2, key: 'planType', name: "PPO", value: "PPO", isChecked: false},
-                {id: 3, key: 'planType', name: "HSA", value: "HSA", isChecked: false},
-                {id: 4, key: 'planType', name: "HMO", value: "HMO", isChecked: false}
+                {id: 1, key: 'planType', name: "HMO", value: "HMO", isChecked: false},
+                {id: 2, key: 'planType', name: "PPO", value: "PPO", isChecked: false}
             ]
         }
     }
@@ -185,7 +183,7 @@ class PlanSelectionPage extends React.Component {
     render() {
         return (
             <div>
-                <div className="card">
+                <div className="card" hidden="true">
                     <div className='center'>
                         <h3>Do you want choose plans by yourself?</h3>
                         <Link>Submit</Link>
@@ -207,10 +205,6 @@ class PlanSelectionPage extends React.Component {
                         />
                     </div>
                 </div>
-                {/* <div className='navbtns'>
-                    <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>
-                    <CustomButton styleProp={{textAlign: 'right'}} name="Continue" to={QUOTE_SUMMARY}/>
-                </div> */}
                 <div className='center'>
                     <div className="buttonContainer">
                         <CustomButton styleProp={{textAlign: 'left'}} name="Previous" to={ADD_EMPLOYEES_PAGE}/>

@@ -3,7 +3,6 @@ import {reduxForm} from "redux-form";
 import CustomInput from "../../customComponents/inputs/CustomInput";
 import CustomDropDown from "../../customComponents/dropdowns/CustomDropDown";
 import CustomCheckBox from "../../customComponents/checkBoxes/CustomCheckBox";
-import {Link} from "react-router-dom";
 import './CompanyProfileForm.scss';
 import CustomButton from '../../customComponents/buttons/CustomButton';
 import {HOME_PAGE} from '../../utils/consts';
@@ -175,8 +174,15 @@ class CompanyProfileForm extends React.Component {
 
 const validate = (formProps) => {
     const errors = {};
+    console.log(formProps)
     if (!formProps.companyName) {
         errors.companyName = 'You must enter a company name';
+    }
+    if (!formProps.discount) {
+        errors.discount = 'You must enter a discount';
+    }
+    if (formProps.zipCode && formProps.zipCode.length !== 5) {
+        errors.zipCode = 'You must enter a email';
     }
     return errors
 }
