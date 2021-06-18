@@ -19,7 +19,7 @@ class CompanyProfileForm extends React.Component {
     renderError(meta) {
         if (meta.touched && meta.error) {
             return(
-                <div>
+                <div className="errormsg">
                     {meta.error}
                 </div>
             )
@@ -178,12 +178,55 @@ const validate = (formProps) => {
     if (!formProps.companyName) {
         errors.companyName = 'You must enter a company name';
     }
-    if (!formProps.discount) {
-        errors.discount = 'You must enter a discount';
-    }
+
     if (formProps.zipCode && formProps.zipCode.length !== 5) {
-        errors.zipCode = 'You must enter a email';
+        errors.zipCode = 'Zip code should be 5 symbols';
     }
+
+    if (formProps.state && formProps.state.length !== 2) {
+        errors.state = 'State should be 2 symbols';
+    }
+
+    if (!formProps.discount) {
+        errors.discount = 'You must enter discount';
+    }
+
+    if (!formProps.zipCode) {
+        errors.zipCode = 'You must enter zip code';
+    }
+
+    if (!formProps.state) {
+        errors.state = 'You must enter state';
+    }
+
+    if (!formProps.city) {
+        errors.city = 'You must enter city';
+    }
+
+    if (!formProps.address) {
+        errors.address = 'You must enter address';
+    }
+
+    if (!formProps.houseNumber) {
+        errors.houseNumber = 'You must enter house number';
+    }
+
+    if (!formProps.email) {
+        errors.email = 'You must enter email';
+    }
+
+    if (!formProps.phone) {
+        errors.phone = 'You must enter phone number';
+    }
+
+    if (!formProps.organizationType) {
+        errors.organizationType = 'You must choose organization type';
+    }
+
+    if (+formProps.discount > 100 || formProps.discount < 0) {
+        errors.discount = 'Discount value shold be in range from 0 to 100';
+    }
+
     return errors
 }
 

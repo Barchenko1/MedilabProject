@@ -7,7 +7,7 @@ class QuoteForm extends React.Component {
     renderError = (meta) => {
         if (meta.touched && meta.error) {
             return(
-                <div>
+                <div className="errormsg">
                     {meta.error}
                 </div>
             )
@@ -58,10 +58,11 @@ const validate = (formProps) => {
     const errors = {};
     console.log(formProps)
     if (!formProps.name) {
-        errors.name = 'You must enter a quote name';
+        errors.name = 'You must enter a first name';
     }
+
     if (!formProps.dateOfExpire) {
-        errors.dateOfExpire = 'You must enter a quote name';
+        errors.dateOfExpire = 'You must enter effective date'
     }
 
     return errors;

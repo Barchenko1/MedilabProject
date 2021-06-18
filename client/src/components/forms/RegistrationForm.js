@@ -99,8 +99,27 @@ class RegistrationForm extends React.Component {
 
 const validate = (formProps) => {
     const errors = {};
+    console.log(formProps)
     if (!formProps.username) {
         errors.username = 'You must enter a username';
+    }
+    if (!formProps.email) {
+        errors.email = 'You must enter a email';
+    }
+    if (!formProps.phone) {
+        errors.phone = 'You must enter a phone';
+    }
+    if (!formProps.password) {
+        errors.password = 'You must enter a password';
+    }
+    if (!formProps.confirmPassword) {
+        errors.confirmPassword = 'You must enter a confirmPassword';
+    }
+    if (formProps.password !== formProps.confirmPassword) {
+        errors.confirmPassword = 'Please, confirm your password';
+    }
+    if (!formProps.role) {
+        errors.role = 'You must select a role';
     }
     return errors
 }

@@ -21,7 +21,7 @@ class EmployeeForm extends React.Component {
     renderError = (meta) => {
         if (meta.touched && meta.error) {
             return(
-                <div>
+                <div className="errormsg">
                     {meta.error}
                 </div>
             )
@@ -223,8 +223,41 @@ const validate = (formProps) => {
     if (!formProps.firstName) {
         errors.firstName = 'You must enter a first name';
     }
+
     if (!formProps.lastName) {
         errors.lastName = 'You must enter a last name';
+    }
+
+    if (!formProps.middleName) {
+        errors.middleName = 'You must enter a middle name';
+    }
+
+    if (new Date(formProps.dateOfHire) > new Date()) {
+        errors.dateOfHire = 'You could not be hired in the future';
+    }
+
+    if(!formProps.dateOfHire) {
+        errors.dateOfHire = 'You should choose your date of hire';
+    }
+
+    if (!formProps.salary) {
+        errors.salary = 'You must enter salary';
+    }
+
+    if (!formProps.hoursOfWork) {
+        errors.hoursOfWork = 'You must enter hours of work';
+    }
+
+    if (!formProps.gender) {
+        errors.gender = 'Choose your gender';
+    }
+
+    if (new Date(formProps.birthdate) > new Date()) {
+        errors.birthdate = 'You could not be born in the future';
+    }
+
+    if(!formProps.birthdate) {
+        errors.birthdate = 'You should choose your birthdate';
     }
 
     return errors;

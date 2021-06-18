@@ -189,7 +189,7 @@ class PlanSelectionPage extends React.Component {
                         <Link>Submit</Link>
                     </div>
                 </div>
-                <div className="container addheight">
+                <div className="container addPlanSelectionHeight">
                     <div className="container-wrapper">
                         <div className="container-wrapper_left">
                             <h2>Plan Selection</h2>

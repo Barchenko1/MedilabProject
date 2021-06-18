@@ -13,12 +13,6 @@ class IndividualAddDetailsPage extends React.Component {
     render() {
         return(
             <div>
-                {/*<IndividualAddDetailsForm*/}
-                {/*    onSubmit={this.onSubmit}*/}
-                {/*    to="/add-individual"*/}
-                {/*    submitButton='Create'*/}
-                {/*    cancelButton='Cancel'*/}
-                {/*/>*/}
                 <h1 className="page_header">Individual info</h1>
                 <EmployeeForm
                     onSubmit={this.onSubmit}

@@ -8,7 +8,13 @@ import './Form.scss'
 class LoginForm extends React.Component {
 
     renderError(meta) {
-
+        if (meta.touched && meta.error) {
+            return(
+                <div className="errormsg">
+                    {meta.error}
+                </div>
+            )
+        }
     }
 
     onSubmit = (formProps) => {
@@ -48,7 +54,13 @@ class LoginForm extends React.Component {
 
 const validate = (formProps) => {
     const errors = {};
+    if (!formProps.usernameOrEmail) {
+        errors.usernameOrEmail = 'You must enter a username or email';
+    }
 
+    if (!formProps.password) {
+        errors.password = 'You must enter password';
+    }
     return errors
 }
 
