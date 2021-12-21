@@ -2,7 +2,7 @@ package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.resp.PlanMetalTierStatisticDTOResponse;
 import com.barchenko.project.entity.dto.resp.PlanResponseDTO;
-import com.barchenko.project.service.PlanService;
+import com.barchenko.project.service.service_contract.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

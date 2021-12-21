@@ -3,7 +3,7 @@ package com.barchenko.project.controller;
 import com.barchenko.project.entity.dto.req.EmployeeDTORequest;
 import com.barchenko.project.entity.dto.resp.EmployeeDTOResponse;
 import com.barchenko.project.entity.dto.resp.EmployeeQuoteStatisticDTOResponse;
-import com.barchenko.project.service.EmployeeService;
+import com.barchenko.project.service.service_contract.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

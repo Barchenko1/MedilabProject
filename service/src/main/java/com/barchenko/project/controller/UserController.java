@@ -4,7 +4,7 @@ import com.barchenko.project.appUser.CustomAuthenticationProvider;
 import com.barchenko.project.appUser.UserPrincipal;
 import com.barchenko.project.entity.dto.req.LoginPasswordDTORequest;
 import com.barchenko.project.entity.dto.req.UserDTORequest;
-import com.barchenko.project.service.UserService;
+import com.barchenko.project.service.service_contract.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

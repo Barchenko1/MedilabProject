@@ -1,6 +1,6 @@
 package com.barchenko.project.appUser;
 
-import com.barchenko.project.dao.UserDAO;
+import com.barchenko.project.dao.dao_contract.UserDAO;
 import com.barchenko.project.entity.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;

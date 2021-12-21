@@ -4,7 +4,7 @@ import com.barchenko.project.entity.dto.req.QuoteDTORequest;
 import com.barchenko.project.entity.dto.req.SearchQuoteRequest;
 import com.barchenko.project.entity.dto.resp.QuoteDTOResponse;
 import com.barchenko.project.entity.dto.resp.QuoteStatisticDTOResponse;
-import com.barchenko.project.service.QuoteService;
+import com.barchenko.project.service.service_contract.QuoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;

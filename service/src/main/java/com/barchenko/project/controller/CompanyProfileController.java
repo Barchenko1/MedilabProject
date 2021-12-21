@@ -2,7 +2,7 @@ package com.barchenko.project.controller;
 
 import com.barchenko.project.entity.dto.req.CompanyProfileDTORequest;
 import com.barchenko.project.entity.dto.resp.CompanyDTOResponse;
-import com.barchenko.project.service.CompanyProfileService;
+import com.barchenko.project.service.service_contract.CompanyProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
